@@ -120,17 +120,10 @@ The test cases cover the main supported object patterns:
 
 That gives the project a clear correctness surface: it is not only a socket demo, and it is not only an XML formatter. The serialization format and the reconstruction logic are both exercised directly.
 
-## Technical Characteristics
+## Signing Off
 
-This project combines several concrete behaviors in one small system:
+This project did two big things for me that I’ll never forget. First, it taught me how to communicate directly over a transport-layer protocol like TCP. Second, it gave me the chance to not only serialize payloads, but also deserialize them using a custom scheme. These kinds of low-level projects provide not just valuable insight, but real hands-on experience for understanding more complex, purpose-built applications.
 
-- terminal-driven object construction
-- reflection-based field and constructor handling
-- identity-preserving XML serialization
-- a custom XML object protocol
-- plain TCP socket transport
-- two-pass object graph reconstruction
-- recursive object visualization with cycle protection
-- unit tests for both serializer and deserializer logic
+I got to learn about terminal-driven object construction, reflection-based field and constructor handling, custom serialization/deserialization protocols, TCP socket transport, and recursive object visualization!
 
-Taken together, the project reads as a transport-focused object graph lab rather than a general networking application. The defining characteristic is that it preserves object identity and reference structure across a socket boundary using a custom XML protocol and a matching deserialization strategy.
+Definitely a project I’ll keep in my back pocket for whenever I want to revisit the good old days of “getting my hands dirty” at a low level. I feel like that’s the kind of thing that’s easy to lose sight of as we keep building on the shoulders of giants!
