@@ -1,0 +1,78 @@
+direction: right
+
+rack: {
+  label: "10-Letter Rack"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+openai: {
+  label: "OpenAI Streaming Request"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+stream: {
+  label: "Chunked Function-Call Args\nReadableStream Transform"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+assembler: {
+  label: "JsonAssembler\nIncremental JSON Build"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+queue: {
+  label: "Timed Word Queue"
+  shape: rectangle
+  style: {
+    fill: "#EEF3F8"
+    stroke: "#8A97A8"
+    font-color: "#243447"
+  }
+}
+
+input: {
+  label: "Populate Input +\nSubmit Like Player"
+  shape: rectangle
+  style: {
+    fill: "#E8F4E7"
+    stroke: "#5C8E58"
+    font-color: "#19381A"
+  }
+}
+
+score: {
+  label: "Normal Validation + Scoring Path"
+  shape: rectangle
+  style: {
+    fill: "#E8F4E7"
+    stroke: "#5C8E58"
+    font-color: "#19381A"
+  }
+}
+
+rack -> openai: "prompt with letters"
+openai -> stream: "streamed chunks"
+stream -> assembler
+assembler -> queue: "partial words"
+queue -> input: "interval playback"
+input -> score: "same as human turn"

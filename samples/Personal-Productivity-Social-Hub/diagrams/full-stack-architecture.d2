@@ -1,0 +1,102 @@
+direction: down
+
+frontend: {
+  label: "React Frontend"
+  style: {
+    fill: "#F5F8FC"
+    stroke: "#8A97A8"
+  }
+
+  router: {
+    label: "Route-Based SPA"
+    shape: rectangle
+    style: {
+      fill: "#DFF1F7"
+      stroke: "#3E7D8D"
+      font-color: "#0E2B32"
+    }
+  }
+
+  pages: {
+    label: "Profile, Tasks, Calendar,\nNotes, Settings, Friends, Stats"
+    shape: rectangle
+    style: {
+      fill: "#DFF1F7"
+      stroke: "#3E7D8D"
+      font-color: "#0E2B32"
+    }
+  }
+
+  session: {
+    label: "Protected Routes + localStorage Session"
+    shape: rectangle
+    style: {
+      fill: "#EEF3F8"
+      stroke: "#8A97A8"
+      font-color: "#243447"
+    }
+  }
+}
+
+api: {
+  label: "Express API"
+  style: {
+    fill: "#F7FAFC"
+    stroke: "#8A97A8"
+  }
+
+  routes: {
+    label: "Resource Routers"
+    shape: rectangle
+    style: {
+      fill: "#F8ECD7"
+      stroke: "#B98A2E"
+      font-color: "#4A3410"
+    }
+  }
+
+  services: {
+    label: "Service Modules"
+    shape: rectangle
+    style: {
+      fill: "#F8ECD7"
+      stroke: "#B98A2E"
+      font-color: "#4A3410"
+    }
+  }
+}
+
+database: {
+  label: "MySQL Schema"
+  style: {
+    fill: "#F5F8FC"
+    stroke: "#8A97A8"
+  }
+
+  core_tables: {
+    label: "Profile, Settings, Tasks,\nNotes, Schedule, Events"
+    shape: rectangle
+    style: {
+      fill: "#E8F4E7"
+      stroke: "#5C8E58"
+      font-color: "#19381A"
+    }
+  }
+
+  link_tables: {
+    label: "Features, Has_Friend,\nShared_Features, Monthly_Stats"
+    shape: rectangle
+    style: {
+      fill: "#E8F4E7"
+      stroke: "#5C8E58"
+      font-color: "#19381A"
+    }
+  }
+}
+
+frontend.router -> frontend.pages
+frontend.session -> frontend.router
+frontend.pages -> api.routes: "fetch / mutate"
+api.routes -> api.services: "resource handlers"
+api.services -> database.core_tables: "CRUD"
+api.services -> database.link_tables: "linking + stats"

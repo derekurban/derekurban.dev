@@ -1,0 +1,56 @@
+direction: right
+
+controller: {
+  label: "Hand-Made Controller\nKeyboard fallback\nOne button per player"
+  shape: rectangle
+  style: {
+    fill: "#DBEAFE"
+    stroke: "#1D4ED8"
+    font-color: "#0F172A"
+  }
+}
+
+menu_ready: {
+  label: "Menu Use\nReady checks\nColor lock-in"
+  shape: rectangle
+  style: {
+    fill: "#F8FAFC"
+    stroke: "#64748B"
+    font-color: "#0F172A"
+  }
+}
+
+frogger_action: {
+  label: "Frogger\nJump action"
+  shape: rectangle
+  style: {
+    fill: "#FFFBEB"
+    stroke: "#C2410C"
+    font-color: "#0F172A"
+  }
+}
+
+pacman_action: {
+  label: "Pac-Man\nTwo teams control\ntwo movers"
+  shape: rectangle
+  style: {
+    fill: "#FFFBEB"
+    stroke: "#C2410C"
+    font-color: "#0F172A"
+  }
+}
+
+pong_action: {
+  label: "Pong\nToggle paddle\ndirection"
+  shape: rectangle
+  style: {
+    fill: "#FFFBEB"
+    stroke: "#C2410C"
+    font-color: "#0F172A"
+  }
+}
+
+controller -> menu_ready: "before rounds"
+controller -> frogger_action: "during round"
+controller -> pacman_action: "during round"
+controller -> pong_action: "during round"

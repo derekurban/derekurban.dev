@@ -1,0 +1,89 @@
+direction: down
+
+main: {
+  label: "Main"
+  shape: rectangle
+  style: {
+    fill: "#E8F1FF"
+    stroke: "#2F6FED"
+    stroke-width: 2
+  }
+}
+
+anim: {
+  label: "AnimationController"
+  shape: rectangle
+  style: {
+    fill: "#EEF8F3"
+    stroke: "#2C8A5A"
+    stroke-width: 2
+  }
+}
+
+handler: {
+  label: "Handler"
+  shape: rectangle
+  style: {
+    fill: "#FFF5E8"
+    stroke: "#D97706"
+    stroke-width: 2
+  }
+}
+
+menu: {
+  label: "MainMenu"
+  shape: rectangle
+  style: {
+    fill: "#F8FAFC"
+    stroke: "#64748B"
+  }
+}
+
+player: {
+  label: "Player"
+  shape: rectangle
+  style: {
+    fill: "#F8FAFC"
+    stroke: "#64748B"
+  }
+}
+
+board: {
+  label: "Board"
+  shape: rectangle
+  style: {
+    fill: "#F3E8FF"
+    stroke: "#7C3AED"
+  }
+}
+
+display: {
+  label: "Display"
+  shape: rectangle
+  style: {
+    fill: "#F3E8FF"
+    stroke: "#7C3AED"
+  }
+}
+
+keys: {
+  label: "Keylist"
+  shape: rectangle
+  style: {
+    fill: "#F3E8FF"
+    stroke: "#7C3AED"
+  }
+}
+
+main -> anim: "start loop"
+main -> board: "build tile grid"
+main -> keys: "register input"
+anim -> handler: "tick + render"
+handler -> menu: "menu state"
+handler -> player: "play state"
+handler -> display: "draw active frame"
+player -> board: "read/update tiles"
+player -> display: "render sprite"
+keys -> handler: "state transition input"
+keys -> player: "movement input"
+board -> display: "draw world"

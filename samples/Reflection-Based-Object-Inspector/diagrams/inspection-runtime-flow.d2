@@ -1,0 +1,90 @@
+direction: right
+
+driver: {
+  label: "Asst2TestDriver"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+load_class: {
+  label: "Load Inspector Class\nClass.forName + newInstance"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+resolve_method: {
+  label: "Resolve inspect(Object, boolean)"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+fixtures: {
+  label: "Fixture Set\nClassA, ClassB, ClassD,\narrays, String"
+  shape: rectangle
+  style: {
+    fill: "#EEF3F8"
+    stroke: "#8A97A8"
+    font-color: "#243447"
+  }
+}
+
+invoke: {
+  label: "Invoke Inspector"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+inspector: {
+  label: "Inspector.java"
+  shape: rectangle
+  style: {
+    fill: "#E8F4E7"
+    stroke: "#5C8E58"
+    font-color: "#19381A"
+  }
+}
+
+console: {
+  label: "Console Output"
+  shape: rectangle
+  style: {
+    fill: "#EEF3F8"
+    stroke: "#8A97A8"
+    font-color: "#243447"
+  }
+}
+
+formatted: {
+  label: "Returned Formatted String"
+  shape: rectangle
+  style: {
+    fill: "#EEF3F8"
+    stroke: "#8A97A8"
+    font-color: "#243447"
+  }
+}
+
+driver -> load_class: "runtime name"
+load_class -> resolve_method
+driver -> fixtures
+resolve_method -> invoke
+fixtures -> invoke
+invoke -> inspector: "inspect(obj, recursive)"
+inspector -> console
+inspector -> formatted

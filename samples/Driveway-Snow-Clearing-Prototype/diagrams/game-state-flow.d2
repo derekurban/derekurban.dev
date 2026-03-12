@@ -1,0 +1,76 @@
+direction: right
+
+launch: {
+  label: "Launch Application"
+  shape: rectangle
+  style: {
+    fill: "#E8F1FF"
+    stroke: "#2F6FED"
+    stroke-width: 2
+  }
+}
+
+setup: {
+  label: "Create Window\nCanvas\nBoard\nKeylist"
+  shape: rectangle
+  style: {
+    fill: "#EEF8F3"
+    stroke: "#2C8A5A"
+    stroke-width: 2
+  }
+}
+
+menu: {
+  label: "Main Menu"
+  shape: rectangle
+  style: {
+    fill: "#FFF5E8"
+    stroke: "#D97706"
+    stroke-width: 2
+  }
+}
+
+play: {
+  label: "Play State"
+  shape: rectangle
+  style: {
+    fill: "#FFF5E8"
+    stroke: "#D97706"
+    stroke-width: 2
+  }
+}
+
+move: {
+  label: "WASD Movement"
+  shape: rectangle
+  style: {
+    fill: "#F8FAFC"
+    stroke: "#64748B"
+  }
+}
+
+update: {
+  label: "Update Tiles\nPush Snow\nAnimate Sprite"
+  shape: rectangle
+  style: {
+    fill: "#F3E8FF"
+    stroke: "#7C3AED"
+  }
+}
+
+render: {
+  label: "Redraw Board + Player"
+  shape: rectangle
+  style: {
+    fill: "#EEF8F3"
+    stroke: "#2C8A5A"
+  }
+}
+
+launch -> setup: "initialize runtime"
+setup -> menu: "start in menu state"
+menu -> play: "press P"
+play -> move: "read keyboard"
+move -> update: "apply movement rules"
+update -> render: "draw new frame"
+render -> play: "continue loop"

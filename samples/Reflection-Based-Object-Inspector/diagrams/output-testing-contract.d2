@@ -1,0 +1,89 @@
+direction: right
+
+fixtures: {
+  label: "Fixture Classes\nClassA-D, interfaces,\narrays, String"
+  shape: rectangle
+  style: {
+    fill: "#EEF3F8"
+    stroke: "#8A97A8"
+    font-color: "#243447"
+  }
+}
+
+inspector: {
+  label: "Inspector"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+sorting: {
+  label: "Sorted Reflection Output"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+formatted: {
+  label: "Formatted Text Result"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+expected: {
+  label: "Expected Output Templates"
+  shape: rectangle
+  style: {
+    fill: "#EEF3F8"
+    stroke: "#8A97A8"
+    font-color: "#243447"
+  }
+}
+
+regex: {
+  label: "Regex Placeholders\nfor Reference IDs"
+  shape: rectangle
+  style: {
+    fill: "#EEF3F8"
+    stroke: "#8A97A8"
+    font-color: "#243447"
+  }
+}
+
+assertion: {
+  label: "JUnit Match Assertions"
+  shape: rectangle
+  style: {
+    fill: "#E8F4E7"
+    stroke: "#5C8E58"
+    font-color: "#19381A"
+  }
+}
+
+contract: {
+  label: "Deterministic Output Contract"
+  shape: rectangle
+  style: {
+    fill: "#E8F4E7"
+    stroke: "#5C8E58"
+    font-color: "#19381A"
+  }
+}
+
+fixtures -> inspector
+inspector -> sorting
+sorting -> formatted
+formatted -> assertion
+expected -> regex
+regex -> assertion
+assertion -> contract

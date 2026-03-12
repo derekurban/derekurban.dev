@@ -1,0 +1,128 @@
+direction: right
+
+home: {
+  label: "Home Screen"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+transit: {
+  label: "Transit Hub"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+transit_routes: {
+  label: "Transit Routes"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+plan_trip: {
+  label: "Plan a Trip"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+fare: {
+  label: "Fare Information"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+poi: {
+  label: "Points of Interest"
+  shape: rectangle
+  style: {
+    fill: "#E8F4E7"
+    stroke: "#5C8E58"
+    font-color: "#19381A"
+  }
+}
+
+emergency: {
+  label: "Emergency Contact"
+  shape: rectangle
+  style: {
+    fill: "#FDE7E7"
+    stroke: "#BE5A5A"
+    font-color: "#4C1818"
+  }
+}
+
+help_request: {
+  label: "Help Request Flow"
+  shape: rectangle
+  style: {
+    fill: "#FDE7E7"
+    stroke: "#BE5A5A"
+    font-color: "#4C1818"
+  }
+}
+
+language: {
+  label: "Language Selection"
+  shape: rectangle
+  style: {
+    fill: "#EEF3F8"
+    stroke: "#8A97A8"
+    font-color: "#243447"
+  }
+}
+
+taskbar: {
+  label: "Persistent Taskbar"
+  shape: rectangle
+  style: {
+    fill: "#EEF3F8"
+    stroke: "#8A97A8"
+    font-color: "#243447"
+  }
+}
+
+home -> transit: "enter transit"
+transit -> transit_routes
+transit -> plan_trip
+transit -> fare
+
+home -> poi: "browse city guide"
+home -> emergency: "request assistance"
+emergency -> help_request
+
+taskbar -> home: "home"
+taskbar -> language: "language"
+taskbar -> transit: {
+  style: {
+    stroke-dash: 4
+  }
+}
+taskbar -> poi: {
+  style: {
+    stroke-dash: 4
+  }
+}
+taskbar -> emergency: {
+  style: {
+    stroke-dash: 4
+  }
+}

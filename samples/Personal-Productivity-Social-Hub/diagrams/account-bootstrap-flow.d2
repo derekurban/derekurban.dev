@@ -1,0 +1,104 @@
+direction: right
+
+signup: {
+  label: "Create Profile"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+defaults: {
+  label: "Create Default Records"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+settings: {
+  label: "Settings"
+  shape: rectangle
+  style: {
+    fill: "#E8F4E7"
+    stroke: "#5C8E58"
+    font-color: "#19381A"
+  }
+}
+
+notes: {
+  label: "Notes Root"
+  shape: rectangle
+  style: {
+    fill: "#E8F4E7"
+    stroke: "#5C8E58"
+    font-color: "#19381A"
+  }
+}
+
+tasks: {
+  label: "Tasks Root"
+  shape: rectangle
+  style: {
+    fill: "#E8F4E7"
+    stroke: "#5C8E58"
+    font-color: "#19381A"
+  }
+}
+
+schedule: {
+  label: "Schedule Root"
+  shape: rectangle
+  style: {
+    fill: "#E8F4E7"
+    stroke: "#5C8E58"
+    font-color: "#19381A"
+  }
+}
+
+stats: {
+  label: "Monthly Stats Seed"
+  shape: rectangle
+  style: {
+    fill: "#E8F4E7"
+    stroke: "#5C8E58"
+    font-color: "#19381A"
+  }
+}
+
+features: {
+  label: "Create Features Link Row"
+  shape: rectangle
+  style: {
+    fill: "#EEF3F8"
+    stroke: "#8A97A8"
+    font-color: "#243447"
+  }
+}
+
+workspace: {
+  label: "User Workspace Ready"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+signup -> defaults
+defaults -> settings
+defaults -> notes
+defaults -> tasks
+defaults -> schedule
+defaults -> stats
+
+settings -> features
+notes -> features
+tasks -> features
+schedule -> features
+features -> workspace

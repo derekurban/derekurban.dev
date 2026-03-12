@@ -1,0 +1,125 @@
+direction: down
+
+interfaces: {
+  label: "Interface Layer"
+  style: {
+    fill: "#F5F8FC"
+    stroke: "#8A97A8"
+  }
+
+  customer_panels: {
+    label: "Customer Panels"
+    shape: rectangle
+    style: {
+      fill: "#DFF1F7"
+      stroke: "#3E7D8D"
+      font-color: "#0E2B32"
+    }
+  }
+
+  attendant_panels: {
+    label: "Attendant Panels"
+    shape: rectangle
+    style: {
+      fill: "#DFF1F7"
+      stroke: "#3E7D8D"
+      font-color: "#0E2B32"
+    }
+  }
+
+  system_ui: {
+    label: "SystemUI"
+    shape: rectangle
+    style: {
+      fill: "#DFF1F7"
+      stroke: "#3E7D8D"
+      font-color: "#0E2B32"
+    }
+  }
+}
+
+control: {
+  label: "Checkout Control Layer"
+  style: {
+    fill: "#F7FAFC"
+    stroke: "#8A97A8"
+  }
+
+  checkout_manager: {
+    label: "CheckoutManager"
+    shape: rectangle
+    style: {
+      fill: "#F8ECD7"
+      stroke: "#B98A2E"
+      font-color: "#4A3410"
+    }
+  }
+
+  control_console: {
+    label: "ControlConsole"
+    shape: rectangle
+    style: {
+      fill: "#F8ECD7"
+      stroke: "#B98A2E"
+      font-color: "#4A3410"
+    }
+  }
+
+  states: {
+    label: "SystemStates"
+    shape: rectangle
+    style: {
+      fill: "#E8F4E7"
+      stroke: "#5C8E58"
+      font-color: "#19381A"
+    }
+  }
+
+  service_modules: {
+    label: "Scanning, Bagging, Payment,\nChange, Receipt Modules"
+    shape: rectangle
+    style: {
+      fill: "#E8F4E7"
+      stroke: "#5C8E58"
+      font-color: "#19381A"
+    }
+  }
+}
+
+simulation: {
+  label: "Simulation Layer"
+  style: {
+    fill: "#F5F8FC"
+    stroke: "#8A97A8"
+  }
+
+  hardware: {
+    label: "SelfCheckoutStation"
+    shape: rectangle
+    style: {
+      fill: "#EEF3F8"
+      stroke: "#8A97A8"
+      font-color: "#243447"
+    }
+  }
+
+  seeded_data: {
+    label: "Seeded Product / Member Data"
+    shape: rectangle
+    style: {
+      fill: "#EEF3F8"
+      stroke: "#8A97A8"
+      font-color: "#243447"
+    }
+  }
+}
+
+interfaces.customer_panels -> interfaces.system_ui
+interfaces.attendant_panels -> interfaces.system_ui
+interfaces.system_ui -> control.checkout_manager: "customer actions"
+interfaces.system_ui -> control.control_console: "attendant tools"
+control.control_console -> control.checkout_manager: "overrides + approvals"
+control.checkout_manager -> control.states: "state transitions"
+control.service_modules -> control.checkout_manager: "device listeners"
+simulation.seeded_data -> control.checkout_manager: "pricing + membership"
+control.checkout_manager <-> simulation.hardware: "commands + events"

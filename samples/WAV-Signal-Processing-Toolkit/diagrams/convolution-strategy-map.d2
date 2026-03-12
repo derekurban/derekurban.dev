@@ -1,0 +1,118 @@
+direction: down
+
+shared_input: {
+  label: "Shared Inputs"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+time_domain: {
+  label: "convolve.cpp"
+  style: {
+    fill: "#F5F8FC"
+    stroke: "#8A97A8"
+  }
+
+  td_load: {
+    label: "Load Dry + Impulse"
+    shape: rectangle
+    style: {
+      fill: "#F8ECD7"
+      stroke: "#B98A2E"
+      font-color: "#4A3410"
+    }
+  }
+
+  td_nested: {
+    label: "Nested Loop Convolution\n y[n+m] += x[n] * h[m]"
+    shape: rectangle
+    style: {
+      fill: "#F8ECD7"
+      stroke: "#B98A2E"
+      font-color: "#4A3410"
+    }
+  }
+
+  td_output: {
+    label: "Scale + Write Output"
+    shape: rectangle
+    style: {
+      fill: "#E8F4E7"
+      stroke: "#5C8E58"
+      font-color: "#19381A"
+    }
+  }
+}
+
+fft_domain: {
+  label: "convolve_fft.cpp"
+  style: {
+    fill: "#F5F8FC"
+    stroke: "#8A97A8"
+  }
+
+  fft_load: {
+    label: "Load + Pad to Power of Two"
+    shape: rectangle
+    style: {
+      fill: "#F8ECD7"
+      stroke: "#B98A2E"
+      font-color: "#4A3410"
+    }
+  }
+
+  fft_transform: {
+    label: "Custom FFT\n(bit reversal + butterflies)"
+    shape: rectangle
+    style: {
+      fill: "#F8ECD7"
+      stroke: "#B98A2E"
+      font-color: "#4A3410"
+    }
+  }
+
+  fft_multiply: {
+    label: "Complex Spectrum Multiply"
+    shape: rectangle
+    style: {
+      fill: "#F8ECD7"
+      stroke: "#B98A2E"
+      font-color: "#4A3410"
+    }
+  }
+
+  fft_inverse: {
+    label: "Inverse FFT + Real Signal Extract"
+    shape: rectangle
+    style: {
+      fill: "#F8ECD7"
+      stroke: "#B98A2E"
+      font-color: "#4A3410"
+    }
+  }
+
+  fft_output: {
+    label: "Scale + Write Output"
+    shape: rectangle
+    style: {
+      fill: "#E8F4E7"
+      stroke: "#5C8E58"
+      font-color: "#19381A"
+    }
+  }
+}
+
+shared_input -> time_domain.td_load: "same dry + impulse"
+shared_input -> fft_domain.fft_load: "same dry + impulse"
+
+time_domain.td_load -> time_domain.td_nested
+time_domain.td_nested -> time_domain.td_output
+
+fft_domain.fft_load -> fft_domain.fft_transform
+fft_domain.fft_transform -> fft_domain.fft_multiply
+fft_domain.fft_multiply -> fft_domain.fft_inverse
+fft_domain.fft_inverse -> fft_domain.fft_output

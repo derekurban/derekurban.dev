@@ -1,0 +1,105 @@
+direction: right
+
+welcome: {
+  label: "Welcome Screen\nStart customer session\nor attendant login"
+  shape: rectangle
+  style: {
+    fill: "#DBEAFE"
+    stroke: "#1D4ED8"
+    font-color: "#0F172A"
+  }
+}
+
+scanning_hub: {
+  label: "Scanning Hub\nRunning cart + totals\nScan items\nMembership entry\nOwn bag handling"
+  shape: rectangle
+  style: {
+    fill: "#BFDBFE"
+    stroke: "#0369A1"
+    font-color: "#0F172A"
+  }
+}
+
+produce_lookup: {
+  label: "PLU Produce Flow\nSearch by code / keyword\nRead weight from scale"
+  shape: rectangle
+  style: {
+    fill: "#F8FAFC"
+    stroke: "#64748B"
+    font-color: "#0F172A"
+  }
+}
+
+bagging_check: {
+  label: "Bagging Validation\nExpected vs actual weight\nApprove or block next step"
+  shape: rectangle
+  style: {
+    fill: "#CCFBF1"
+    stroke: "#0F766E"
+    font-color: "#0F172A"
+  }
+}
+
+payment_entry: {
+  label: "Payment Entry\nPlastic bag count\nCan return to scanning"
+  shape: rectangle
+  style: {
+    fill: "#F8FAFC"
+    stroke: "#64748B"
+    font-color: "#0F172A"
+  }
+}
+
+payment_selection: {
+  label: "Payment Selection\nCash\nCard\nGift card"
+  shape: rectangle
+  style: {
+    fill: "#FFFBEB"
+    stroke: "#C2410C"
+    font-color: "#0F172A"
+  }
+}
+
+payment_processing: {
+  label: "Payment Processing\nAuthorize or accept tender\nTrack remaining balance"
+  shape: rectangle
+  style: {
+    fill: "#FFFBEB"
+    stroke: "#C2410C"
+    font-color: "#0F172A"
+  }
+}
+
+completion: {
+  label: "Completion\nReturn change\nPrint receipt\nReset for next customer"
+  shape: rectangle
+  style: {
+    fill: "#DCFCE7"
+    stroke: "#15803D"
+    font-color: "#0F172A"
+  }
+}
+
+notifications: {
+  label: "Modal Notifications\nBagging discrepancy\nBlocked station\nLow supplies"
+  shape: rectangle
+  style: {
+    fill: "#FEE2E2"
+    stroke: "#B91C1C"
+    font-color: "#0F172A"
+  }
+}
+
+welcome -> scanning_hub: "start checkout"
+scanning_hub -> produce_lookup: "produce item"
+produce_lookup -> bagging_check: "price by weight"
+scanning_hub -> bagging_check: "barcode scan"
+bagging_check -> payment_entry: "bagging confirmed"
+payment_entry -> payment_selection: "proceed"
+payment_selection -> payment_processing: "select tender"
+payment_processing -> completion: "balance paid"
+
+bagging_check -> notifications: "discrepancy or issue"
+payment_processing -> notifications: "device or payment issue"
+notifications -> scanning_hub: "resume when cleared"
+payment_entry -> scanning_hub: "return to scanning"

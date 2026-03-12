@@ -1,0 +1,143 @@
+direction: down
+
+input_text: {
+  label: "Input Text\nRaw JSON-like string"
+  shape: rectangle
+  style: {
+    fill: "#DBEAFE"
+    stroke: "#1D4ED8"
+    font-color: "#0F172A"
+  }
+}
+
+assembler: {
+  label: "JsonAssembler\nConstructor stores input"
+  shape: rectangle
+  style: {
+    fill: "#BFDBFE"
+    stroke: "#0369A1"
+    font-color: "#0F172A"
+  }
+}
+
+assemble_call: {
+  label: "assemble()\nStart parsing"
+  shape: rectangle
+  style: {
+    fill: "#F8FAFC"
+    stroke: "#64748B"
+    font-color: "#0F172A"
+  }
+}
+
+build_value: {
+  label: "buildValue()\nSkip whitespace\nRead next significant char\nDispatch by token"
+  shape: rectangle
+  style: {
+    fill: "#CCFBF1"
+    stroke: "#0F766E"
+    font-color: "#0F172A"
+  }
+}
+
+build_string: {
+  label: "buildString()\nRead until closing quote"
+  shape: rectangle
+  style: {
+    fill: "#FFFBEB"
+    stroke: "#C2410C"
+    font-color: "#0F172A"
+  }
+}
+
+build_object: {
+  label: "buildObject()\nRead key:value pairs"
+  shape: rectangle
+  style: {
+    fill: "#FFFBEB"
+    stroke: "#C2410C"
+    font-color: "#0F172A"
+  }
+}
+
+build_array: {
+  label: "buildArray()\nRead and append elements"
+  shape: rectangle
+  style: {
+    fill: "#FFFBEB"
+    stroke: "#C2410C"
+    font-color: "#0F172A"
+  }
+}
+
+build_primitive: {
+  label: "buildPrimitive()\nCollect token until delimiter"
+  shape: rectangle
+  style: {
+    fill: "#FFFBEB"
+    stroke: "#C2410C"
+    font-color: "#0F172A"
+  }
+}
+
+string_cleanup: {
+  label: "modifySpecialCharacters()\nApply common escapes"
+  shape: rectangle
+  style: {
+    fill: "#F8FAFC"
+    stroke: "#64748B"
+    font-color: "#0F172A"
+  }
+}
+
+recursive_parse: {
+  label: "Recursive Re-entry\nNested values call\nbuildValue() again"
+  shape: rectangle
+  style: {
+    fill: "#F8FAFC"
+    stroke: "#0369A1"
+    font-color: "#0F172A"
+  }
+}
+
+type_coercion: {
+  label: "Type Coercion\nNumber, boolean,\nnull, undefined"
+  shape: rectangle
+  style: {
+    fill: "#F8FAFC"
+    stroke: "#64748B"
+    font-color: "#0F172A"
+  }
+}
+
+output_value: {
+  label: "Output Value\nAssembled JS object,\narray, string, or primitive"
+  shape: rectangle
+  style: {
+    fill: "#DCFCE7"
+    stroke: "#15803D"
+    font-color: "#0F172A"
+  }
+}
+
+input_text -> assembler: "input"
+assembler -> assemble_call: "public API"
+assemble_call -> build_value: "begin"
+
+build_value -> build_string: "if `\"`"
+build_value -> build_object: "if `{`"
+build_value -> build_array: "if `[`"
+build_value -> build_primitive: "otherwise"
+
+build_string -> string_cleanup: "raw string"
+string_cleanup -> output_value: "string result"
+
+build_object -> recursive_parse: "nested field values"
+build_array -> recursive_parse: "nested element values"
+recursive_parse -> build_value: "re-enter"
+
+build_object -> output_value: "object result"
+build_array -> output_value: "array result"
+
+build_primitive -> type_coercion: "token text"
+type_coercion -> output_value: "primitive result"

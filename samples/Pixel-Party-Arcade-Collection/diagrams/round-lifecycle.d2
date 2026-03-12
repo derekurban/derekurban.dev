@@ -1,0 +1,46 @@
+direction: down
+
+pregame: {
+  label: "Pre-Game Screen\nStandings + ready check"
+  shape: rectangle
+  style: {
+    fill: "#DBEAFE"
+    stroke: "#1D4ED8"
+    font-color: "#0F172A"
+  }
+}
+
+launch: {
+  label: "Launch Round"
+  shape: rectangle
+  style: {
+    fill: "#F8FAFC"
+    stroke: "#64748B"
+    font-color: "#0F172A"
+  }
+}
+
+play: {
+  label: "Run Game Logic\nMovement, timing,\nand scoring"
+  shape: rectangle
+  style: {
+    fill: "#FFFBEB"
+    stroke: "#C2410C"
+    font-color: "#0F172A"
+  }
+}
+
+score: {
+  label: "Normalize Scores\nUpdate leaderboard"
+  shape: rectangle
+  style: {
+    fill: "#CCFBF1"
+    stroke: "#0F766E"
+    font-color: "#0F172A"
+  }
+}
+
+pregame -> launch: "all players ready"
+launch -> play: "start"
+play -> score: "round ends"
+score -> pregame: "next round"

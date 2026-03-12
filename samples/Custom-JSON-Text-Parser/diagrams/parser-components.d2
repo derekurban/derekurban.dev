@@ -1,0 +1,96 @@
+direction: right
+
+public_api: {
+  label: "Public API\nJsonAssembler(input)\nassemble()"
+  shape: rectangle
+  style: {
+    fill: "#DBEAFE"
+    stroke: "#1D4ED8"
+    font-color: "#0F172A"
+  }
+}
+
+json_assembler: {
+  label: "JsonAssembler Core"
+  style: {
+    fill: "#F8FAFC"
+    stroke: "#64748B"
+    font-color: "#0F172A"
+  }
+
+  build_value: {
+    label: "buildValue()\nToken dispatch"
+    shape: rectangle
+    style: {
+      fill: "#CCFBF1"
+      stroke: "#0F766E"
+      font-color: "#0F172A"
+    }
+  }
+
+  build_string: {
+    label: "buildString()\nString scanning"
+    shape: rectangle
+    style: {
+      fill: "#FFFBEB"
+      stroke: "#C2410C"
+      font-color: "#0F172A"
+    }
+  }
+
+  build_object: {
+    label: "buildObject()\nObject assembly"
+    shape: rectangle
+    style: {
+      fill: "#FFFBEB"
+      stroke: "#C2410C"
+      font-color: "#0F172A"
+    }
+  }
+
+  build_array: {
+    label: "buildArray()\nArray assembly"
+    shape: rectangle
+    style: {
+      fill: "#FFFBEB"
+      stroke: "#C2410C"
+      font-color: "#0F172A"
+    }
+  }
+
+  build_primitive: {
+    label: "buildPrimitive()\nToken coercion"
+    shape: rectangle
+    style: {
+      fill: "#FFFBEB"
+      stroke: "#C2410C"
+      font-color: "#0F172A"
+    }
+  }
+}
+
+text_manager: {
+  label: "JsonTextManager\nStores remaining text\nnextChar(skip/until)\nreturnChar(pushback)"
+  shape: rectangle
+  style: {
+    fill: "#CCFBF1"
+    stroke: "#0F766E"
+    font-color: "#0F172A"
+  }
+}
+
+public_api -> json_assembler.build_value: "assemble()"
+
+json_assembler.build_value -> json_assembler.build_string: "dispatch"
+json_assembler.build_value -> json_assembler.build_object
+json_assembler.build_value -> json_assembler.build_array
+json_assembler.build_value -> json_assembler.build_primitive
+
+json_assembler.build_string -> text_manager: "consume chars"
+json_assembler.build_object -> text_manager: "read keys / separators"
+json_assembler.build_array -> text_manager: "read delimiters"
+json_assembler.build_primitive -> text_manager: "read token"
+
+json_assembler.build_object -> json_assembler.build_value: "recursive values"
+json_assembler.build_array -> json_assembler.build_value: "recursive values"
+text_manager -> json_assembler.build_value: "nextChar / returnChar"

@@ -1,0 +1,152 @@
+direction: right
+
+client: {
+  label: "Client"
+  style: {
+    fill: "#F5F8FC"
+    stroke: "#8A97A8"
+  }
+
+  creator: {
+    label: "Interactive ObjectCreator"
+    shape: rectangle
+    style: {
+      fill: "#DFF1F7"
+      stroke: "#3E7D8D"
+      font-color: "#0E2B32"
+    }
+  }
+
+  cache: {
+    label: "Cached Instances\n(reuse + cycles)"
+    shape: rectangle
+    style: {
+      fill: "#EEF3F8"
+      stroke: "#8A97A8"
+      font-color: "#243447"
+    }
+  }
+
+  serializer: {
+    label: "Serializer\nIdentityHashMap IDs"
+    shape: rectangle
+    style: {
+      fill: "#F8ECD7"
+      stroke: "#B98A2E"
+      font-color: "#4A3410"
+    }
+  }
+
+  visualizer_out: {
+    label: "Local ObjectVisualizer"
+    shape: rectangle
+    style: {
+      fill: "#E8F4E7"
+      stroke: "#5C8E58"
+      font-color: "#19381A"
+    }
+  }
+}
+
+wire: {
+  label: "Socket Transfer"
+  style: {
+    fill: "#F7FAFC"
+    stroke: "#8A97A8"
+  }
+
+  xml: {
+    label: "XML Payload\n<object>, <field>, <value>, <reference>"
+    shape: rectangle
+    style: {
+      fill: "#F8ECD7"
+      stroke: "#B98A2E"
+      font-color: "#4A3410"
+    }
+  }
+
+  boundary: {
+    label: "Message Ends When\nClient Closes Socket"
+    shape: rectangle
+    style: {
+      fill: "#EEF3F8"
+      stroke: "#8A97A8"
+      font-color: "#243447"
+    }
+  }
+}
+
+server: {
+  label: "Server"
+  style: {
+    fill: "#F5F8FC"
+    stroke: "#8A97A8"
+  }
+
+  listener: {
+    label: "ServerSocket :8080"
+    shape: rectangle
+    style: {
+      fill: "#DFF1F7"
+      stroke: "#3E7D8D"
+      font-color: "#0E2B32"
+    }
+  }
+
+  parse: {
+    label: "Parse XML to JDOM"
+    shape: rectangle
+    style: {
+      fill: "#DFF1F7"
+      stroke: "#3E7D8D"
+      font-color: "#0E2B32"
+    }
+  }
+
+  preallocate: {
+    label: "Pass 1\nInstantiate Objects + Arrays"
+    shape: rectangle
+    style: {
+      fill: "#F8ECD7"
+      stroke: "#B98A2E"
+      font-color: "#4A3410"
+    }
+  }
+
+  assign: {
+    label: "Pass 2\nAssign Fields + Contents"
+    shape: rectangle
+    style: {
+      fill: "#F8ECD7"
+      stroke: "#B98A2E"
+      font-color: "#4A3410"
+    }
+  }
+
+  visualizer_in: {
+    label: "Rebuilt ObjectVisualizer"
+    shape: rectangle
+    style: {
+      fill: "#E8F4E7"
+      stroke: "#5C8E58"
+      font-color: "#19381A"
+    }
+  }
+}
+
+client.creator -> client.cache: "reuse objects"
+client.creator -> client.serializer: "selected object graph"
+client.serializer -> client.visualizer_out: {
+  label: "inspect before send"
+  style: {
+    stroke-dash: 4
+  }
+}
+
+client.serializer -> wire.xml: "serialize"
+wire.xml -> wire.boundary: "raw bytes"
+wire.boundary -> server.listener
+server.listener -> server.parse: "read until EOF"
+server.parse -> server.preallocate
+server.preallocate -> server.assign: "references resolvable"
+server.assign -> server.visualizer_in: "inspect rebuilt graph"

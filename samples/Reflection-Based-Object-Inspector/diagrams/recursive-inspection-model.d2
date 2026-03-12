@@ -1,0 +1,153 @@
+direction: down
+
+entry: {
+  label: "inspect(obj, recursive)"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+type_split: {
+  label: "Object Type Check"
+  shape: rectangle
+  style: {
+    fill: "#EEF3F8"
+    stroke: "#8A97A8"
+    font-color: "#243447"
+  }
+}
+
+array_path: {
+  label: "Array Inspection"
+  style: {
+    fill: "#F5F8FC"
+    stroke: "#8A97A8"
+  }
+
+  array_meta: {
+    label: "Type, Component,\nLength, Contents"
+    shape: rectangle
+    style: {
+      fill: "#F8ECD7"
+      stroke: "#B98A2E"
+      font-color: "#4A3410"
+    }
+  }
+
+  array_recursion: {
+    label: "Recursive Element Walk\n(non-primitive, non-null)"
+    shape: rectangle
+    style: {
+      fill: "#E8F4E7"
+      stroke: "#5C8E58"
+      font-color: "#19381A"
+    }
+  }
+}
+
+object_path: {
+  label: "Object Inspection"
+  style: {
+    fill: "#F5F8FC"
+    stroke: "#8A97A8"
+  }
+
+  class_info: {
+    label: "Class + Superclass + Interfaces"
+    shape: rectangle
+    style: {
+      fill: "#F8ECD7"
+      stroke: "#B98A2E"
+      font-color: "#4A3410"
+    }
+  }
+
+  members: {
+    label: "Methods + Constructors"
+    shape: rectangle
+    style: {
+      fill: "#F8ECD7"
+      stroke: "#B98A2E"
+      font-color: "#4A3410"
+    }
+  }
+
+  fields: {
+    label: "Field Scan + Values"
+    shape: rectangle
+    style: {
+      fill: "#F8ECD7"
+      stroke: "#B98A2E"
+      font-color: "#4A3410"
+    }
+  }
+
+  field_recursion: {
+    label: "Recursive Field Walk\n(non-primitive refs)"
+    shape: rectangle
+    style: {
+      fill: "#E8F4E7"
+      stroke: "#5C8E58"
+      font-color: "#19381A"
+    }
+  }
+
+  super_recursion: {
+    label: "Superclass Walk\n(non-Object only)"
+    shape: rectangle
+    style: {
+      fill: "#E8F4E7"
+      stroke: "#5C8E58"
+      font-color: "#19381A"
+    }
+  }
+
+  interface_recursion: {
+    label: "Interface Hierarchy Walk"
+    shape: rectangle
+    style: {
+      fill: "#E8F4E7"
+      stroke: "#5C8E58"
+      font-color: "#19381A"
+    }
+  }
+}
+
+boundaries: {
+  label: "Current Boundaries"
+  shape: rectangle
+  style: {
+    fill: "#FDE7E7"
+    stroke: "#BE5A5A"
+    font-color: "#4C1818"
+  }
+}
+
+entry -> type_split
+type_split -> array_path.array_meta: "array"
+type_split -> object_path.class_info: "non-array"
+
+array_path.array_meta -> array_path.array_recursion: "recursive mode"
+
+object_path.class_info -> object_path.members
+object_path.members -> object_path.fields
+object_path.fields -> object_path.field_recursion: "recursive refs"
+object_path.fields -> object_path.super_recursion: "inheritance"
+object_path.class_info -> object_path.interface_recursion: "interfaces"
+
+object_path.fields -> boundaries: {
+  label: "array fields inline"
+  style: {
+    stroke-dash: 4
+  }
+}
+
+object_path.field_recursion -> boundaries: {
+  label: "no cycle tracking"
+  style: {
+    stroke-dash: 4
+  }
+}

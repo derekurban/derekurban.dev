@@ -1,0 +1,121 @@
+direction: right
+
+welcome: {
+  label: "Welcome / Login / Signup"
+  shape: rectangle
+  style: {
+    fill: "#EEF3F8"
+    stroke: "#8A97A8"
+    font-color: "#243447"
+  }
+}
+
+workspace: {
+  label: "Protected Workspace"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+profile: {
+  label: "Profile"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+tasks: {
+  label: "Task List"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+calendar: {
+  label: "Calendar"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+notes: {
+  label: "Notes"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+settings: {
+  label: "Settings"
+  shape: rectangle
+  style: {
+    fill: "#E8F4E7"
+    stroke: "#5C8E58"
+    font-color: "#19381A"
+  }
+}
+
+friends: {
+  label: "Friends"
+  shape: rectangle
+  style: {
+    fill: "#E8F4E7"
+    stroke: "#5C8E58"
+    font-color: "#19381A"
+  }
+}
+
+stats: {
+  label: "Monthly Statistics"
+  shape: rectangle
+  style: {
+    fill: "#E8F4E7"
+    stroke: "#5C8E58"
+    font-color: "#19381A"
+  }
+}
+
+welcome -> workspace: "authenticated session"
+workspace -> profile
+workspace -> tasks
+workspace -> calendar
+workspace -> notes
+workspace -> settings
+workspace -> friends
+workspace -> stats
+
+tasks -> stats: {
+  label: "task counts"
+  style: {
+    stroke-dash: 4
+  }
+}
+
+calendar -> stats: {
+  label: "event counts"
+  style: {
+    stroke-dash: 4
+  }
+}
+
+profile -> friends: {
+  label: "user identity"
+  style: {
+    stroke-dash: 4
+  }
+}

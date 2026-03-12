@@ -1,0 +1,119 @@
+direction: right
+
+welcome: {
+  label: "Welcome Screen"
+  shape: rectangle
+  style: {
+    fill: "#F5F8FC"
+    stroke: "#6B7B93"
+    font-color: "#122033"
+  }
+}
+
+scan: {
+  label: "Scan Items"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+bagging: {
+  label: "Bagging Validation"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+payment_setup: {
+  label: "Bag Count + Payment Setup"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+payment: {
+  label: "Tender Processing"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+finish: {
+  label: "Receipt + Change + Reset"
+  shape: rectangle
+  style: {
+    fill: "#E8F4E7"
+    stroke: "#5C8E58"
+    font-color: "#19381A"
+  }
+}
+
+membership: {
+  label: "Membership Scan"
+  shape: rectangle
+  style: {
+    fill: "#EEF3F8"
+    stroke: "#8A97A8"
+    font-color: "#243447"
+  }
+}
+
+produce: {
+  label: "PLU / Produce Lookup"
+  shape: rectangle
+  style: {
+    fill: "#EEF3F8"
+    stroke: "#8A97A8"
+    font-color: "#243447"
+  }
+}
+
+own_bag: {
+  label: "Own Bag Entry"
+  shape: rectangle
+  style: {
+    fill: "#EEF3F8"
+    stroke: "#8A97A8"
+    font-color: "#243447"
+  }
+}
+
+welcome -> scan: "begin"
+scan -> bagging: "item accepted"
+bagging -> payment_setup: "cart complete"
+payment_setup -> payment: "choose tender"
+payment -> finish: "transaction closes"
+
+membership -> scan: "optional pre-scan step"
+produce -> bagging: "weight-based item"
+own_bag -> payment_setup: "adjust bag count"
+
+scan -> membership: {
+  style: {
+    stroke-dash: 4
+  }
+}
+
+scan -> produce: {
+  style: {
+    stroke-dash: 4
+  }
+}
+
+bagging -> own_bag: {
+  style: {
+    stroke-dash: 4
+  }
+}

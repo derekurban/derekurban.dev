@@ -1,0 +1,69 @@
+direction: right
+
+remaining_text: {
+  label: "Remaining Input Text\nUnconsumed source string"
+  shape: rectangle
+  style: {
+    fill: "#DBEAFE"
+    stroke: "#1D4ED8"
+    font-color: "#0F172A"
+  }
+}
+
+next_char: {
+  label: "nextChar()\nRead from the front\nSupports skip / until"
+  shape: rectangle
+  style: {
+    fill: "#CCFBF1"
+    stroke: "#0F766E"
+    font-color: "#0F172A"
+  }
+}
+
+parser_step: {
+  label: "Parser Step\nDecide whether the char\nbelongs here or later"
+  shape: rectangle
+  style: {
+    fill: "#FFFBEB"
+    stroke: "#C2410C"
+    font-color: "#0F172A"
+  }
+}
+
+updated_text: {
+  label: "Updated Remaining Text\nConsumed characters are sliced off"
+  shape: rectangle
+  style: {
+    fill: "#F8FAFC"
+    stroke: "#64748B"
+    font-color: "#0F172A"
+  }
+}
+
+return_char: {
+  label: "returnChar()\nPush one character back\nto the front of the input"
+  shape: rectangle
+  style: {
+    fill: "#F8FAFC"
+    stroke: "#0369A1"
+    font-color: "#0F172A"
+  }
+}
+
+design_note: {
+  label: "Effect\nMutable string cursor\nwith single-char pushback\nNo separate tokenizer"
+  shape: rectangle
+  style: {
+    fill: "#DCFCE7"
+    stroke: "#15803D"
+    font-color: "#0F172A"
+  }
+}
+
+remaining_text -> next_char: "consume"
+next_char -> parser_step: "next char"
+parser_step -> updated_text: "continue parsing"
+parser_step -> return_char: "char belongs to next step"
+return_char -> remaining_text: "restore front char"
+updated_text -> design_note: "state advances"
+return_char -> design_note: "supports re-entry"

@@ -1,0 +1,89 @@
+direction: right
+
+reference: {
+  label: "Reference WAV"
+  shape: rectangle
+  style: {
+    fill: "#EEF3F8"
+    stroke: "#8A97A8"
+    font-color: "#243447"
+  }
+}
+
+comparison: {
+  label: "Comparison WAV"
+  shape: rectangle
+  style: {
+    fill: "#EEF3F8"
+    stroke: "#8A97A8"
+    font-color: "#243447"
+  }
+}
+
+load: {
+  label: "Load Both Files\nwith WavRecording.cpp"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+headers: {
+  label: "Header Integrity Checks\nRIFF / fmt / data"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+signals: {
+  label: "Sample-by-Sample Check\nMono or Stereo"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+match: {
+  label: "Validation Passed"
+  shape: rectangle
+  style: {
+    fill: "#E8F4E7"
+    stroke: "#5C8E58"
+    font-color: "#19381A"
+  }
+}
+
+mismatch: {
+  label: "Mismatch Reported"
+  shape: rectangle
+  style: {
+    fill: "#FDE7E7"
+    stroke: "#BE5A5A"
+    font-color: "#4C1818"
+  }
+}
+
+reference -> load
+comparison -> load
+load -> headers
+headers -> signals: "structure matches"
+headers -> mismatch: {
+  label: "header fail"
+  style: {
+    stroke-dash: 4
+  }
+}
+signals -> match: "all samples equal"
+signals -> mismatch: {
+  label: "any sample differs"
+  style: {
+    stroke-dash: 4
+  }
+}

@@ -1,0 +1,181 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Linen / Shale palette */
+  --color-cream: #f1eee8;
+  --color-cream-light: #e4ded5;
+  --color-warm-white: #fbf9f4;
+  --color-charcoal: #312a23;
+  --color-ink: #6d6257;
+  --color-medium: #6d6257;
+  --color-muted: #998d80;
+  --color-line: rgba(49, 42, 35, 0.1);
+  --color-line-dark: rgba(49, 42, 35, 0.18);
+  --color-accent: #b39a49;
+  --color-accent-light: #c9b26e;
+  --color-accent-strong: #8a7432;
+  --color-warning: #a85f31;
+  --color-info: #4a7a8a;
+  --color-error: #b85450;
+  --color-success: #8a7432;
+  --color-teal: #4a7a8a;
+  --color-orange: #a85f31;
+  --color-blue: #4a7a8a;
+  --color-rose: #b85450;
+  --color-moss: #8a7432;
+
+  /* Fonts */
+  --font-display: 'Newsreader', Georgia, serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  /* Radius */
+  --radius-card: 18px;
+
+  /* Shadows */
+  --shadow-card: 0 18px 40px rgba(49, 42, 35, 0.06);
+  --shadow-card-hover: 0 28px 60px rgba(49, 42, 35, 0.1);
+
+  /* Easing */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Animation */
+  --animate-fade-up: fade-up 0.8s var(--ease-out-expo) forwards;
+}
+
+:root {
+  color-scheme: light dark;
+  --nav-bg: rgba(251, 249, 244, 0.84);
+  --glass: rgba(255, 252, 248, 0.72);
+  --glass-strong: rgba(255, 252, 248, 0.84);
+  --border-w: 1px;
+  --dot-opacity: 0.11;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-cream);
+  color: var(--color-charcoal);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition:
+    background 0.45s ease,
+    color 0.45s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-warm-white);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 3px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-cream: #171615;
+    --color-cream-light: #121110;
+    --color-warm-white: #211f1c;
+    --color-charcoal: #e5e0d8;
+    --color-ink: #aaa39a;
+    --color-medium: #aaa39a;
+    --color-muted: #706a63;
+    --color-line: rgba(229, 224, 216, 0.07);
+    --color-line-dark: rgba(229, 224, 216, 0.13);
+    --color-accent: #c0a654;
+    --color-accent-light: #d2bb74;
+    --color-accent-strong: #d2bb74;
+    --color-warning: #d98a58;
+    --color-info: #5a9aaa;
+    --color-error: #d4706c;
+    --color-success: #c0a654;
+    --color-teal: #5a9aaa;
+    --color-orange: #d98a58;
+    --color-blue: #5a9aaa;
+    --color-rose: #d4706c;
+    --color-moss: #c0a654;
+    --nav-bg: rgba(23, 22, 21, 0.86);
+    --glass: rgba(255, 252, 248, 0.05);
+    --glass-strong: rgba(255, 252, 248, 0.08);
+    --dot-opacity: 0.14;
+    --shadow-card: 0 18px 40px rgba(0, 0, 0, 0.2);
+    --shadow-card-hover: 0 28px 60px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* View Transitions */
+@keyframes vt-slide-from-right {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes vt-slide-to-left {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(-15px); }
+}
+
+@keyframes vt-slide-from-left {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes vt-slide-to-right {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(15px); }
+}
+
+::view-transition-old(root) {
+  animation: vt-slide-to-left 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+::view-transition-new(root) {
+  animation: vt-slide-from-right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* When navigating back, reverse direction */
+:root.back-nav::view-transition-old(root) {
+  animation: vt-slide-to-right 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root.back-nav::view-transition-new(root) {
+  animation: vt-slide-from-left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}

@@ -1,0 +1,99 @@
+direction: right
+
+signin: {
+  label: "Login / Signup"
+  shape: rectangle
+  style: {
+    fill: "#E8F1FF"
+    stroke: "#2F6FED"
+    stroke-width: 2
+  }
+}
+
+session: {
+  label: "Session Check"
+  shape: rectangle
+  style: {
+    fill: "#EEF8F3"
+    stroke: "#2C8A5A"
+    stroke-width: 2
+  }
+}
+
+dashboard: {
+  label: "Marketplace Dashboard"
+  shape: rectangle
+  style: {
+    fill: "#FFF5E8"
+    stroke: "#D97706"
+    stroke-width: 2
+  }
+}
+
+search: {
+  label: "Search Listings"
+  shape: rectangle
+  style: {
+    fill: "#F8FAFC"
+    stroke: "#64748B"
+  }
+}
+
+listing: {
+  label: "Listing Detail"
+  shape: rectangle
+  style: {
+    fill: "#F8FAFC"
+    stroke: "#64748B"
+  }
+}
+
+profile: {
+  label: "Seller Profile"
+  shape: rectangle
+  style: {
+    fill: "#F8FAFC"
+    stroke: "#64748B"
+  }
+}
+
+owner: {
+  label: "Owner Path\nEdit Listing"
+  shape: rectangle
+  style: {
+    fill: "#F3E8FF"
+    stroke: "#7C3AED"
+  }
+}
+
+buyer: {
+  label: "Buyer Path\nPlace Bid / Quick Bid"
+  shape: rectangle
+  style: {
+    fill: "#F3E8FF"
+    stroke: "#7C3AED"
+  }
+}
+
+refresh: {
+  label: "Shared Data Refresh"
+  shape: rectangle
+  style: {
+    fill: "#EEF8F3"
+    stroke: "#2C8A5A"
+    stroke-width: 2
+  }
+}
+
+signin -> session: "auth resolved"
+session -> dashboard: "session present"
+dashboard -> search: "browse"
+dashboard -> listing: "open featured / popular"
+dashboard -> profile: "view seller"
+search -> listing: "open result"
+profile -> listing: "open seller listing"
+listing -> owner: "owned by current user"
+listing -> buyer: "owned by another user"
+owner -> refresh: "save / delete"
+buyer -> refresh: "submit bid"
+refresh -> dashboard: "updated listings"

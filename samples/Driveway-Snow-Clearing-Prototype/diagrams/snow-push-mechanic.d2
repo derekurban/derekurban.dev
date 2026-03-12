@@ -1,0 +1,86 @@
+direction: right
+
+input: {
+  label: "Player Moves\nonto next driveway tile"
+  shape: rectangle
+  style: {
+    fill: "#E8F1FF"
+    stroke: "#2F6FED"
+    stroke-width: 2
+  }
+}
+
+check: {
+  label: "Is destination\nDriveway?"
+  shape: diamond
+  style: {
+    fill: "#FFF5E8"
+    stroke: "#D97706"
+    stroke-width: 2
+  }
+}
+
+blocked: {
+  label: "Cancel Move"
+  shape: rectangle
+  style: {
+    fill: "#F8FAFC"
+    stroke: "#64748B"
+  }
+}
+
+push: {
+  label: "Read snow level\nfrom current tile"
+  shape: rectangle
+  style: {
+    fill: "#EEF8F3"
+    stroke: "#2C8A5A"
+  }
+}
+
+obstacle: {
+  label: "Next tile is\nRoad / House?"
+  shape: diamond
+  style: {
+    fill: "#FFF5E8"
+    stroke: "#D97706"
+    stroke-width: 2
+  }
+}
+
+sideways: {
+  label: "Recurse sideways\nuntil open target"
+  shape: rectangle
+  style: {
+    fill: "#F3E8FF"
+    stroke: "#7C3AED"
+  }
+}
+
+apply: {
+  label: "Set current tile to 0\nAdd snow to target tile"
+  shape: rectangle
+  style: {
+    fill: "#EEF8F3"
+    stroke: "#2C8A5A"
+    stroke-width: 2
+  }
+}
+
+draw: {
+  label: "Redraw changed tiles"
+  shape: rectangle
+  style: {
+    fill: "#F8FAFC"
+    stroke: "#64748B"
+  }
+}
+
+input -> check
+check -> blocked: "no"
+check -> push: "yes"
+push -> obstacle
+obstacle -> sideways: "yes"
+obstacle -> apply: "no"
+sideways -> apply: "open tile found"
+apply -> draw

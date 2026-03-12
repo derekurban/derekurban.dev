@@ -1,0 +1,90 @@
+direction: right
+
+entry: {
+  label: "User Picks a Destination"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+source_choice: {
+  label: "Source"
+  shape: rectangle
+  style: {
+    fill: "#EEF3F8"
+    stroke: "#8A97A8"
+    font-color: "#243447"
+  }
+}
+
+plan_trip: {
+  label: "Plan a Trip\nGoogle Places Search"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+poi: {
+  label: "Points of Interest\nCurated Local Catalog"
+  shape: rectangle
+  style: {
+    fill: "#E8F4E7"
+    stroke: "#5C8E58"
+    font-color: "#19381A"
+  }
+}
+
+route: {
+  label: "Generate Route"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+map_view: {
+  label: "Embedded Map + Directions"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+taskbar: {
+  label: "Taskbar Renders QR"
+  shape: rectangle
+  style: {
+    fill: "#EEF3F8"
+    stroke: "#8A97A8"
+    font-color: "#243447"
+  }
+}
+
+phone: {
+  label: "Phone Opens External Link"
+  shape: rectangle
+  style: {
+    fill: "#E8F4E7"
+    stroke: "#5C8E58"
+    font-color: "#19381A"
+  }
+}
+
+entry -> source_choice
+source_choice -> plan_trip
+source_choice -> poi
+plan_trip -> route: "selected place"
+poi -> route: "selected place"
+route -> map_view: "directions response"
+map_view -> taskbar: "build shareable link"
+taskbar -> phone: "scan QR"

@@ -1,0 +1,83 @@
+direction: down
+
+store: {
+  label: "SparkBidStore"
+  shape: rectangle
+  style: {
+    fill: "#E8F1FF"
+    stroke: "#2F6FED"
+    stroke-width: 2
+  }
+}
+
+listingTable: {
+  label: "auction_listing"
+  shape: rectangle
+  style: {
+    fill: "#EEF8F3"
+    stroke: "#2C8A5A"
+  }
+}
+
+bidTable: {
+  label: "bid_on_listing"
+  shape: rectangle
+  style: {
+    fill: "#EEF8F3"
+    stroke: "#2C8A5A"
+  }
+}
+
+profileTable: {
+  label: "profile"
+  shape: rectangle
+  style: {
+    fill: "#EEF8F3"
+    stroke: "#2C8A5A"
+  }
+}
+
+dashboard: {
+  label: "Dashboard"
+  shape: rectangle
+  style: {
+    fill: "#FFF5E8"
+    stroke: "#D97706"
+  }
+}
+
+listingPage: {
+  label: "Listing Page"
+  shape: rectangle
+  style: {
+    fill: "#FFF5E8"
+    stroke: "#D97706"
+  }
+}
+
+profilePage: {
+  label: "Profile Page"
+  shape: rectangle
+  style: {
+    fill: "#FFF5E8"
+    stroke: "#D97706"
+  }
+}
+
+search: {
+  label: "Search"
+  shape: rectangle
+  style: {
+    fill: "#FFF5E8"
+    stroke: "#D97706"
+  }
+}
+
+listingTable -> store: "fetch + subscribe"
+bidTable -> store: "fetch + subscribe"
+profileTable -> store: "fetch + subscribe"
+
+store -> dashboard: "popular listings"
+store -> listingPage: "listing + bid history"
+store -> profilePage: "seller info + listings"
+store -> search: "filterable listing set"

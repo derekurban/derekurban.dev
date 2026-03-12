@@ -1,0 +1,95 @@
+direction: right
+
+mode: {
+  label: "Choose Game Mode\nSingle / Two Player / AI"
+  shape: rectangle
+  style: {
+    fill: "#EEF3F8"
+    stroke: "#8A97A8"
+    font-color: "#243447"
+  }
+}
+
+intermission: {
+  label: "Intermission Screen"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+ready: {
+  label: "Ready Prompt"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+turn: {
+  label: "30-Second Turn"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+validate: {
+  label: "Rack Validation +\nDictionary Check"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+score: {
+  label: "Update Score +\nWord History"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+next: {
+  label: "Next Session?"
+  shape: rectangle
+  style: {
+    fill: "#EEF3F8"
+    stroke: "#8A97A8"
+    font-color: "#243447"
+  }
+}
+
+results: {
+  label: "Render Results\nBack in Intermission"
+  shape: rectangle
+  style: {
+    fill: "#E8F4E7"
+    stroke: "#5C8E58"
+    font-color: "#19381A"
+  }
+}
+
+mode -> intermission
+intermission -> ready: "start"
+ready -> turn
+turn -> validate: "submit words"
+validate -> score
+score -> next
+next -> ready: {
+  label: "more players"
+  style: {
+    stroke-dash: 4
+  }
+}
+next -> results: "game complete"

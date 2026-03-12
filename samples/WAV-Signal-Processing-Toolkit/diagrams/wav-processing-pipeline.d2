@@ -1,0 +1,78 @@
+direction: right
+
+input: {
+  label: "Input WAV Files"
+  shape: rectangle
+  style: {
+    fill: "#EEF3F8"
+    stroke: "#8A97A8"
+    font-color: "#243447"
+  }
+}
+
+parser: {
+  label: "WavRecording.cpp\nRead + Validate RIFF/WAVE/PCM"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+decoded: {
+  label: "Decoded Sample Vectors\nLeft / Right Channels"
+  shape: rectangle
+  style: {
+    fill: "#DFF1F7"
+    stroke: "#3E7D8D"
+    font-color: "#0E2B32"
+  }
+}
+
+process: {
+  label: "Convolution Utility\n(Time or FFT)"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+scaled: {
+  label: "Scale Output Amplitude"
+  shape: rectangle
+  style: {
+    fill: "#F8ECD7"
+    stroke: "#B98A2E"
+    font-color: "#4A3410"
+  }
+}
+
+writer: {
+  label: "Write WAV Header + PCM Data"
+  shape: rectangle
+  style: {
+    fill: "#E8F4E7"
+    stroke: "#5C8E58"
+    font-color: "#19381A"
+  }
+}
+
+output: {
+  label: "Processed Output WAV"
+  shape: rectangle
+  style: {
+    fill: "#E8F4E7"
+    stroke: "#5C8E58"
+    font-color: "#19381A"
+  }
+}
+
+input -> parser
+parser -> decoded: "normalized floats"
+decoded -> process
+process -> scaled
+scaled -> writer
+writer -> output

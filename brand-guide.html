@@ -1,0 +1,1470 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Derek Urban â€” Personal Website Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary: #F1EEE8;
+    --bg-secondary: #E4DED5;
+    --bg-card: #FBF9F4;
+    --bg-elevated: #FFFCF8;
+    --text-primary: #312A23;
+    --text-secondary: #6D6257;
+    --text-muted: #998D80;
+    --accent: #B39A49;
+    --accent-soft: #C9B26E;
+    --accent-bg: rgba(179, 154, 73, 0.08);
+    --accent-strong: #8A7432;
+    --border: rgba(49, 42, 35, 0.1);
+    --border-strong: rgba(49, 42, 35, 0.18);
+    --dot-color: #B39A49;
+    --pill-bg: rgba(179, 154, 73, 0.1);
+    --pill-text: #8A7432;
+    --gradient-start: #B39A49;
+    --gradient-end: #796840;
+    --shadow: rgba(49, 42, 35, 0.06);
+    --shadow-lg: rgba(49, 42, 35, 0.1);
+    --error: #B85450;
+    --warning: #A85F31;
+    --warning-bg: rgba(168, 95, 49, 0.11);
+    --success: #8A7432;
+    --info: #4A7A8A;
+  }
+
+  [data-mode="dark"] {
+    --bg-primary: #171615;
+    --bg-secondary: #121110;
+    --bg-card: #211F1C;
+    --bg-elevated: #2A2723;
+    --text-primary: #E5E0D8;
+    --text-secondary: #AAA39A;
+    --text-muted: #706A63;
+    --accent: #C0A654;
+    --accent-soft: #D2BB74;
+    --accent-bg: rgba(192, 166, 84, 0.1);
+    --accent-strong: #D2BB74;
+    --border: rgba(229, 224, 216, 0.07);
+    --border-strong: rgba(229, 224, 216, 0.13);
+    --dot-color: #C0A654;
+    --pill-bg: rgba(192, 166, 84, 0.12);
+    --pill-text: #D2BB74;
+    --gradient-start: #C0A654;
+    --gradient-end: #887943;
+    --shadow: rgba(0, 0, 0, 0.2);
+    --shadow-lg: rgba(0, 0, 0, 0.3);
+    --error: #D4706C;
+    --warning: #D98A58;
+    --warning-bg: rgba(217, 138, 88, 0.14);
+    --success: #C0A654;
+    --info: #5A9AAA;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    transition: background 0.5s ease, color 0.5s ease;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* =============================================
+     MODE TOGGLE
+     ============================================= */
+  .mode-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(12px);
+    transition: all 0.5s ease;
+  }
+
+  .mode-bar-title {
+    font-family: 'Newsreader', serif;
+    font-size: 16px;
+    color: var(--text-primary);
+  }
+
+  .mode-bar-title span {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-left: 12px;
+  }
+
+  .mode-switch {
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .mode-switch button {
+    padding: 8px 20px;
+    background: transparent;
+    border: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .mode-switch button.active {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  /* =============================================
+     LAYOUT
+     ============================================= */
+  .guide { padding-top: 72px; }
+
+  .section {
+    padding: 80px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-alt {
+    background: var(--bg-secondary);
+    transition: background 0.5s ease;
+  }
+
+  .section-alt .section { padding: 80px 48px; }
+
+  .section-header {
+    margin-bottom: 48px;
+  }
+
+  .section-number {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Newsreader', serif;
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .section-desc {
+    font-size: 17px;
+    color: var(--text-secondary);
+    max-width: 600px;
+    line-height: 1.65;
+  }
+
+  /* =============================================
+     00 â€” COVER
+     ============================================= */
+  .cover {
+    padding: 120px 48px 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .cover-logo {
+    font-family: 'Newsreader', serif;
+    font-size: 72px;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .cover-logo-dots {
+    display: inline-flex;
+    gap: 5px;
+    margin-left: 3px;
+    position: relative;
+    top: -18px;
+  }
+
+  .cover-logo-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--dot-color);
+    border-radius: 50%;
+  }
+
+  .cover-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .cover-tagline {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--text-secondary);
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .cover-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--accent);
+    margin: 40px auto 0;
+    border-radius: 2px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+
+  /* =============================================
+     01 â€” COLOR PALETTE
+     ============================================= */
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .palette-card {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease;
+  }
+
+  .palette-card:hover { transform: translateY(-2px); }
+
+  .palette-swatch {
+    height: 80px;
+    position: relative;
+  }
+
+  .palette-info {
+    padding: 12px 14px;
+    background: var(--bg-card);
+    transition: background 0.5s ease;
+  }
+
+  .palette-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 2px;
+  }
+
+  .palette-hex {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  .palette-role {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  .color-row-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    margin-top: 32px;
+  }
+
+  .color-row-label:first-of-type { margin-top: 0; }
+
+  /* =============================================
+     02 â€” TYPOGRAPHY
+     ============================================= */
+  .type-specimen {
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .type-specimen:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .type-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .type-display {
+    font-family: 'Newsreader', serif;
+    color: var(--text-primary);
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .type-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+  }
+
+  .type-emphasis-card {
+    margin-top: 24px;
+    padding: 28px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: linear-gradient(180deg, var(--bg-card), var(--bg-elevated));
+    box-shadow: 0 10px 30px var(--shadow);
+  }
+
+  .type-emphasis-hero {
+    font-family: 'Newsreader', serif;
+    font-size: 48px;
+    line-height: 1.04;
+    letter-spacing: -1.5px;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+  }
+
+  .type-emphasis-hero em {
+    font-style: italic;
+    color: var(--accent);
+    display: block;
+    font-weight: 400;
+  }
+
+  .type-emphasis-copy {
+    max-width: 720px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+  }
+
+  .type-guidelines {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .type-guideline {
+    padding: 18px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--bg-elevated);
+    transition: background 0.5s ease, border-color 0.5s ease;
+  }
+
+  .type-guideline-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .type-guideline ul {
+    padding-left: 18px;
+    color: var(--text-secondary);
+  }
+
+  .type-guideline li {
+    margin-bottom: 8px;
+  }
+
+  .type-guideline li:last-child {
+    margin-bottom: 0;
+  }
+
+  .type-scale {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 32px;
+  }
+
+  .type-scale-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    align-items: baseline;
+    gap: 24px;
+  }
+
+  .type-scale-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-top: 4px;
+  }
+
+  .ts-hero { font-family: 'Newsreader', serif; font-size: 64px; line-height: 1.05; letter-spacing: -2px; }
+  .ts-h1 { font-family: 'Newsreader', serif; font-size: 44px; line-height: 1.15; letter-spacing: -1px; }
+  .ts-h2 { font-family: 'Newsreader', serif; font-size: 32px; line-height: 1.2; letter-spacing: -0.5px; }
+  .ts-h3 { font-family: 'Newsreader', serif; font-size: 24px; line-height: 1.3; }
+  .ts-h4 { font-family: 'Newsreader', serif; font-size: 20px; line-height: 1.35; }
+  .ts-body { font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 1.65; color: var(--text-secondary); }
+  .ts-small { font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; color: var(--text-secondary); }
+  .ts-caption { font-family: 'DM Sans', sans-serif; font-size: 13px; line-height: 1.5; color: var(--text-muted); }
+  .ts-mono { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); }
+  .ts-mono-body { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--text-secondary); }
+
+  /* =============================================
+     03 â€” LOGO
+     ============================================= */
+  .logo-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .logo-box {
+    border-radius: 16px;
+    padding: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px;
+    border: 1px solid var(--border);
+    position: relative;
+    transition: all 0.5s ease;
+  }
+
+  .logo-box-label {
+    position: absolute;
+    bottom: 12px;
+    left: 16px;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .lb-light { background: #F1EEE8; }
+  .lb-light .logo-box-label { color: #998D80; }
+  .lb-dark { background: #171615; }
+  .lb-dark .logo-box-label { color: #706A63; }
+  .lb-accent { background: #B39A49; }
+  .lb-accent .logo-box-label { color: rgba(255,255,255,0.5); }
+  .lb-white { background: #FFFCF8; }
+  .lb-white .logo-box-label { color: #998D80; }
+
+  .logo-render {
+    font-family: 'Newsreader', serif;
+    font-size: 36px;
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+
+  .logo-render .ldots {
+    display: inline-flex;
+    gap: 4px;
+    margin-left: 2px;
+    position: relative;
+    top: -10px;
+  }
+
+  .logo-render .ldot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  .lr-on-light { color: #312A23; }
+  .lr-on-light .ldot { background: #B39A49; }
+  .lr-on-dark { color: #E5E0D8; }
+  .lr-on-dark .ldot { background: #C0A654; }
+  .lr-on-accent { color: #fff; }
+  .lr-on-accent .ldot { background: rgba(255,255,255,0.6); }
+  .lr-on-white { color: #312A23; }
+  .lr-on-white .ldot { background: #B39A49; }
+
+  .logo-rules {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .logo-rule {
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    transition: background 0.5s ease;
+  }
+
+  .logo-rule-icon {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .logo-rule-title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  .logo-rule-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .rule-do { border-left: 3px solid var(--success); }
+  .rule-dont { border-left: 3px solid var(--error); }
+
+  /* =============================================
+     04 â€” COMPONENTS
+     ============================================= */
+  .components-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .component-group {
+    padding: 32px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: background 0.5s ease;
+  }
+
+  .component-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .component-row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 14px 32px;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-fill {
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    border: none;
+  }
+
+  .btn-fill:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-strong);
+  }
+
+  .btn-outline:hover { background: var(--accent-bg); border-color: var(--accent-soft); }
+
+  .btn-accent {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+  }
+
+  .btn-accent:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--accent);
+    border: none;
+    padding: 14px 16px;
+  }
+
+  .btn-ghost:hover { background: var(--accent-bg); }
+
+  .btn-sm {
+    padding: 8px 20px;
+    font-size: 13px;
+  }
+
+  /* Pills/Tags */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .pill-accent { background: var(--pill-bg); color: var(--pill-text); }
+  .pill-accent::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+  .pill-muted { background: var(--border); color: var(--text-muted); }
+  .pill-error { background: rgba(184,84,80,0.1); color: var(--error); }
+  .pill-warning { background: var(--warning-bg); color: var(--warning); }
+
+  /* Cards */
+  .demo-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    transition: all 0.4s ease;
+    max-width: 360px;
+  }
+
+  .demo-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px var(--shadow-lg);
+    border-color: var(--border-strong);
+  }
+
+  .demo-card-title {
+    font-family: 'Newsreader', serif;
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+
+  .demo-card-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .demo-card-desc {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .demo-card-link {
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Input */
+  .demo-input {
+    padding: 14px 20px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--text-primary);
+    width: 300px;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+  .demo-input::placeholder { color: var(--text-muted); }
+  .demo-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-bg); }
+
+  /* Blockquote */
+  .demo-blockquote {
+    border-left: 2px solid var(--accent);
+    padding-left: 24px;
+    font-family: 'Newsreader', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--text-primary);
+    line-height: 1.5;
+    max-width: 500px;
+  }
+
+  /* Divider */
+  .demo-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 12px 0;
+  }
+
+  .demo-divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .demo-divider-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* =============================================
+     05 â€” SPACING
+     ============================================= */
+  .spacing-scale {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .spacing-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .spacing-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    min-width: 80px;
+  }
+
+  .spacing-bar {
+    height: 24px;
+    background: var(--accent-bg);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+  }
+
+  .spacing-bar:hover { opacity: 1; }
+
+  .spacing-value {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    min-width: 50px;
+  }
+
+  /* =============================================
+     06 â€” VOICE & TONE
+     ============================================= */
+  .voice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .voice-card {
+    padding: 28px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    transition: background 0.5s ease;
+  }
+
+  .voice-card-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .voice-do .voice-card-label { color: var(--success); }
+  .voice-dont .voice-card-label { color: var(--error); }
+
+  .voice-example {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-primary);
+  }
+
+  /* =============================================
+     07 â€” ICONOGRAPHY & MOTIFS
+     ============================================= */
+  .motif-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .motif-card {
+    padding: 32px 24px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    text-align: center;
+    transition: all 0.4s ease;
+  }
+
+  .motif-card:hover { transform: translateY(-2px); border-color: var(--accent-soft); }
+
+  .motif-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .motif-icon svg {
+    width: 32px;
+    height: 32px;
+    stroke: var(--accent);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .motif-name {
+    font-family: 'Newsreader', serif;
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  .motif-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* =============================================
+     NAV TOC
+     ============================================= */
+  .toc {
+    position: fixed;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 998;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .toc a {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--border-strong);
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .toc a:hover, .toc a.active {
+    background: var(--accent);
+    transform: scale(1.5);
+  }
+
+  /* =============================================
+     ANIMATIONS & RESPONSIVE
+     ============================================= */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    .section, .cover { padding-left: 24px; padding-right: 24px; }
+    .section-alt .section { padding-left: 24px; padding-right: 24px; }
+    .mode-bar { padding: 12px 24px; }
+    .logo-showcase, .logo-rules, .voice-grid { grid-template-columns: 1fr; }
+    .motif-grid { grid-template-columns: 1fr 1fr; }
+    .palette-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+    .type-scale-row { grid-template-columns: 1fr; gap: 8px; }
+    .type-guidelines { grid-template-columns: 1fr; }
+    .type-emphasis-card { padding: 20px; }
+    .type-emphasis-hero { font-size: 36px; }
+    .toc { display: none; }
+    .ts-hero { font-size: 40px; }
+    .ts-h1 { font-size: 32px; }
+    .cover-logo { font-size: 48px; }
+  }
+</style>
+</head>
+<body data-mode="light">
+
+  <!-- Mode Toggle -->
+  <div class="mode-bar">
+    <div class="mode-bar-title">Derek Urban<span>Personal Site</span></div>
+    <div class="mode-switch">
+      <button class="active" data-mode="light">Linen</button>
+      <button data-mode="dark">Shale</button>
+    </div>
+  </div>
+
+  <!-- Side nav dots -->
+  <nav class="toc">
+    <a href="#cover" title="Cover"></a>
+    <a href="#colors" title="Colors"></a>
+    <a href="#typography" title="Typography"></a>
+    <a href="#logo" title="Logo"></a>
+    <a href="#components" title="Components"></a>
+    <a href="#spacing" title="Spacing"></a>
+    <a href="#voice" title="Voice"></a>
+    <a href="#motifs" title="Motifs"></a>
+  </nav>
+
+  <div class="guide">
+
+    <!-- 00 â€” COVER -->
+    <section class="cover" id="cover">
+      <div class="cover-logo">Derek Urban</div>
+      <div class="cover-sub">Personal Website Guide â€” v1.0</div>
+      <div class="cover-tagline">Projects. Writing. Notes.</div>
+      <div class="cover-divider"></div>
+    </section>
+
+    <!-- 01 â€” COLORS -->
+    <div class="section-alt">
+      <section class="section" id="colors">
+        <div class="section-header fade-in">
+          <span class="section-number">01 â€” Color Palette</span>
+          <h2 class="section-title">The Linen / Shale palette</h2>
+          <p class="section-desc">Neutral flax-washed surfaces paired with warm gold accents. Linen carries the light mode, shale carries the dark mode, and both keep the palette restrained rather than overtly earthy.</p>
+        </div>
+
+        <div class="color-row-label fade-in">Surfaces</div>
+        <div class="palette-grid fade-in" id="surfaceColors">
+          <div class="palette-card">
+            <div class="palette-swatch" id="sw-bg-primary"></div>
+            <div class="palette-info"><div class="palette-name">bg-primary</div><div class="palette-hex" id="hex-bg-primary"></div><div class="palette-role">Page background</div></div>
+          </div>
+          <div class="palette-card">
+            <div class="palette-swatch" id="sw-bg-secondary"></div>
+            <div class="palette-info"><div class="palette-name">bg-secondary</div><div class="palette-hex" id="hex-bg-secondary"></div><div class="palette-role">Alternate sections</div></div>
+          </div>
+          <div class="palette-card">
+            <div class="palette-swatch" id="sw-bg-card"></div>
+            <div class="palette-info"><div class="palette-name">bg-card</div><div class="palette-hex" id="hex-bg-card"></div><div class="palette-role">Cards & panels</div></div>
+          </div>
+          <div class="palette-card">
+            <div class="palette-swatch" id="sw-bg-elevated"></div>
+            <div class="palette-info"><div class="palette-name">bg-elevated</div><div class="palette-hex" id="hex-bg-elevated"></div><div class="palette-role">Popups & tooltips</div></div>
+          </div>
+        </div>
+
+        <div class="color-row-label fade-in">Text</div>
+        <div class="palette-grid fade-in">
+          <div class="palette-card">
+            <div class="palette-swatch" id="sw-text-primary"></div>
+            <div class="palette-info"><div class="palette-name">text-primary</div><div class="palette-hex" id="hex-text-primary"></div><div class="palette-role">Headlines & body</div></div>
+          </div>
+          <div class="palette-card">
+            <div class="palette-swatch" id="sw-text-secondary"></div>
+            <div class="palette-info"><div class="palette-name">text-secondary</div><div class="palette-hex" id="hex-text-secondary"></div><div class="palette-role">Paragraphs</div></div>
+          </div>
+          <div class="palette-card">
+            <div class="palette-swatch" id="sw-text-muted"></div>
+            <div class="palette-info"><div class="palette-name">text-muted</div><div class="palette-hex" id="hex-text-muted"></div><div class="palette-role">Captions & labels</div></div>
+          </div>
+        </div>
+
+        <div class="color-row-label fade-in">Accent & Functional</div>
+        <div class="palette-grid fade-in">
+          <div class="palette-card">
+            <div class="palette-swatch" id="sw-accent"></div>
+            <div class="palette-info"><div class="palette-name">accent</div><div class="palette-hex" id="hex-accent"></div><div class="palette-role">Primary brand gold</div></div>
+          </div>
+          <div class="palette-card">
+            <div class="palette-swatch" id="sw-accent-soft"></div>
+            <div class="palette-info"><div class="palette-name">accent-soft</div><div class="palette-hex" id="hex-accent-soft"></div><div class="palette-role">Hover states</div></div>
+          </div>
+          <div class="palette-card">
+            <div class="palette-swatch" style="background:var(--error);"></div>
+            <div class="palette-info"><div class="palette-name">error</div><div class="palette-hex" id="hex-error"></div><div class="palette-role">Errors & warnings</div></div>
+          </div>
+          <div class="palette-card">
+            <div class="palette-swatch" style="background:var(--warning);"></div>
+            <div class="palette-info"><div class="palette-name">warning</div><div class="palette-hex" id="hex-warning"></div><div class="palette-role">Caution states</div></div>
+          </div>
+          <div class="palette-card">
+            <div class="palette-swatch" style="background:var(--info);"></div>
+            <div class="palette-info"><div class="palette-name">info</div><div class="palette-hex" id="hex-info"></div><div class="palette-role">Informational</div></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 02 â€” TYPOGRAPHY -->
+    <section class="section" id="typography">
+      <div class="section-header fade-in">
+        <span class="section-number">02 â€” Typography</span>
+        <h2 class="section-title">Three voices, one system</h2>
+        <p class="section-desc">Newsreader for headings â€” warm, humane, and quietly literary. DM Sans for body â€” clean, readable, modern. Space Mono for labels â€” the maker's voice. Use italics as selective emphasis, not as a default texture.</p>
+      </div>
+
+      <div class="type-specimen fade-in">
+        <span class="type-label">Display â€” Newsreader</span>
+        <div class="type-display" style="font-size:48px;letter-spacing:-1.5px;">Create something<br><em style="font-style:italic;color:var(--accent);font-weight:400;">beautifully ugly</em></div>
+        <div class="type-meta">Newsreader Regular 400 / Medium 500 Â· 48px / 1.1 Â· -1.5px tracking</div>
+
+        <div class="type-emphasis-card">
+          <span class="type-label" style="margin-top:0;">Strategic Italic Usage</span>
+          <div class="type-emphasis-hero">Create something <em>beautifully ugly</em></div>
+          <p class="type-emphasis-copy">The soft editorial feel of Newsreader should be used as a contrast device inside a headline, not as the default voice of the entire system. It works best when it punctuates one emotionally resonant phrase and lets the surrounding text stay grounded and legible.</p>
+          <div class="type-guidelines">
+            <div class="type-guideline">
+              <div class="type-guideline-title">Use italics when</div>
+              <ul>
+                <li>Emphasizing a short phrase inside a display headline.</li>
+                <li>Adding softness, elegance, or a sense of contrast to a hero statement.</li>
+                <li>Calling attention to a poetic, human phrase that benefits from visual lift.</li>
+                <li>Using <code>&lt;em&gt;</code> for semantic emphasis in hero and manifesto-style copy.</li>
+              </ul>
+            </div>
+            <div class="type-guideline">
+              <div class="type-guideline-title">Avoid italics when</div>
+              <ul>
+                <li>Setting full paragraphs, UI labels, or dense explanatory copy.</li>
+                <li>Turning entire headlines italic unless the moment is intentionally editorial.</li>
+                <li>Using multiple italic phrases in one headline and diluting the contrast.</li>
+                <li>Relying on italics alone for hierarchy when size, spacing, or color should do the job.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="type-specimen fade-in">
+        <span class="type-label">Body â€” DM Sans</span>
+        <div style="font-size:17px;color:var(--text-secondary);line-height:1.65;max-width:600px;margin-bottom:12px;">Derek Urban uses this site to hold projects, writing, and ideas in progress. It should feel personal without being casual, thoughtful without becoming precious, and clear enough that the work speaks first.</div>
+        <div class="type-meta">DM Sans Regular 400 Â· 17px / 1.65 Â· 0 tracking</div>
+      </div>
+
+      <div class="type-specimen fade-in">
+        <span class="type-label">Labels â€” Space Mono</span>
+        <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Projects, writing, notes</div>
+        <div class="type-meta">Space Mono Regular 400 Â· 10px / 1.4 Â· 2px tracking Â· Uppercase</div>
+      </div>
+
+      <div class="fade-in">
+        <span class="type-label" style="margin-top:40px;">Full Type Scale</span>
+        <div class="type-scale">
+          <div class="type-scale-row"><span class="type-scale-label">Hero / 64px</span><span class="ts-hero">Derek Urban</span></div>
+          <div class="type-scale-row"><span class="type-scale-label">H1 / 44px</span><span class="ts-h1">Projects and writing</span></div>
+          <div class="type-scale-row"><span class="type-scale-label">H2 / 32px</span><span class="ts-h2">Thoughtful work, clearly shared</span></div>
+          <div class="type-scale-row"><span class="type-scale-label">H3 / 24px</span><span class="ts-h3">Selected projects</span></div>
+          <div class="type-scale-row"><span class="type-scale-label">H4 / 20px</span><span class="ts-h4">Notes worth keeping</span></div>
+          <div class="type-scale-row"><span class="type-scale-label">Body / 17px</span><span class="ts-body">The site should make it easy to move between case studies, essays, and experiments without losing a sense of personality.</span></div>
+          <div class="type-scale-row"><span class="type-scale-label">Small / 15px</span><span class="ts-small">Built slowly. Edited carefully.</span></div>
+          <div class="type-scale-row"><span class="type-scale-label">Caption / 13px</span><span class="ts-caption">Last updated March 2026</span></div>
+          <div class="type-scale-row"><span class="type-scale-label">Mono / 10px</span><span class="ts-mono">Experimentation</span></div>
+          <div class="type-scale-row"><span class="type-scale-label">Mono Body / 13px</span><span class="ts-mono-body">font-family: 'Space Mono';</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 â€” LOGO -->
+    <div class="section-alt">
+      <section class="section" id="logo">
+        <div class="section-header fade-in">
+          <span class="section-number">03 â€” Logo</span>
+          <h2 class="section-title">The Derek Urban wordmark</h2>
+          <p class="section-desc">Newsreader set in title case for Derek Urban. The wordmark should feel understated, personal, and editorial rather than startup-branded.</p>
+        </div>
+
+        <div class="logo-showcase fade-in">
+          <div class="logo-box lb-light">
+            <span class="logo-render lr-on-light">Derek Urban</span>
+            <span class="logo-box-label">On light</span>
+          </div>
+          <div class="logo-box lb-dark">
+            <span class="logo-render lr-on-dark">Derek Urban</span>
+            <span class="logo-box-label">On dark</span>
+          </div>
+          <div class="logo-box lb-accent">
+            <span class="logo-render lr-on-accent">Derek Urban</span>
+            <span class="logo-box-label">On accent</span>
+          </div>
+          <div class="logo-box lb-white">
+            <span class="logo-render lr-on-white">Derek Urban</span>
+            <span class="logo-box-label">On white</span>
+          </div>
+        </div>
+
+        <div class="logo-rules fade-in">
+          <div class="logo-rule rule-do">
+            <div class="logo-rule-title">Use title case</div>
+            <div class="logo-rule-desc">The name should appear as Derek Urban. It reads like a personal byline, not a stylized startup mark.</div>
+          </div>
+          <div class="logo-rule rule-do">
+            <div class="logo-rule-title">Keep it understated</div>
+            <div class="logo-rule-desc">Let type, spacing, and restraint carry the personality. The wordmark does not need symbols, flourishes, or extra ornament.</div>
+          </div>
+          <div class="logo-rule rule-dont">
+            <div class="logo-rule-title">Avoid all caps</div>
+            <div class="logo-rule-desc">Do not render the name as DEREK URBAN in logo contexts. It becomes harder and less personal than the rest of the system.</div>
+          </div>
+          <div class="logo-rule rule-dont">
+            <div class="logo-rule-title">Do not distort the wordmark</div>
+            <div class="logo-rule-desc">Maintain the natural proportions of Newsreader. No condensing, expanding, or skewing the name.</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 04 â€” COMPONENTS -->
+    <section class="section" id="components">
+      <div class="section-header fade-in">
+        <span class="section-number">04 â€” Components</span>
+        <h2 class="section-title">Building blocks</h2>
+        <p class="section-desc">Reusable elements that keep the personal site consistent across the homepage, project pages, writing, and contact surfaces. Rounded, warm, with intentional whitespace.</p>
+      </div>
+
+      <div class="components-grid">
+        <div class="component-group fade-in">
+          <span class="component-label">Buttons</span>
+          <div class="component-row">
+            <button class="btn btn-fill">View Projects</button>
+            <button class="btn btn-outline">Read Writing</button>
+            <button class="btn btn-accent">Get in Touch</button>
+            <button class="btn btn-ghost">See Resume â†’</button>
+          </div>
+          <div class="component-row" style="margin-top:12px;">
+            <button class="btn btn-fill btn-sm">Small Fill</button>
+            <button class="btn btn-outline btn-sm">Small Outline</button>
+            <button class="btn btn-accent btn-sm">Small Accent</button>
+          </div>
+        </div>
+
+        <div class="component-group fade-in">
+          <span class="component-label">Pills & Tags</span>
+          <div class="component-row">
+            <span class="pill pill-accent">Selected</span>
+            <span class="pill pill-muted">Notes</span>
+            <span class="pill pill-error">Archived</span>
+            <span class="pill pill-warning">In Progress</span>
+          </div>
+        </div>
+
+        <div class="component-group fade-in">
+          <span class="component-label">Card</span>
+          <div class="component-row">
+            <div class="demo-card">
+              <span class="demo-card-title">Featured Project</span>
+              <span class="demo-card-tag">Case Study</span>
+              <p class="demo-card-desc">A closer look at the decisions, constraints, and visual systems behind a selected piece of work.</p>
+              <a href="#" class="demo-card-link">Read Case Study â†’</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="component-group fade-in">
+          <span class="component-label">Input</span>
+          <div class="component-row">
+            <input class="demo-input" type="text" placeholder="Search projects, notes, or topics">
+          </div>
+        </div>
+
+        <div class="component-group fade-in">
+          <span class="component-label">Blockquote</span>
+          <div class="demo-blockquote">You don't need permission to build something.</div>
+        </div>
+
+        <div class="component-group fade-in">
+          <span class="component-label">Divider</span>
+          <div class="demo-divider">
+            <div class="demo-divider-line"></div>
+            <div class="demo-divider-dot"></div>
+            <div class="demo-divider-line"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 â€” SPACING -->
+    <div class="section-alt">
+      <section class="section" id="spacing">
+        <div class="section-header fade-in">
+          <span class="section-number">05 â€” Spacing</span>
+          <h2 class="section-title">Room to breathe</h2>
+        <p class="section-desc">Generous whitespace is a core design principle. Derek Urban's personal site should never feel cramped â€” every element needs room to breathe. Base unit: 4px.</p>
+        </div>
+
+        <div class="spacing-scale fade-in">
+          <div class="spacing-row"><span class="spacing-label">4px Â· xs</span><div class="spacing-bar" style="width:16px;"></div><span class="spacing-value">0.25rem</span></div>
+          <div class="spacing-row"><span class="spacing-label">8px Â· sm</span><div class="spacing-bar" style="width:32px;"></div><span class="spacing-value">0.5rem</span></div>
+          <div class="spacing-row"><span class="spacing-label">12px Â· md</span><div class="spacing-bar" style="width:48px;"></div><span class="spacing-value">0.75rem</span></div>
+          <div class="spacing-row"><span class="spacing-label">16px Â· lg</span><div class="spacing-bar" style="width:64px;"></div><span class="spacing-value">1rem</span></div>
+          <div class="spacing-row"><span class="spacing-label">24px Â· xl</span><div class="spacing-bar" style="width:96px;"></div><span class="spacing-value">1.5rem</span></div>
+          <div class="spacing-row"><span class="spacing-label">32px Â· 2xl</span><div class="spacing-bar" style="width:128px;"></div><span class="spacing-value">2rem</span></div>
+          <div class="spacing-row"><span class="spacing-label">48px Â· 3xl</span><div class="spacing-bar" style="width:192px;"></div><span class="spacing-value">3rem</span></div>
+          <div class="spacing-row"><span class="spacing-label">64px Â· 4xl</span><div class="spacing-bar" style="width:256px;"></div><span class="spacing-value">4rem</span></div>
+          <div class="spacing-row"><span class="spacing-label">80px Â· 5xl</span><div class="spacing-bar" style="width:320px;"></div><span class="spacing-value">5rem</span></div>
+          <div class="spacing-row"><span class="spacing-label">100px Â· 6xl</span><div class="spacing-bar" style="width:400px;"></div><span class="spacing-value">6.25rem</span></div>
+        </div>
+
+        <div class="fade-in" style="margin-top:40px;">
+          <span class="type-label">Border Radius</span>
+          <div class="component-row" style="gap:24px; margin-top:12px;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+              <div style="width:48px;height:48px;background:var(--accent-bg);border:1px solid var(--accent);border-radius:8px;"></div>
+              <span class="spacing-value">8px Â· sm</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+              <div style="width:48px;height:48px;background:var(--accent-bg);border:1px solid var(--accent);border-radius:12px;"></div>
+              <span class="spacing-value">12px Â· md</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+              <div style="width:48px;height:48px;background:var(--accent-bg);border:1px solid var(--accent);border-radius:16px;"></div>
+              <span class="spacing-value">16px Â· lg</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+              <div style="width:48px;height:48px;background:var(--accent-bg);border:1px solid var(--accent);border-radius:20px;"></div>
+              <span class="spacing-value">20px Â· xl</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+              <div style="width:80px;height:40px;background:var(--accent-bg);border:1px solid var(--accent);border-radius:100px;"></div>
+              <span class="spacing-value">100px Â· pill</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 06 â€” VOICE & TONE -->
+    <section class="section" id="voice">
+      <div class="section-header fade-in">
+        <span class="section-number">06 â€” Voice & Tone</span>
+        <h2 class="section-title">How the site speaks</h2>
+        <p class="section-desc">Clear, reflective, and direct. The site should sound like a real person with taste and judgment â€” not a brand deck. Short sentences. Specific language.</p>
+      </div>
+
+      <div class="voice-grid fade-in">
+        <div class="voice-card voice-do">
+          <span class="voice-card-label">The site says</span>
+          <div class="voice-example">"I build digital products with an editorial eye and a bias toward clarity."</div>
+        </div>
+        <div class="voice-card voice-dont">
+          <span class="voice-card-label">Not this</span>
+          <div class="voice-example">"Passionate innovator delivering end-to-end solutions."</div>
+        </div>
+        <div class="voice-card voice-do">
+          <span class="voice-card-label">The site says</span>
+          <div class="voice-example">"Some projects are polished. Some are still becoming."</div>
+        </div>
+        <div class="voice-card voice-dont">
+          <span class="voice-card-label">Not this</span>
+          <div class="voice-example">"A dynamic portfolio showcasing my diverse skill set."</div>
+        </div>
+        <div class="voice-card voice-do">
+          <span class="voice-card-label">The site says</span>
+          <div class="voice-example">"This is where I keep work, notes, and ideas that are still in motion."</div>
+        </div>
+        <div class="voice-card voice-dont">
+          <span class="voice-card-label">Not this</span>
+          <div class="voice-example">"Leveraging cutting-edge methodologies across multiple domains."</div>
+        </div>
+        <div class="voice-card voice-do">
+          <span class="voice-card-label">The site says</span>
+          <div class="voice-example">"If something feels quiet here, that is deliberate."</div>
+        </div>
+        <div class="voice-card voice-dont">
+          <span class="voice-card-label">Not this</span>
+          <div class="voice-example">"Curating a unique online presence for modern audiences."</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 â€” MOTIFS -->
+    <div class="section-alt">
+      <section class="section" id="motifs">
+        <div class="section-header fade-in">
+          <span class="section-number">07 â€” Iconography & Motifs</span>
+          <h2 class="section-title">Visual language</h2>
+          <p class="section-desc">Line-drawn icons with 1.5px stroke weight. Rounded caps and joins. The visual system should support projects, writing, process, and observation across the site.</p>
+        </div>
+
+        <div class="motif-grid fade-in">
+          <div class="motif-card">
+            <div class="motif-icon"><svg viewBox="0 0 24 24"><path d="M12 22c1-4 4-7 4-11a4 4 0 0 0-8 0c0 4 3 7 4 11z"/><path d="M12 7V3"/><path d="M9 5l3-2 3 2"/></svg></div>
+            <div class="motif-name">Ideas</div>
+            <div class="motif-desc">Start Â· Notes</div>
+          </div>
+          <div class="motif-card">
+            <div class="motif-icon"><svg viewBox="0 0 24 24"><path d="M12 22c-4 0-8-3.5-8-8 0-3 2-5.5 4-7.5 1-1 2-2 2-3.5 2 2 4 3 4 5.5 0-1.5 1-2.5 2-2.5s2 1 2 2.5c0-2.5 2-3.5 4-5.5-2 2-2 4.5-2 7.5 0 2-1 3.5-2 4.5"/></svg></div>
+            <div class="motif-name">Process</div>
+            <div class="motif-desc">Draft Â· Iterate</div>
+          </div>
+          <div class="motif-card">
+            <div class="motif-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></div>
+            <div class="motif-name">Published</div>
+            <div class="motif-desc">Launch Â· Share</div>
+          </div>
+          <div class="motif-card">
+            <div class="motif-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+            <div class="motif-name">Craft</div>
+            <div class="motif-desc">Build Â· Refine</div>
+          </div>
+          <div class="motif-card">
+            <div class="motif-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+            <div class="motif-name">Experiments</div>
+            <div class="motif-desc">Test Â· Tinker</div>
+          </div>
+          <div class="motif-card">
+            <div class="motif-icon">
+              <svg viewBox="0 0 24 24"><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/></svg>
+            </div>
+            <div class="motif-name">Signature</div>
+            <div class="motif-desc">Marker Â· Accent</div>
+          </div>
+          <div class="motif-card">
+            <div class="motif-icon"><svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M5 12h14"/><circle cx="12" cy="12" r="9"/></svg></div>
+            <div class="motif-name">Revision</div>
+            <div class="motif-desc">Repair Â· Learn</div>
+          </div>
+          <div class="motif-card">
+            <div class="motif-icon"><svg viewBox="0 0 24 24"><path d="M2 12c2-4 6-7 10-7s8 3 10 7c-2 4-6 7-10 7s-8-3-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="motif-name">Observation</div>
+            <div class="motif-desc">See Â· Notice</div>
+          </div>
+        </div>
+
+        <div class="fade-in" style="margin-top:48px;">
+          <span class="type-label">Textures & Backgrounds</span>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px;">
+            <div style="height:100px;border-radius:12px;background:var(--bg-primary);border:1px solid var(--border);display:flex;align-items:flex-end;padding:10px;">
+              <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);">Noise grain overlay</span>
+            </div>
+            <div style="height:100px;border-radius:12px;background:linear-gradient(135deg,var(--gradient-start),var(--gradient-end));display:flex;align-items:flex-end;padding:10px;">
+              <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.6);">Accent gradient</span>
+            </div>
+            <div style="height:100px;border-radius:12px;background:var(--bg-secondary);border:1px solid var(--border);display:flex;align-items:flex-end;padding:10px;position:relative;overflow:hidden;">
+              <div style="position:absolute;top:20px;left:50%;width:1px;height:40px;background:var(--accent);opacity:0.3;transform:rotate(15deg);"></div>
+              <div style="position:absolute;top:30px;left:30%;width:30px;height:1px;background:var(--accent);opacity:0.3;transform:rotate(-8deg);"></div>
+              <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);position:relative;">Kintsugi cracks</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- FOOTER -->
+    <section class="section" style="text-align:center;padding:60px 48px;">
+      <div style="font-family:'Newsreader',serif;font-size:20px;color:var(--text-primary);margin-bottom:8px;">Derek Urban</div>
+      <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);">Projects. Writing. Notes. â€” Personal Site Guide v1.0</div>
+    </section>
+
+  </div>
+
+  <script>
+    // Mode switching
+    const modeBtns = document.querySelectorAll('.mode-switch button');
+    modeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        modeBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.body.setAttribute('data-mode', btn.dataset.mode);
+        updateColorSwatches();
+      });
+    });
+
+    // Dynamic color swatch rendering
+    function updateColorSwatches() {
+      const cs = getComputedStyle(document.body);
+      const map = {
+        'bg-primary': cs.getPropertyValue('--bg-primary').trim(),
+        'bg-secondary': cs.getPropertyValue('--bg-secondary').trim(),
+        'bg-card': cs.getPropertyValue('--bg-card').trim(),
+        'bg-elevated': cs.getPropertyValue('--bg-elevated').trim(),
+        'text-primary': cs.getPropertyValue('--text-primary').trim(),
+        'text-secondary': cs.getPropertyValue('--text-secondary').trim(),
+        'text-muted': cs.getPropertyValue('--text-muted').trim(),
+        'accent': cs.getPropertyValue('--accent').trim(),
+        'accent-soft': cs.getPropertyValue('--accent-soft').trim(),
+      };
+
+      for (const [key, val] of Object.entries(map)) {
+        const sw = document.getElementById('sw-' + key);
+        const hex = document.getElementById('hex-' + key);
+        if (sw) sw.style.background = val;
+        if (hex) hex.textContent = val;
+      }
+
+      const errHex = document.getElementById('hex-error');
+      const warnHex = document.getElementById('hex-warning');
+      const infoHex = document.getElementById('hex-info');
+      if (errHex) errHex.textContent = cs.getPropertyValue('--error').trim();
+      if (warnHex) warnHex.textContent = cs.getPropertyValue('--warning').trim();
+      if (infoHex) infoHex.textContent = cs.getPropertyValue('--info').trim();
+    }
+
+    // Run on load after a short delay for CSS to apply
+    setTimeout(updateColorSwatches, 100);
+
+    // Scroll observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
+
