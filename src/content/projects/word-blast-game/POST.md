@@ -59,7 +59,7 @@ The interactive repository takes that same shape and fills it in with executable
 
 Even if the exact development timeline was not a strict prototype-then-build sequence, the two repositories still serve as a useful split between planned structure and implemented runtime.
 
-![Prototype to Interactive Map](./assets/diagrams/prototype-to-interactive-map.excalidraw.png)
+![Prototype to Interactive Map](./assets/diagrams/prototype-to-interactive-map.png)
 
 ## Runtime Architecture
 
@@ -79,7 +79,7 @@ That separation gives the project a clear client-side state model:
 
 For a small vanilla JavaScript browser game, this is a notably structured implementation. It avoids collapsing everything into a single procedural script and instead uses explicit runtime objects to model the game loop.
 
-![Game Loop Flow](./assets/diagrams/game-loop-flow.excalidraw.png)
+![Game Loop Flow](./assets/diagrams/game-loop-flow.png)
 
 ## Input Constraints and Turn Logic
 
@@ -120,7 +120,7 @@ This is the most technically unusual part of the project:
 
 For a small browser game, that is a relatively sophisticated integration pattern.
 
-![AI Turn Pipeline](./assets/diagrams/ai-turn-pipeline.excalidraw.png)
+![AI Turn Pipeline](./assets/diagrams/ai-turn-pipeline.png)
 
 ## UI Behavior
 

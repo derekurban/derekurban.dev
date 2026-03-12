@@ -54,7 +54,7 @@ The parser also computes a `signalLength`, tracks whether the source is stereo, 
 
 The same file also provides the write path. It includes helpers for writing little-endian integers and shorts, writing the WAV header, and writing PCM sample data back to disk. That means the toolkit is not only reading WAV files; it fully owns the conversion from file bytes to sample vectors and then back from processed sample data to a valid output file.
 
-![WAV Processing Pipeline](./assets/diagrams/wav-processing-pipeline.excalidraw.png)
+![WAV Processing Pipeline](./assets/diagrams/wav-processing-pipeline.png)
 
 ## Time-Domain Convolution
 
@@ -93,7 +93,7 @@ The code also handles stereo impulse responses by producing separate left and ri
 
 This file is the most algorithmically dense part of the toolkit. It is where the project moves from basic file manipulation into a more explicit digital signal processing implementation.
 
-![Convolution Strategy Map](./assets/diagrams/convolution-strategy-map.excalidraw.png)
+![Convolution Strategy Map](./assets/diagrams/convolution-strategy-map.png)
 
 ## Output Comparison and Regression Checking
 
@@ -112,7 +112,7 @@ The comparison logic handles both mono and stereo recordings. Stereo comparisons
 
 This gives the toolkit a built-in verification step. It is not just producing processed WAV files; it also includes a command-line utility for checking whether a generated file still matches an expected result.
 
-![WAV Regression Check](./assets/diagrams/wav-regression-check.excalidraw.png)
+![WAV Regression Check](./assets/diagrams/wav-regression-check.png)
 
 ## Shared Design Across the Utilities
 

@@ -57,7 +57,7 @@ The bid panel supports two submission styles. A user can place a custom amount m
 
 Seller-side listing management is handled through a reusable modal workflow. The listing wizard supports both creation and editing, keeps listing metadata in one local form object, and writes through the same persistence path in both modes. The form includes title, description, starting price, increment amount, finish time, and a multi-image upload flow. Images are compressed in the frontend before upload, then stored in Supabase storage and linked back to the listing through generated IDs. Listing deletion is handled from the owner view and uses the same generic backend data handler as the rest of the application.
 
-![Marketplace Session Flow](./assets/diagrams/marketplace-session-flow.excalidraw.png)
+![Marketplace Session Flow](./assets/diagrams/marketplace-session-flow.png)
 
 ## Shared Data Model and Realtime Behavior
 
@@ -73,7 +73,7 @@ The profile data is also normalized into a user map keyed by ID. That allows scr
 
 Profile pages extend the marketplace beyond listing ownership alone. A profile can display seller information, owned listings, and a subscription relationship driven by a `subscribed_to` array in the profile record. That gives the project a small follow-based layer on top of the auction model rather than limiting it to isolated buyer and seller pages.
 
-![Realtime Marketplace Model](./assets/diagrams/realtime-marketplace-model.excalidraw.png)
+![Realtime Marketplace Model](./assets/diagrams/realtime-marketplace-model.png)
 
 ## Backend Integration Model
 
@@ -83,7 +83,7 @@ That endpoint acts as a compact command bridge into Supabase. The server creates
 
 The frontend complements that model through `fetchServer()`, which reads the current auth session, attaches the access and refresh tokens to each request, and then sends the request to the backend handler. This creates a consistent request path for the app's data-modifying operations: the React client builds the operation payload, the server attaches database access, and Supabase remains the underlying persistence layer.
 
-![Supabase Request Bridge](./assets/diagrams/supabase-request-bridge.excalidraw.png)
+![Supabase Request Bridge](./assets/diagrams/supabase-request-bridge.png)
 
 ## Signing Off
 

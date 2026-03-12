@@ -42,7 +42,7 @@ The server runs as a long-lived listener on port `8080`. For each accepted conne
 
 One of the most characteristic parts of the socket protocol is its minimalism. There is no response message, no explicit message length header, and no framing beyond the connection itself. The end of the message is defined entirely by the client closing the socket after transmission.
 
-![End-to-End Object Transfer](./assets/diagrams/end-to-end-object-transfer.excalidraw.png)
+![End-to-End Object Transfer](./assets/diagrams/end-to-end-object-transfer.png)
 
 ## Interactive Object Creation
 
