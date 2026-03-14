@@ -7,8 +7,9 @@ origin: University
 status: Complete
 tags: [university]
 tech: [Java, Swing, AWT]
-gradient: 'linear-gradient(135deg, #8a5a6a, #a87888, #c298a8)'
-cardSize: wide
+cardTheme: rose
+cardForeground: ./assets/card-icon.svg
+cardIconSize: 71
 projectSize: Medium
 skillLevel: Medium
 capabilities: [Game Development, Local Multiplayer, UI Flow, State Coordination, Threaded Runtime, Input Design]
@@ -40,7 +41,7 @@ That constraint gives the project a very specific design shape. Instead of build
 
 The pre-game screen also includes a "How To Play" view tied to the upcoming round. That keeps the transition between setup and gameplay inside the same flow rather than pushing players into separate instruction screens for each mode.
 
-![Round lifecycle](./assets/diagrams/round-lifecycle.svg)
+![Round lifecycle](./assets/diagrams/round-lifecycle.png)
 
 ## Shared Systems
 
@@ -50,7 +51,7 @@ The leaderboard is part of the application flow rather than an afterthought at t
 
 Sprite recoloring is another notable shared system. After players lock in their colors, those selections are passed into the shared player state and reused inside the games so each player keeps a consistent visual identity.
 
-![Control model](./assets/diagrams/control-model.svg)
+![Control model](./assets/diagrams/control-model.png)
 
 ## Runtime Details
 
@@ -70,16 +71,10 @@ Each mini-game builds on that shared base in a different way:
 - Pac-Man uses two player-controlled Pac-Man entities, ghost movement, pellet collection, timed round logic, and team score handling.
 - Pong uses a four-sided arena where each player controls one edge and loses lives when the ball escapes their side.
 
-![Minigame comparison](./assets/diagrams/minigame-comparison.svg)
+![Minigame comparison](./assets/diagrams/minigame-comparison.png)
 
-## Implementation Notes
+## Signing Off
 
-The character-selection screen uses a 3x4 color grid and blocks progression until all four players have claimed a color. That makes the setup step part of the session rules rather than a cosmetic option that can be skipped.
+This is where I was no longer a boy and became a man. In middle school, I learned programming almost exclusively through Java, and because of that, I got bored pretty quickly with CLI and terminal-based interactions. I wanted something more. That is when I discovered Swing, Java’s GUI toolkit. I used Swing back in middle school to build my first basic, and honestly pretty ugly, GUI-based applications. This project was the next step up and took things to a whole new level. The introduction of graphically custom-styled menus, sprites, interactive elements, isolated render and game threads, and so much more was exactly the upgrade I needed to realize both the limits of Swing and the limits of my own understanding when it came to building interactive applications in Java!
 
-The round lifecycle is also centralized. A single handler starts each round, waits for completion, normalizes the results, updates the running leaderboard, and prepares the next game in the sequence.
-
-Pac-Man contains the most involved runtime of the three modes. It uses a ninety-second clock, increases difficulty over time, has ghosts drop pellets at timed intervals, and reports team scores back into the shared scoring format used by the session layer.
-
-Frogger centers on constant movement and positional pressure. The round uses a vertically scrolling playfield, moving obstacles, and repeated collision checks to keep all four players active at once.
-
-Pong uses a different structure from a standard two-paddle match. The arena is built around four edges, one for each player, so the round becomes a shared survival contest instead of a head-to-head game.
+It was so much fun making a video game feel like something special with my own personal spin on it! This project gave me the chance to work in a team setting, the first real team-based software project I had ever done, and create something beautiful and memorable. Definitely one for the memory books!

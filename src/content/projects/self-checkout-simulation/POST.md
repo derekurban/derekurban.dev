@@ -7,8 +7,9 @@ origin: University
 status: Complete
 tags: [university]
 tech: [Java, Swing, MigLayout]
-gradient: 'linear-gradient(135deg, #6b5a8a, #8a78a8, #a898c2)'
-cardSize: wide
+cardTheme: violet
+cardForeground: ./assets/card-icon.svg
+cardIconSize: 72
 projectSize: Large
 skillLevel: High
 capabilities: [Event-Driven Systems, State Machines, Simulation, Interface Design, Payment Flow Modeling, Test Coverage]
@@ -46,7 +47,7 @@ At the center of the logic layer is `CheckoutManager`, which acts as the main tr
 
 The attendant side is centered around `ControlConsole`, which wraps a full station and exposes the control operations needed to supervise, unblock, and maintain the checkout process.
 
-![System architecture](./assets/diagrams/system-architecture.svg)
+![System architecture](./assets/diagrams/system-architecture.png)
 
 ## Checkout Workflow
 
@@ -64,7 +65,7 @@ The scanning interface keeps a running cart and total while also supporting seve
 
 The payment interface continues that same structured flow. Before final payment, it includes a plastic-bag counting step. It also allows the customer to return to scanning before committing to payment, which makes the flow more flexible than a simple one-way checkout screen.
 
-![Checkout customer flow](./assets/diagrams/checkout-customer-flow.svg)
+![Checkout customer flow](./assets/diagrams/checkout-customer-flow.png)
 
 ## Event-Driven Device Logic
 
@@ -78,7 +79,7 @@ Produce lookup uses the scale as part of the pricing logic. Instead of behaving 
 
 Cash handling is also split into separate stages. Validator listeners determine denomination and validity, while acceptor listeners reflect whether the money was actually stored. That separation mirrors the physical behavior of the station rather than collapsing everything into one generic payment step.
 
-![Device event model](./assets/diagrams/device-event-model.svg)
+![Device event model](./assets/diagrams/device-event-model.png)
 
 ## Payment, Change, and Completion
 
@@ -117,18 +118,8 @@ The seeded data is substantial enough to make the system usable as a demo enviro
 
 The repository also includes meaningful automated tests across both logic and UI behavior. The tests cover checkout flows, attendant actions, item scanning and bagging, gift-card and printer behavior, return-change logic, and UI-specific behavior.
 
-## Technical Character
+## Signing Off
 
-This is a local desktop simulation, not a production retail platform. The system runs entirely in Java with Swing, uses in-memory data, and depends on a provided hardware simulation layer rather than real devices or external services.
+This project as a whole was definitely a change of pace. Before this third iteration, there were two previous sprints with smaller groups meant to simulate an agile software development cycle. While it was fun role-playing as a small dev team, the real fun came from being introduced to event-driven architecture and dependency injection/inversion! I got to dive deep into the architectural strategy behind state management, device-listener transaction logic, authorization-based interface views, and other niche but incredibly useful concepts that can be applied in real-world settings!
 
-Within that scope, the project includes a substantial amount of product-style coordination:
-
-- Explicit state management across the customer journey
-- Device-listener-driven transaction logic
-- Weight-based bagging validation
-- Multiple payment paths
-- Inventory-aware change return
-- Separate customer and attendant interfaces
-- Operational blocking and maintenance flows
-
-Taken together, the project reads as a full checkout simulation built around event-driven device behavior and multi-role UI flow, rather than as a single checkout screen with simplified payment logic.
+This project also really taught me that a bigger team does not always mean a smaller share of the work. Despite having 12 contributors... THAT’S RIGHT, 12 CONTRIBUTORS, I was responsible for over 50% of the work done on the codebase (calculated from a combination of pull requests, lines added and removed, files changed, and more).

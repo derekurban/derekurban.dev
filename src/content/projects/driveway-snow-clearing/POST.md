@@ -7,8 +7,9 @@ origin: University
 status: Complete
 tags: [university]
 tech: [Java, JavaFX, Canvas Rendering, MIDI Audio]
-gradient: 'linear-gradient(135deg, #5a8fa0, #7ab8c8, #a0dce8)'
-cardSize: ''
+cardTheme: sky
+cardForeground: ./assets/card-icon.svg
+cardIconSize: 78
 projectSize: Small
 skillLevel: Medium
 capabilities: [Game Development, Tile Maps, Input Handling, Animation Loops, Recursive State Updates, 2D Rendering]
@@ -49,7 +50,7 @@ That recursive push behavior is the most distinctive part of the prototype. The 
 
 The player also uses offset-based interpolation for movement. Position updates happen on the grid, but rendering uses `iStepX` and `iStepY` offsets that are reduced over time, which makes each move animate across the tile rather than jump instantly from square to square.
 
-![Snow push mechanic](./assets/diagrams/snow-push-mechanic.svg)
+![Snow push mechanic](./assets/diagrams/snow-push-mechanic.png)
 
 ## Rendering and Runtime Structure
 
@@ -61,7 +62,7 @@ The runtime loop is managed by `AnimationController`, which extends `AnimationTi
 
 At startup, the application creates the canvas, wires a `Keylist` event handler into the scene, initializes the board and player, and starts local background music from a bundled MIDI file. The whole program runs as one self-contained desktop runtime rather than relying on external services or engine tooling.
 
-![Runtime architecture](./assets/diagrams/runtime-architecture.svg)
+![Runtime architecture](./assets/diagrams/runtime-architecture.png)
 
 ## Menu and Input Handling
 
@@ -78,19 +79,10 @@ The result is a small but complete local runtime loop:
 
 That structure gives the project a clean gameplay skeleton even though the feature scope is intentionally narrow.
 
-![Game state flow](./assets/diagrams/game-state-flow.svg)
+![Game state flow](./assets/diagrams/game-state-flow.png)
 
-## Technical Characteristics
+## Signing Off
 
-This project combines several distinct implementation patterns in one codebase:
+This project felt like the first time you ever baked something without following a recipe. It was a lot of fun, but the chemistry just did not add up, lol. This was a hackathon project, and with the heavy time constraints, it definitely put pressure on our team of three to come up with something memorable. We did not have the same polished game dev skills as some of the other competitors, but even so, we wanted to see what we could pull off within a fixed time frame. There were definitely some half-baked ideas in there, and while the character model got a few compliments, the overall feel of the game was honestly just lacking.
 
-- a JavaFX desktop application with a custom canvas-based render path
-- a fixed-step animation loop built on `AnimationTimer`
-- a tile-based world model with mutable tile state
-- recursive snow-pushing logic tied to movement
-- directional sprite animation with offset-based movement interpolation
-- explicit menu and play states controlled through a central handler
-- keyboard state tracking through a reusable key listener abstraction
-- local audio playback from bundled assets
-
-Taken together, the project reads as a mechanics prototype built around one specific interaction system: moving through a grid and redistributing snow by pushing it from tile to tile. The defining characteristic is the way the board state, movement rules, and rendering logic all stay tightly coupled to that central snow-clearing mechanic.
+That said, this project still had a lot packed into it, just not at the standard I would have hoped for. Sometimes the lesson is not in the result, but in the nuances of the process. I learned just how far a solid structure and plan can take you when you are trying to pursue an arbitrary goal. I also learned how much work and effort goes into building the primitives of a game, things like rendering services, game threads, sprite animations, and physics engines. Hackathons are always a fun experience and a great way to test your mettle, as it were. I am really proud of the experience I got from this one and glad I took the time to playfully build something over a weekend.

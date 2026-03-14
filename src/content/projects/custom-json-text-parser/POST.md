@@ -6,9 +6,10 @@ desc: A compact TypeScript parsing utility that reconstructs JavaScript values d
 origin: University
 status: Complete
 tags: [university]
-tech: [TypeScript]
-gradient: 'linear-gradient(135deg, #4a7c8a, #6ba5b5, #8ecad8)'
-cardSize: ''
+tech: [TypeScript]  
+cardTheme: teal
+cardForeground: ./assets/card-icon.svg
+cardIconSize: 70
 projectSize: Small
 skillLevel: Medium
 capabilities: [Parsing, Recursive Descent, Text Processing, Data Structures, Utility Design, Test Coverage]
@@ -32,7 +33,7 @@ That gives the project a clear, library-style shape. The input is a string, the 
 
 The public entry point is intentionally small. `assemble()` begins the process, and the rest of the parser is organized as a set of internal builder methods that each handle one kind of value.
 
-![Parser component structure](./assets/diagrams/parser-components.svg)
+![Parser component structure](./assets/diagrams/parser-components.png)
 
 ## Parsing Model
 
@@ -47,7 +48,7 @@ This gives the parser a recursive-descent structure. When the parser encounters 
 
 That recursive model is the core of the project. It allows the parser to handle nested combinations of arrays and objects without needing a separate parsing stage for each level.
 
-![Parser dispatch flow](./assets/diagrams/parser-dispatch-flow.svg)
+![Parser dispatch flow](./assets/diagrams/parser-dispatch-flow.png)
 
 ## How Values Are Built
 
@@ -67,7 +68,7 @@ That helper also supports a simple one-character pushback mechanism. When the pa
 
 This makes the parser easy to follow. The control flow stays local to the parsing methods, and the parser can move between reading, peeking, and recursive descent without introducing a separate tokenizer or a larger parsing pipeline.
 
-![Text cursor mechanism](./assets/diagrams/text-cursor-mechanism.svg)
+![Text cursor mechanism](./assets/diagrams/text-cursor-mechanism.png)
 
 ## Supported Behavior
 
@@ -101,14 +102,8 @@ The repository is intentionally small:
 
 The small footprint is part of what makes the project readable. The full parsing flow can be traced through one source file, which makes the implementation choices easy to inspect.
 
-## What The Work Includes
+## Signing Off
 
-This project includes:
+At this point, AI has me hooked. I’m falling in love with generative technologies and what they could mean for software as a whole. There is really no way to know what the future holds, but having ideas pop up in front of me from an artificial brain is just wild. I realized pretty quickly that AI can do some remarkable things, but plugging it into usable applications is still a challenge. Streaming AI responses can make interactions feel responsive and fun, instead of making you wait 30 seconds for a full block of text to appear. I already knew AI could return JSON objects that we could parse and use, but I wanted to bridge the gap between real-time interaction, which you get from streamed text output, and structured JSON output. So I came up with an optimistic JSON parsing algorithm that can take in chunks and progressively construct valid JSON structures from a stream of AI-generated tokens. Not only does that make it possible to render structured outputs in real time with confidence, but it also helps correct some of the malformed JSON structures AI can sometimes produce.
 
-- Recursive parsing of nested objects and arrays
-- Manual string scanning and escape-sequence replacement
-- Primitive token collection and type coercion
-- A mutable string cursor with pushback behavior
-- A small test-backed TypeScript utility with a focused public API
-
-Overall, this is a compact parsing exercise centered on how structured text can be turned back into nested in-memory data through explicit control over the input stream.
+This project was honestly just an official application of an algorithm I had built a while ago for some of my own personal projects, but it still ended up being a great academic showcase. It showed how something relatively simple, built around the rules of a predefined scheme like JSON, can be applied at a low level to create really interactive and genuinely cool applications.

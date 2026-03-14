@@ -27,10 +27,9 @@ function assertProjectFrontmatter(
 		'desc',
 		'origin',
 		'status',
+		'cardTheme',
 		'tags',
 		'tech',
-		'gradient',
-		'cardSize',
 		'projectSize',
 		'skillLevel',
 		'capabilities',
@@ -63,8 +62,10 @@ function toProject(frontmatter: ProjectFrontmatter): Project {
 		status: frontmatter.status,
 		tech: frontmatter.tech,
 		sourceUrl: frontmatter.sourceUrl,
-		gradient: frontmatter.gradient,
-		size: frontmatter.cardSize
+		cardTheme: frontmatter.cardTheme,
+		cardForeground: frontmatter.cardForeground,
+		cardForegroundStyle: frontmatter.cardForegroundStyle,
+		cardIconSize: frontmatter.cardIconSize
 	};
 }
 
@@ -83,7 +84,11 @@ export const projectEntries: ProjectEntry[] = Object.entries(contentModules)
 			html
 		};
 	})
-	.sort((a, b) => a.project.order - b.project.order || a.project.title.localeCompare(b.project.title));
+	.sort((a, b) => {
+		const aEnd = Date.parse(a.frontmatter.endDate);
+		const bEnd = Date.parse(b.frontmatter.endDate);
+		return bEnd - aEnd || a.project.title.localeCompare(b.project.title);
+	});
 
 export const projects: Project[] = projectEntries.map((entry) => entry.project);
 

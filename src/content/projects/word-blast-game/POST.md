@@ -7,8 +7,9 @@ origin: University
 status: Complete
 tags: [university, web]
 tech: [HTML, CSS, JavaScript, OpenAI API, WordsAPI]
-gradient: "linear-gradient(135deg, #8a6a5a, #a88878, #c8a898)"
-cardSize: "wide"
+cardTheme: clay
+cardForeground: ./assets/card-icon.svg
+cardIconSize: 84 
 projectSize: Small
 skillLevel: High
 capabilities:

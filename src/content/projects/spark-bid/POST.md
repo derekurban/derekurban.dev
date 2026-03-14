@@ -7,8 +7,9 @@ origin: University
 status: Complete
 tags: [university, web]
 tech: [React, Express, Supabase, TypeScript, HTML, CSS]
-gradient: "linear-gradient(135deg, #c47a3a, #d89858, #e8b878)"
-cardSize: "large"
+cardTheme: amber
+cardForeground: ./assets/card-icon.svg
+cardIconSize: 76
 projectSize: Medium
 skillLevel: Medium
 capabilities:

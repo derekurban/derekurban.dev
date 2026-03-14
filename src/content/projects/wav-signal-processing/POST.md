@@ -7,8 +7,9 @@ origin: University
 status: Complete
 tags: [university]
 tech: [C++, WAV/PCM, CLI]
-gradient: "linear-gradient(135deg, #4a6a8a, #6888a8, #88a8c8)"
-cardSize: ""
+cardTheme: slate
+cardForeground: ./assets/card-icon.svg
+cardIconSize: 88
 projectSize: Small
 skillLevel: High
 capabilities:

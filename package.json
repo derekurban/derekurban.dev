@@ -4,7 +4,7 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "node scripts/dev.mjs",
 		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
@@ -31,6 +31,7 @@
 		"@fontsource/space-mono": "^5.2.9",
 		"@fontsource/zilla-slab": "^5.2.8",
 		"gray-matter": "^4.0.3",
+		"gsap": "^3.14.2",
 		"lucide-svelte": "^0.577.0",
 		"marked": "^17.0.4",
 		"yaml": "^2.8.2"

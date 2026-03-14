@@ -7,8 +7,9 @@ origin: University
 status: Complete
 tags: [university, web]
 tech: [React, Google Maps API, react-i18next, Material UI, QR Code]
-gradient: 'linear-gradient(135deg, #3a7a6a, #58a090, #78c0b0)'
-cardSize: ''
+cardTheme: seafoam
+cardForeground: ./assets/card-icon.svg
+cardIconSize: 78
 projectSize: Medium
 skillLevel: Medium
 capabilities: [Interface Design, Kiosk UX, State-Based Navigation, API Integration, Localization, Frontend Prototyping]
@@ -32,7 +33,7 @@ The application uses a state-based screen controller instead of `react-router`. 
 
 That structure is paired with reusable framing components. The `Header` component provides a consistent title and back action, which gives the nested screens a stable "return" path. The `Taskbar` sits at the bottom of the interface and acts as a shared utility strip. When a page can generate a useful external destination, the taskbar switches from a disabled QR placeholder to an active QR code that can be scanned from a mobile device.
 
-![Kiosk navigation flow](./assets/diagrams/kiosk-navigation-flow.svg)
+![Kiosk navigation flow](./assets/diagrams/kiosk-navigation-flow.png)
 
 ## Transit Features
 
@@ -46,7 +47,7 @@ The transit section is split into several distinct tools rather than one generic
 
 `PlanATrip` is the most interactive part of the transit section. It uses Google Maps Places and Directions services to search destinations, select locations from search results or directly from the map, switch between walking, transit, and driving modes, and render a route on the embedded map. The directions panel does more than display a simple summary: it walks the nested Google directions structure recursively, so transit segments and sub-steps can be rendered as a readable step-by-step list inside the kiosk UI.
 
-![Feature architecture](./assets/diagrams/feature-architecture.svg)
+![Feature architecture](./assets/diagrams/feature-architecture.png)
 
 ## Points of Interest and Emergency Tools
 
@@ -64,12 +65,10 @@ The language list itself is larger than the currently active translation set. Th
 
 The QR behavior in the taskbar is another recurring system in the project. Rather than embedding full mobile workflows directly into the kiosk, pages can hand off a destination or purchase link by rendering a QR code in the persistent bottom bar. That pattern appears in route planning, points of interest, and fare information, and it gives the kiosk a consistent way to bridge from a shared public screen to a personal device.
 
-![Map handoff flow](./assets/diagrams/map-handoff-flow.svg)
+![Map handoff flow](./assets/diagrams/map-handoff-flow.png)
 
-## Technical Structure
+## Signing Off
 
-This project is built as a React 18 single-page application with a component-per-screen layout. It uses `react-i18next` for localization, Material UI icons for the kiosk controls and screen affordances, `@react-google-maps/api` plus the Google Maps loader for map rendering and directions, and `qrcode.react` for QR generation.
+This was the result of an iterative approach to UX/UI design. From wire diagrams, to mockups, to prototypes, this project really captures that evolution. It highlights some of the core fundamentals of UX and applies the UI testing needed to make sure the interface is accessible, intuitive, and functional. A lot of the codebase itself is not super spectacular, but where this project really shines is in the decisions behind exactly how the UI is meant to behave, what it is supposed to do, and the different circumstances under which users will interact with it.
 
-Most of the application data lives directly in component-level arrays and local state rather than in a backend service. Delay cards, route boards, fare tables, and the points-of-interest catalog are all defined in the front-end code. That makes the project self-contained and easy to run locally while also making the UI behavior easy to trace from the source. The more dynamic parts of the application come from front-end state transitions: screen changes, filtering, pagination, directions requests, route rendering, countdowns, and conditional QR display.
-
-As a React project, it also shows several different interaction patterns in one codebase: timed rotation for transit cards, paginated result sets, filterable local datasets, embedded map services, recursive rendering of nested route steps, modal-based language handling, and a small simulated emergency request state machine. Those pieces are all organized around the same kiosk constraint: large, direct interactions on a single persistent display.
+This project and process taught me that UI and UX go way beyond “just make it pretty, dur.” There is intention, along with frameworks, systems, and processes, that can make good UI feel much more deterministic. Good UX, though, is an art form that can take a lot of time to truly nail down, and I can feel myself being pulled toward the challenge of mastering it.

@@ -1,6 +1,8 @@
+import type { ProjectThemeName } from '$lib/data/projectThemes';
+
 export type ProjectOrigin = 'Personal' | 'University' | 'Professional';
 export type ProjectStatus = 'Complete' | 'In Progress' | 'Archived';
-export type ProjectCardSize = '' | 'large' | 'wide' | 'tall';
+export type ProjectCardForegroundStyle = 'title' | 'icon';
 
 export interface ProjectFrontmatter {
 	order: number;
@@ -12,8 +14,10 @@ export interface ProjectFrontmatter {
 	tags: string[];
 	tech: string[];
 	sourceUrl?: string;
-	gradient: string;
-	cardSize: ProjectCardSize;
+	cardTheme: ProjectThemeName;
+	cardForeground?: string;
+	cardForegroundStyle?: ProjectCardForegroundStyle;
+	cardIconSize?: number;
 	projectSize: string;
 	skillLevel: string;
 	capabilities: string[];
@@ -34,8 +38,10 @@ export interface Project {
 	status: ProjectStatus;
 	tech: string[];
 	sourceUrl?: string;
-	gradient: string;
-	size: ProjectCardSize;
+	cardTheme: ProjectThemeName;
+	cardForeground?: string;
+	cardForegroundStyle?: ProjectCardForegroundStyle;
+	cardIconSize?: number;
 }
 
 export interface ProjectEntry {

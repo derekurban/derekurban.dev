@@ -7,10 +7,11 @@ origin: University
 status: Complete
 tags: [university, web, data]
 tech: [React, Express, MySQL, CSS]
-gradient: 'linear-gradient(135deg, #5a6a9a, #7888b8, #98a8d2)'
-cardSize: large
-projectSize: Large
-skillLevel: High
+cardTheme: indigo
+cardForeground: ./assets/card-icon.svg
+cardIconSize: 64
+projectSize: Medium
+skillLevel: Medium
 capabilities: [Full-Stack Development, Software Architecture, CRUD APIs, Database Design, Authentication, State Management]
 startDate: 2022-03-16
 endDate: 2022-04-15
@@ -34,7 +35,7 @@ The layout is organized as a multi-page dashboard rather than a single feature v
 
 The UI implementation also mixes several styling approaches. Some sections use plain CSS files, some use utility-class-driven layout in the calendar area, and some feature-specific screens are built with `styled-components`. That mix is especially visible in the task, notes, and settings pages, where the screen structure is composed from reusable styled wrappers and custom UI pieces.
 
-![Full-stack architecture](./assets/diagrams/full-stack-architecture.svg)
+![Full-stack architecture](./assets/diagrams/full-stack-architecture.png)
 
 ## Productivity Features
 
@@ -46,7 +47,7 @@ The calendar is the most structurally distinct feature in the frontend. It uses 
 
 Settings and profile pages extend that same pattern of user-owned data management. The profile page presents editable account details such as name, birthday, email, username, password, and profile image upload. The settings page is tied to a dedicated settings record and includes fields for date format, time format, timezone, language, theme, country, and notifications. Together, those screens make the application feel more like a personal workspace with account configuration rather than only a task tracker.
 
-![Feature workspace map](./assets/diagrams/feature-workspace-map.svg)
+![Feature workspace map](./assets/diagrams/feature-workspace-map.png)
 
 ## Social and Shared Features
 
@@ -78,20 +79,10 @@ Authentication in this project is lightweight and mostly client-managed. The fro
 
 The signup flow also does more than create a profile record. It bootstraps the rest of the user's default workspace by creating or linking the initial settings, notes, task, schedule, and statistics records. That makes account creation part of the application's core data orchestration rather than only a single insert into the profile table.
 
-![Account bootstrap flow](./assets/diagrams/account-bootstrap-flow.svg)
+![Account bootstrap flow](./assets/diagrams/account-bootstrap-flow.png)
 
-## Technical Characteristics
+## Signing Off
 
-This project combines several distinct implementation patterns in one codebase:
+I mean, we’ve all been there, right? If you haven’t tried making a to-do list or productivity app as a software developer, are you really a software developer? All jokes aside, this was definitely a cliché I needed to take a stab at. I went in with high hopes and honestly was not that let down. I’m proud of what my team and I were able to accomplish given the time constraints, especially with some of those 4 a.m. overnight sessions on campus. I realized fairly quickly just how much work it takes to build a feature-rich calendar, note-taking app, and task tracker. It sounds simple at first, but getting everything to orchestrate together is a whole other beast entirely.
 
-- a React route-based frontend with protected pages
-- an Express CRUD API
-- a normalized relational schema with linked feature records
-- client-driven session checks through `localStorage`
-- API-backed CRUD flows for tasks and notes
-- a context-managed custom calendar
-- profile and settings editing
-- friend relationships and planned feature sharing
-- monthly statistics updates tied to task and event changes
-
-Taken together, the project reads as an attempt to build a unified personal workspace system rather than a single-purpose app. The technical shape of the code reflects that goal: multiple related feature domains, a database-backed API, per-user ownership of records, and a frontend that ties those domains into one navigable interface.
+It was a great experience being able to flesh out my React skills, learn more about backend server hosting, and better understand all the interesting nuances that go into high-quality state management wrapped in an appealing user interface.

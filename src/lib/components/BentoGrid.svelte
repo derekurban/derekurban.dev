@@ -52,7 +52,7 @@
 <div class="bento">
 	{#each filteredProjects as project, i (project.slug)}
 		<div
-			class="card-wrapper {project.size}"
+			class="card-wrapper"
 			in:receive={{ key: project.slug }}
 			out:send={{ key: project.slug }}
 			animate:flip={{ duration: 350, easing: cubicOut }}
@@ -73,28 +73,18 @@
 
 <style>
 	.bento {
-		max-width: 1340px;
+		max-width: 1280px;
 		margin: 0 auto;
 		padding: 0 2rem 5rem;
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		grid-auto-rows: 205px;
-		gap: 1.1rem;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1.25rem;
+		align-items: stretch;
 	}
 
 	.card-wrapper {
 		position: relative;
-	}
-
-	.card-wrapper.large {
-		grid-column: span 2;
-		grid-row: span 2;
-	}
-	.card-wrapper.wide {
-		grid-column: span 2;
-	}
-	.card-wrapper.tall {
-		grid-row: span 2;
+		min-height: 412px;
 	}
 
 	.empty-state {
@@ -122,12 +112,8 @@
 		}
 
 		.card-wrapper,
-		.card-wrapper.large,
-		.card-wrapper.wide,
-		.card-wrapper.tall {
-			grid-column: span 1;
-			grid-row: span 1;
-			min-height: 250px;
+		.card-wrapper {
+			min-height: 392px;
 		}
 	}
 </style>

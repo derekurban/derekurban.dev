@@ -7,8 +7,9 @@ origin: University
 status: Complete
 tags: [university]
 tech: [Java, JUnit]
-gradient: "linear-gradient(135deg, #6a8a5a, #88a878, #a8c898)"
-cardSize: ''
+cardTheme: sage
+cardForeground: ./assets/card-icon.svg
+cardIconSize: 78
 projectSize: Small
 skillLevel: High
 capabilities: [Reflection, Recursive Traversal, Runtime Introspection, Deterministic Output Design, Test Engineering, Algorithms]
@@ -40,7 +41,7 @@ The driver runs the inspector against a varied set of targets:
 
 That fixture selection gives the project a wider surface than a single toy class. It forces the inspector to handle both user-defined types and standard library objects, as well as both scalar objects and arrays.
 
-![Inspection Runtime Flow](./assets/diagrams/inspection-runtime-flow.svg)
+![Inspection Runtime Flow](./assets/diagrams/inspection-runtime-flow.png)
 
 ## Reflection Output
 
@@ -74,7 +75,7 @@ This gives the output a depth-first traversal shape:
 
 That behavior allows the project to move beyond simple reflection metadata and into object graph exploration, at least for acyclic structures.
 
-![Recursive Inspection Model](./assets/diagrams/recursive-inspection-model.svg)
+![Recursive Inspection Model](./assets/diagrams/recursive-inspection-model.png)
 
 ## Arrays and Value Formatting
 
@@ -103,7 +104,7 @@ The repository includes a substantial JUnit test suite in `InspectorTest.java`. 
 
 This is one of the strongest technical characteristics of the project. Reflection output is often treated as a debugging artifact, but here it is converted into a repeatable output contract. The tests are not only checking that the program runs; they are checking that the reflected structure is presented in a stable, expected format.
 
-![Output Testing Contract](./assets/diagrams/output-testing-contract.svg)
+![Output Testing Contract](./assets/diagrams/output-testing-contract.png)
 
 The fixture classes in the repository support that test surface intentionally. The class hierarchy and interface relationships provide enough variation to exercise:
 
@@ -116,17 +117,10 @@ The fixture classes in the repository support that test surface intentionally. T
 
 That gives the inspector a compact but meaningful object model to inspect.
 
-## Technical Characteristics
+## Signing Off
 
-This project combines several concrete concerns in one small codebase:
+This project was an excellent way to familiarize myself with reflection and how it can be used practically. In this particular instance, it was mainly used to print object values and fields as strings for the sake of inspection and observation, but the underlying principles go much deeper. 
 
-- dynamic class loading in the test driver
-- reflection over classes, methods, constructors, interfaces, and fields
-- optional recursive traversal of referenced objects and type hierarchies
-- explicit array inspection
-- controlled formatting of reflection output
-- handling of inaccessible fields at runtime
-- deterministic ordering for stable output
-- regex-based test validation for partially nondeterministic data
+Having the ability to traverse the relationships and characteristics of objects that exist within a virtual space opens the door to all kinds of meta-operations. For example, it is what allows diagramming tools to effectively map out and visualize complex codebase relationships automatically.
 
-Taken together, the project is less about building a generic debugging console and more about building a structured reflection reporter. The defining characteristic is not only that it inspects objects, but that it turns reflection results into a deterministic, testable text representation.
+There were definitely some challenges when it came to applying the lessons to the project, but it was valuable nonetheless!

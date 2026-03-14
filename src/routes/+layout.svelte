@@ -9,12 +9,14 @@
 	import '@fontsource/space-mono/400.css';
 	import '@fontsource/space-mono/700.css';
 
-	import { onNavigate } from '$app/navigation';
+	import { afterNavigate, onNavigate } from '$app/navigation';
+	import { page } from '$app/state';
 	import Nav from '$lib/components/Nav.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import DotBackground from '$lib/components/DotBackground.svelte';
 
 	let { children } = $props();
+	let hideNav = $derived(page.url.pathname.startsWith('/projects/'));
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
@@ -26,11 +28,25 @@
 			});
 		});
 	});
+
+	afterNavigate(({ to, from, type }) => {
+		if (
+			type === 'link' &&
+			to?.url.pathname.startsWith('/projects/') &&
+			to.url.pathname !== from?.url.pathname
+		) {
+			requestAnimationFrame(() => {
+				window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+			});
+		}
+	});
 </script>
 
 <DotBackground />
 <div class="relative z-1">
-	<Nav />
+	{#if !hideNav}
+		<Nav />
+	{/if}
 	{@render children()}
 	<Footer />
 </div>

@@ -7,8 +7,9 @@ origin: University
 status: Complete
 tags: [university]
 tech: [Java, Sockets, XML, JDOM]
-gradient: "linear-gradient(135deg, #7a6a4a, #9a8868, #b8a888)"
-cardSize: "tall"
+cardTheme: sand
+cardForeground: ./assets/card-icon.svg
+cardIconSize: 98
 projectSize: Small
 skillLevel: High
 capabilities:
