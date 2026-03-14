@@ -4,10 +4,10 @@
 >
 	<span class="text-[0.85rem] text-muted">&copy; 2026 Derek Urban</span>
 	<div class="flex gap-5">
-		<a href="https://github.com" class="font-mono text-[0.64rem] uppercase tracking-[0.16em] text-muted transition-colors duration-200 hover:text-charcoal">
+		<a href="https://github.com/derekurban" class="font-mono text-[0.64rem] uppercase tracking-[0.16em] text-muted transition-colors duration-200 hover:text-charcoal">
 			GitHub
 		</a>
-		<a href="https://linkedin.com" class="font-mono text-[0.64rem] uppercase tracking-[0.16em] text-muted transition-colors duration-200 hover:text-charcoal">
+		<a href="https://www.linkedin.com/in/derekurban/" class="font-mono text-[0.64rem] uppercase tracking-[0.16em] text-muted transition-colors duration-200 hover:text-charcoal">
 			LinkedIn
 		</a>
 		<a href="/resume" class="font-mono text-[0.64rem] uppercase tracking-[0.16em] text-muted transition-colors duration-200 hover:text-charcoal">

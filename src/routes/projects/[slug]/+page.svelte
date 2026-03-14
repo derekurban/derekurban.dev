@@ -215,7 +215,7 @@
 	.project-page {
 		max-width: 1080px;
 		margin: 0 auto;
-		padding: 1.6rem 1.4rem 5rem;
+		padding: 6.2rem 1.4rem 5rem;
 	}
 
 	.project-hero {
@@ -308,9 +308,11 @@
 	}
 
 	.project-stage-glass-box {
+		--project-glass-box-size: min(36%, 250px);
 		position: relative;
-		width: min(36%, 250px);
-		aspect-ratio: 1;
+		width: var(--project-glass-box-size);
+		flex: 0 0 auto;
+		aspect-ratio: 1 / 1;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -795,6 +797,7 @@
 
 	@media (max-width: 900px) {
 		.project-page {
+			padding-top: 5.9rem;
 			padding-left: 1rem;
 			padding-right: 1rem;
 		}
@@ -813,6 +816,19 @@
 		.project-stage {
 			min-height: 260px;
 			border-radius: 24px;
+		}
+
+		.project-stage-grid {
+			inset: 0.9rem;
+		}
+
+		.project-stage-foreground {
+			inset: 1.2rem;
+		}
+
+		.project-stage-glass-box {
+			--project-glass-box-size: min(calc(100% - 2.4rem), 132px);
+			border-radius: 28px;
 		}
 
 		.project-stage-foreground img {

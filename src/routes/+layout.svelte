@@ -16,7 +16,6 @@
 	import DotBackground from '$lib/components/DotBackground.svelte';
 
 	let { children } = $props();
-	let hideNav = $derived(page.url.pathname.startsWith('/projects/'));
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
@@ -42,11 +41,18 @@
 	});
 </script>
 
+<svelte:head>
+	<script>
+		const storedTheme = localStorage.getItem('theme');
+		if (storedTheme === 'light' || storedTheme === 'dark') {
+			document.documentElement.dataset.theme = storedTheme;
+		}
+	</script>
+</svelte:head>
+
 <DotBackground />
 <div class="relative z-1">
-	{#if !hideNav}
-		<Nav />
-	{/if}
+	<Nav />
 	{@render children()}
 	<Footer />
 </div>

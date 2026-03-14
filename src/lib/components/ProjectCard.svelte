@@ -32,7 +32,7 @@
 <a
 	class="bento-card"
 	{href}
-	use:reveal={{ delay: index * 75, skip: skipReveal }}
+	use:reveal={{ delay: index * 36, skip: skipReveal }}
 >
 	<div class="card-media" style={themeStyle} aria-hidden="true">
 		<div class="card-media-gradient"></div>
@@ -109,14 +109,16 @@
 		display: flex;
 		flex-direction: column;
 		opacity: 0;
-		transform: translateY(18px);
+		transform: translate3d(0, 18px, 0) scale(0.985);
 		transition:
-			transform 0.35s var(--ease-out-expo),
-			box-shadow 0.35s var(--ease-out-expo),
-			border-color 0.35s var(--ease-out-expo);
+			opacity 0.42s var(--ease-out-expo) var(--reveal-delay, 0ms),
+			transform 0.56s var(--ease-out-expo) var(--reveal-delay, 0ms),
+			box-shadow 0.28s var(--ease-out-expo) 0ms,
+			border-color 0.28s var(--ease-out-expo) 0ms;
 		box-shadow: var(--shadow-card);
 		text-decoration: none;
 		color: inherit;
+		will-change: opacity, transform;
 	}
 
 	.bento-card :global(.visible) {
@@ -126,7 +128,7 @@
 
 	.bento-card:global(.visible) {
 		opacity: 1;
-		transform: translateY(0);
+		transform: translate3d(0, 0, 0) scale(1);
 	}
 
 	.bento-card:hover {
@@ -192,7 +194,7 @@
 
 	.card-foreground-shell {
 		position: absolute;
-		inset: 1rem;
+		inset: 1.55rem 1rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -226,13 +228,16 @@
 	}
 
 	.card-foreground-shell-icon {
+		container-type: size;
 		justify-content: center;
 	}
 
 	.card-glass-box {
+		--card-glass-box-size: min(72cqi, 100cqb, 180px);
 		position: relative;
-		width: min(72%, 180px);
-		aspect-ratio: 1;
+		width: var(--card-glass-box-size);
+		height: var(--card-glass-box-size);
+		flex: 0 0 auto;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -425,6 +430,19 @@
 	@media (max-width: 700px) {
 		.card-media {
 			min-height: 180px;
+		}
+
+		.card-media-frame {
+			inset: 0.9rem;
+		}
+
+		.card-foreground-shell {
+			inset: 1.2rem;
+		}
+
+		.card-glass-box {
+			--card-glass-box-size: min(100cqi, 100cqb, 132px);
+			border-radius: 28px;
 		}
 
 		.card-body {

@@ -2,8 +2,7 @@
 	import type { Project } from '$lib/types/project';
 	import type { TransitionConfig } from 'svelte/transition';
 	import ProjectCard from './ProjectCard.svelte';
-	import { crossfade } from 'svelte/transition';
-	import { cubicOut } from 'svelte/easing';
+	import { cubicOut, quartOut } from 'svelte/easing';
 	import { flip } from 'svelte/animate';
 	import { onMount } from 'svelte';
 
@@ -21,31 +20,47 @@
 		}, 800);
 	});
 
-	const [sendCrossfade, receiveCrossfade] = crossfade({
-		duration: 350,
-		easing: cubicOut,
-		fallback(node) {
-			const style = getComputedStyle(node);
-			const opacity = +style.opacity;
-			return {
-				duration: 350,
-				easing: cubicOut,
-				css: (t) => `
-					opacity: ${t * opacity};
-					transform: scale(${0.92 + 0.08 * t}) translateY(${12 * (1 - t)}px);
-				`
-			};
-		}
-	});
-
-	function send(node: Element, params: { key: string }): TransitionConfig {
+	function receive(node: Element): TransitionConfig {
 		if (!initialRevealDone) return { duration: 0 };
-		return sendCrossfade(node, params)();
+		const style = getComputedStyle(node);
+		const opacity = +style.opacity || 1;
+
+		return {
+			duration: 420,
+			easing: quartOut,
+			css: (t) => `
+				opacity: ${t * opacity};
+				transform: translateY(${10 * (1 - t)}px) scale(${0.982 + 0.018 * t});
+			`
+		};
 	}
 
-	function receive(node: Element, params: { key: string }): TransitionConfig {
+	function send(node: Element): TransitionConfig {
 		if (!initialRevealDone) return { duration: 0 };
-		return receiveCrossfade(node, params)();
+		const element = node as HTMLElement;
+		const grid = element.parentElement as HTMLElement | null;
+
+		if (grid) {
+			const nodeRect = element.getBoundingClientRect();
+			const gridRect = grid.getBoundingClientRect();
+
+			element.style.position = 'absolute';
+			element.style.left = `${nodeRect.left - gridRect.left}px`;
+			element.style.top = `${nodeRect.top - gridRect.top}px`;
+			element.style.width = `${nodeRect.width}px`;
+			element.style.height = `${nodeRect.height}px`;
+			element.style.zIndex = '3';
+			element.style.pointerEvents = 'none';
+		}
+
+		return {
+			duration: 260,
+			easing: cubicOut,
+			css: (t, u) => `
+				opacity: ${t};
+				transform: translateY(${10 * u}px) scale(${1 - 0.02 * u});
+			`
+		};
 	}
 </script>
 
@@ -53,9 +68,9 @@
 	{#each filteredProjects as project, i (project.slug)}
 		<div
 			class="card-wrapper"
-			in:receive={{ key: project.slug }}
-			out:send={{ key: project.slug }}
-			animate:flip={{ duration: 350, easing: cubicOut }}
+			in:receive
+			out:send
+			animate:flip={{ duration: 440, easing: quartOut }}
 		>
 			<ProjectCard
 				{project}
@@ -80,11 +95,14 @@
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: 1.25rem;
 		align-items: stretch;
+		position: relative;
 	}
 
 	.card-wrapper {
 		position: relative;
 		min-height: 412px;
+		will-change: transform, opacity;
+		z-index: 0;
 	}
 
 	.empty-state {
