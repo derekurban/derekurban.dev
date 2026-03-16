@@ -1,13 +1,14 @@
 <script lang="ts">
-	import { tagMeta, tagOrder } from '$lib/data/tags';
+	import { getTagLabel } from '$lib/data/tags';
 
 	interface Props {
+		tags: string[];
 		selectedTags: Set<string>;
 		dormantTags: string[];
 		onTagToggle: (tag: string) => void;
 	}
 
-	let { selectedTags, dormantTags, onTagToggle }: Props = $props();
+	let { tags, selectedTags, dormantTags, onTagToggle }: Props = $props();
 
 	function chipState(tag: string): 'active' | 'dormant' | 'inactive' {
 		if (selectedTags.has(tag)) return 'active';
@@ -17,7 +18,7 @@
 </script>
 
 <div class="filter-bar">
-	{#each tagOrder as tag (tag)}
+	{#each tags as tag (tag)}
 		{@const state = chipState(tag)}
 		<button
 			class="filter-chip chip-{state}"
@@ -25,7 +26,7 @@
 			disabled={state === 'inactive'}
 			onclick={() => onTagToggle(tag)}
 		>
-			{tagMeta[tag]?.label ?? tag}
+			{getTagLabel(tag)}
 		</button>
 	{/each}
 </div>

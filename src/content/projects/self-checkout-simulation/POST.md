@@ -5,7 +5,8 @@ desc: A Java desktop simulation of a retail self-checkout station with customer-
 origin: University
 status: Complete
 pinned: false
-tags: [university]
+archived: true
+tags: [university, simulation, systems]
 tech: [Java, Swing, MigLayout]
 cardTheme: violet
 cardForeground: ./assets/card-icon.svg

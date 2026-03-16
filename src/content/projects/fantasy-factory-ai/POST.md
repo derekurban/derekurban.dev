@@ -5,7 +5,8 @@ desc: An AI-assisted SvelteKit world-building app that organizes fictional setti
 origin: Personal
 status: Complete
 pinned: false
-tags: [personal, ai, web]
+archived: true
+tags: [personal, application, ai]
 tech: [SvelteKit, TypeScript, Supabase, OpenAI]
 cardTheme: amber
 cardForeground: ./assets/card-icon.svg

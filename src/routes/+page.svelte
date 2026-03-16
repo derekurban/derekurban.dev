@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { projects } from '$lib/data/projects';
-	import { tagOrder } from '$lib/data/tags';
+	import { sortTags } from '$lib/data/tags';
 	import Hero from '$lib/components/Hero.svelte';
 	import FilterBar from '$lib/components/FilterBar.svelte';
 	import BentoGrid from '$lib/components/BentoGrid.svelte';
 
 	let selectedTags = $state(new Set<string>());
+	let availableTags = $derived(sortTags(projects.flatMap((project) => project.tags)));
 
 	let filteredProjects = $derived(
 		selectedTags.size === 0
@@ -14,7 +15,7 @@
 	);
 
 	let dormantTags = $derived(
-		tagOrder.filter((t) => {
+		availableTags.filter((t) => {
 			if (selectedTags.has(t)) return false;
 			return filteredProjects.some((p) => p.tags.includes(t));
 		})
@@ -32,5 +33,5 @@
 </script>
 
 <Hero />
-<FilterBar {selectedTags} {dormantTags} onTagToggle={handleTagToggle} />
+<FilterBar tags={availableTags} {selectedTags} {dormantTags} onTagToggle={handleTagToggle} />
 <BentoGrid {filteredProjects} />

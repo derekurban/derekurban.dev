@@ -5,7 +5,8 @@ desc: A full-stack marketplace web app built around time-based auction listings,
 origin: University
 status: Complete
 pinned: false
-tags: [university, web]
+archived: true
+tags: [university, application]
 tech: [React, Express, Supabase, TypeScript, HTML, CSS]
 cardTheme: amber
 cardForeground: ./assets/card-icon.svg

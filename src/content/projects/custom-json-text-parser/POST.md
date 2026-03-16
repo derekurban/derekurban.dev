@@ -5,7 +5,8 @@ desc: A compact TypeScript parsing utility that reconstructs JavaScript values d
 origin: University
 status: Complete
 pinned: false
-tags: [university]
+archived: true
+tags: [university, developer-tool]
 tech: [TypeScript]  
 cardTheme: teal
 cardForeground: ./assets/card-icon.svg

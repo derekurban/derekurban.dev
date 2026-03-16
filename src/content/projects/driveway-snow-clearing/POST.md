@@ -5,7 +5,8 @@ desc: A JavaFX tile-based game prototype centered on moving through a snowy driv
 origin: University
 status: Complete
 pinned: false
-tags: [university]
+archived: true
+tags: [university, game]
 tech: [Java, JavaFX, Canvas Rendering, MIDI Audio]
 cardTheme: sky
 cardForeground: ./assets/card-icon.svg

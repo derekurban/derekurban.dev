@@ -5,7 +5,8 @@ desc: A study-assistant web application that combines class organization, docume
 origin: Personal
 status: Complete
 pinned: true
-tags: [personal, ai, data, web]
+archived: true
+tags: [personal, application, ai]
 tech: [SvelteKit, TypeScript, Supabase, Python, OpenAI, pgvector]
 cardTheme: blue
 cardForeground: ./assets/card-icon.svg

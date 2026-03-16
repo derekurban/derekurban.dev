@@ -5,7 +5,8 @@ desc: A touch-oriented React kiosk application presenting transit, orientation, 
 origin: University
 status: Complete
 pinned: false
-tags: [university, web]
+archived: true
+tags: [university, application]
 tech: [React, Google Maps API, react-i18next, Material UI, QR Code]
 cardTheme: seafoam
 cardForeground: ./assets/card-icon.svg

@@ -24,6 +24,7 @@
 	let proseRoot = $state<HTMLDivElement | null>(null);
 	let heroForegroundStyle = $derived(project.cardForegroundStyle ?? 'title');
 	let cardIconSize = $derived(project.cardIconSize ?? 78);
+	let sourceLabel = $derived(project.archived ? 'Archived Code' : 'Source Code');
 	let theme = $derived(getProjectTheme(project.cardTheme));
 	let themeStyle = $derived(
 		[
@@ -139,7 +140,7 @@
 						rel="noreferrer"
 						class="project-status project-status-complete project-source-pill"
 					>
-						Source Code
+						{sourceLabel}
 						<ArrowUpRight class="project-source-icon" size={12} strokeWidth={1.9} />
 					</a>
 				{/if}

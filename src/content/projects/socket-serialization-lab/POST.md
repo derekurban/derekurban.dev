@@ -5,7 +5,8 @@ desc: A Java client/server prototype that serializes runtime object graphs to XM
 origin: University
 status: Complete
 pinned: false
-tags: [university]
+archived: true
+tags: [university, systems]
 tech: [Java, Sockets, XML, JDOM]
 cardTheme: sand
 cardForeground: ./assets/card-icon.svg

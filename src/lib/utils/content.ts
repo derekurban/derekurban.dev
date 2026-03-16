@@ -147,6 +147,24 @@ function normalizePinned(value: unknown): boolean | undefined {
 	return undefined;
 }
 
+function normalizeArchived(value: unknown): boolean | undefined {
+	if (typeof value === 'boolean') {
+		return value;
+	}
+
+	if (typeof value === 'string') {
+		if (/^true$/i.test(value.trim())) {
+			return true;
+		}
+
+		if (/^false$/i.test(value.trim())) {
+			return false;
+		}
+	}
+
+	return undefined;
+}
+
 function resolveProjectFrontmatter(
 	frontmatter: Partial<ProjectFrontmatter>,
 	contentPath: string | undefined,
@@ -168,6 +186,7 @@ function resolveProjectFrontmatter(
 	return {
 		...frontmatter,
 		pinned: normalizePinned(frontmatter.pinned) ?? false,
+		archived: normalizeArchived(frontmatter.archived) ?? true,
 		cardForeground: resolvedForeground,
 		cardIconSize: normalizeCardIconSize(frontmatter.cardIconSize),
 		cardForegroundStyle: inferForegroundStyle(

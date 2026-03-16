@@ -5,7 +5,8 @@ desc: A compact TypeScript library that wraps OpenAI chat completions, supports 
 origin: Personal
 status: Complete
 pinned: false
-tags: [personal, ai, library]
+archived: true
+tags: [personal, developer-tool, ai]
 tech: [TypeScript, OpenAI, JSON Schema, Vitest]
 cardTheme: teal
 cardForeground: ./assets/card-icon.svg

@@ -11,6 +11,7 @@ export interface ProjectFrontmatter {
 	origin: ProjectOrigin;
 	status: ProjectStatus;
 	pinned: boolean;
+	archived: boolean;
 	tags: string[];
 	tech: string[];
 	sourceUrl?: string;
@@ -36,6 +37,7 @@ export interface Project {
 	tags: string[];
 	status: ProjectStatus;
 	pinned: boolean;
+	archived: boolean;
 	tech: string[];
 	sourceUrl?: string;
 	cardTheme: ProjectThemeName;

@@ -5,7 +5,8 @@ desc: A C++ toolkit for reading WAV audio files, applying time-domain and FFT-ba
 origin: University
 status: Complete
 pinned: false
-tags: [university]
+archived: true
+tags: [university, developer-tool, systems]
 tech: [C++, WAV/PCM, CLI]
 cardTheme: slate
 cardForeground: ./assets/card-icon.svg

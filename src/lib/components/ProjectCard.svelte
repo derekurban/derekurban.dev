@@ -16,6 +16,7 @@
 	let cardIconSize = $derived(project.cardIconSize ?? 78);
 	let visibleTags = $derived(project.tags.slice(0, 3));
 	let visibleTech = $derived(project.tech.slice(0, 3));
+	let sourceLabel = $derived(project.archived ? 'Archived source' : 'Source code');
 	let theme = $derived(getProjectTheme(project.cardTheme));
 	let themeStyle = $derived(
 		[
@@ -57,12 +58,6 @@
 		{/if}
 	</div>
 
-	{#if project.pinned}
-		<div class="card-pin" aria-label="Pinned project" title="Pinned project">
-			<Star size={13} strokeWidth={1.9} fill="currentColor" />
-		</div>
-	{/if}
-
 	<div class="card-arrow">
 		<ArrowUpRight size={14} strokeWidth={1.9} />
 	</div>
@@ -90,12 +85,20 @@
 				{/each}
 			</div>
 
-			{#if project.sourceUrl}
-				<div class="card-source">
-					<FolderGit2 class="card-source-icon" size={12} strokeWidth={1.8} />
-					<span>Archived source</span>
-				</div>
-			{/if}
+			<div class="card-footer-meta">
+				{#if project.sourceUrl}
+					<div class="card-source">
+						<FolderGit2 class="card-source-icon" size={12} strokeWidth={1.8} />
+						<span>{sourceLabel}</span>
+					</div>
+				{/if}
+
+				{#if project.pinned}
+					<div class="card-pin" aria-label="Pinned project" title="Pinned project">
+						<Star size={13} strokeWidth={1.9} fill="currentColor" />
+					</div>
+				{/if}
+			</div>
 		</div>
 	</div>
 </a>
@@ -408,6 +411,14 @@
 		color: var(--color-accent);
 	}
 
+	.card-footer-meta {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.6rem;
+		min-height: 1rem;
+	}
+
 	.card-arrow {
 		position: absolute;
 		top: 0.85rem;
@@ -429,21 +440,11 @@
 	}
 
 	.card-pin {
-		position: absolute;
-		top: 0.85rem;
-		left: 0.85rem;
-		width: 30px;
-		height: 30px;
-		border-radius: 999px;
-		background: color-mix(in srgb, var(--color-accent) 18%, rgba(255, 252, 248, 0.72));
-		border: 1px solid color-mix(in srgb, var(--color-accent) 34%, rgba(255, 255, 255, 0.26));
-		backdrop-filter: blur(14px);
-		display: flex;
+		margin-left: auto;
+		display: inline-flex;
 		align-items: center;
 		justify-content: center;
 		color: var(--color-accent-strong);
-		box-shadow: 0 12px 22px rgba(138, 116, 50, 0.14);
-		z-index: 3;
 	}
 
 	.bento-card:hover .card-arrow {

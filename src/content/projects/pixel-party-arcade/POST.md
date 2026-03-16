@@ -5,7 +5,8 @@ desc: A local four-player Java desktop arcade bundle combining Frogger, Pac-Man,
 origin: University
 status: Complete
 pinned: false
-tags: [university]
+archived: true
+tags: [university, game]
 tech: [Java, Swing, AWT]
 cardTheme: rose
 cardForeground: ./assets/card-icon.svg

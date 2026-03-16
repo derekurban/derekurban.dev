@@ -5,7 +5,8 @@ desc: A browser-based timed word duel built in vanilla JavaScript, featuring tur
 origin: University
 status: Complete
 pinned: false
-tags: [university, web]
+archived: true
+tags: [university, game]
 tech: [HTML, CSS, JavaScript, OpenAI API, WordsAPI]
 cardTheme: clay
 cardForeground: ./assets/card-icon.svg

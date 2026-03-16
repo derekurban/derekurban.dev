@@ -5,7 +5,8 @@ desc: A typed TypeScript client for observed Real Canadian Superstore endpoints 
 origin: Personal
 status: Complete
 pinned: false
-tags: [personal, data, library]
+archived: false
+tags: [personal, developer-tool]
 tech: [TypeScript, Node.js, Zod, Jest]
 cardTheme: emerald
 cardForeground: ./assets/card-icon.svg

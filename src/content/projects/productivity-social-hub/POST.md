@@ -5,7 +5,8 @@ desc: A full-stack web application combining scheduling, notes, task tracking, p
 origin: University
 status: Complete
 pinned: false
-tags: [university, web, data]
+archived: true
+tags: [university, application]
 tech: [React, Express, MySQL, CSS]
 cardTheme: indigo
 cardForeground: ./assets/card-icon.svg
