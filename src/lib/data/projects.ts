@@ -21,12 +21,12 @@ function assertProjectFrontmatter(
 	contentPath: string
 ): asserts frontmatter is ProjectFrontmatter {
 	const requiredFields: Array<keyof ProjectFrontmatter> = [
-		'order',
 		'title',
 		'slug',
 		'desc',
 		'origin',
 		'status',
+		'pinned',
 		'cardTheme',
 		'tags',
 		'tech',
@@ -53,13 +53,13 @@ function assertProjectFrontmatter(
 
 function toProject(frontmatter: ProjectFrontmatter): Project {
 	return {
-		order: frontmatter.order,
 		slug: frontmatter.slug,
 		title: frontmatter.title,
 		desc: frontmatter.desc,
 		origin: frontmatter.origin,
 		tags: frontmatter.tags,
 		status: frontmatter.status,
+		pinned: frontmatter.pinned,
 		tech: frontmatter.tech,
 		sourceUrl: frontmatter.sourceUrl,
 		cardTheme: frontmatter.cardTheme,
@@ -85,6 +85,11 @@ export const projectEntries: ProjectEntry[] = Object.entries(contentModules)
 		};
 	})
 	.sort((a, b) => {
+		const pinnedOrder = Number(b.frontmatter.pinned) - Number(a.frontmatter.pinned);
+		if (pinnedOrder !== 0) {
+			return pinnedOrder;
+		}
+
 		const aEnd = Date.parse(a.frontmatter.endDate);
 		const bEnd = Date.parse(b.frontmatter.endDate);
 		return bEnd - aEnd || a.project.title.localeCompare(b.project.title);

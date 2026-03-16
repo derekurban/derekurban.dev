@@ -1,10 +1,10 @@
 ---
-order: 1
 title: Spark Bid
 slug: spark-bid
 desc: A full-stack marketplace web app built around time-based auction listings, real-time bidding, and seller profile pages using React, Express, and Supabase.
 origin: University
 status: Complete
+pinned: false
 tags: [university, web]
 tech: [React, Express, Supabase, TypeScript, HTML, CSS]
 cardTheme: amber

@@ -1,10 +1,10 @@
 ---
-order: 3
 title: Personal Productivity Social Hub
 slug: productivity-social-hub
 desc: A full-stack web application combining scheduling, notes, task tracking, profile management, and friend connections into one account-based productivity platform with a React frontend, Express API, and MySQL backend.
 origin: University
 status: Complete
+pinned: false
 tags: [university, web, data]
 tech: [React, Express, MySQL, CSS]
 cardTheme: indigo

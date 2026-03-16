@@ -1,10 +1,10 @@
 ---
-order: 2
 title: Graphical Self-Checkout Simulation
 slug: self-checkout-simulation
 desc: A Java desktop simulation of a retail self-checkout station with customer-facing checkout flows, attendant controls, hardware event listeners, and multiple payment paths built on Swing.
 origin: University
 status: Complete
+pinned: false
 tags: [university]
 tech: [Java, Swing, MigLayout]
 cardTheme: violet

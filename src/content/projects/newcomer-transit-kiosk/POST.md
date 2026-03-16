@@ -1,10 +1,10 @@
 ---
-order: 5
 title: Newcomer Transit and City Guide Kiosk
 slug: newcomer-transit-kiosk
 desc: A touch-oriented React kiosk application presenting transit, orientation, and emergency information for newcomers arriving in Calgary, with Google Maps integration and multilingual support.
 origin: University
 status: Complete
+pinned: false
 tags: [university, web]
 tech: [React, Google Maps API, react-i18next, Material UI, QR Code]
 cardTheme: seafoam

@@ -1,10 +1,10 @@
 ---
-order: 6
 title: Word Blast Game Pair
 slug: word-blast-game
 desc: A browser-based timed word duel built in vanilla JavaScript, featuring turn sequencing, API-backed validation, and an AI mode with streamed OpenAI integration.
 origin: University
 status: Complete
+pinned: false
 tags: [university, web]
 tech: [HTML, CSS, JavaScript, OpenAI API, WordsAPI]
 cardTheme: clay

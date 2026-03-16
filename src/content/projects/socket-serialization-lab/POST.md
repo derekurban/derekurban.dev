@@ -1,10 +1,10 @@
 ---
-order: 10
 title: Socket-Based Object Serialization Lab
 slug: socket-serialization-lab
 desc: A Java client/server prototype that serializes runtime object graphs to XML, transfers them over raw TCP sockets, and reconstructs the full graph on the server.
 origin: University
 status: Complete
+pinned: false
 tags: [university]
 tech: [Java, Sockets, XML, JDOM]
 cardTheme: sand

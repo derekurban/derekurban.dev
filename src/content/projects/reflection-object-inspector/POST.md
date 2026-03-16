@@ -1,10 +1,10 @@
 ---
-order: 9
 title: Reflection-Based Object Inspector
 slug: reflection-object-inspector
 desc: A Java reflection utility that inspects arbitrary objects and renders their structure as deterministic, testable formatted text.
 origin: University
 status: Complete
+pinned: false
 tags: [university]
 tech: [Java, JUnit]
 cardTheme: sage

@@ -2,7 +2,7 @@
 	import { getProjectTheme } from '$lib/data/projectThemes';
 	import type { Project } from '$lib/types/project';
 	import { reveal } from '$lib/actions/reveal';
-	import { ArrowUpRight, FolderGit2 } from 'lucide-svelte';
+	import { ArrowUpRight, FolderGit2, Star } from 'lucide-svelte';
 
 	interface Props {
 		project: Project;
@@ -56,6 +56,12 @@
 			</div>
 		{/if}
 	</div>
+
+	{#if project.pinned}
+		<div class="card-pin" aria-label="Pinned project" title="Pinned project">
+			<Star size={13} strokeWidth={1.9} fill="currentColor" />
+		</div>
+	{/if}
 
 	<div class="card-arrow">
 		<ArrowUpRight size={14} strokeWidth={1.9} />
@@ -419,6 +425,24 @@
 		opacity: 0;
 		transform: translate(-4px, 4px);
 		transition: all 0.3s var(--ease-out-expo);
+		z-index: 3;
+	}
+
+	.card-pin {
+		position: absolute;
+		top: 0.85rem;
+		left: 0.85rem;
+		width: 30px;
+		height: 30px;
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--color-accent) 18%, rgba(255, 252, 248, 0.72));
+		border: 1px solid color-mix(in srgb, var(--color-accent) 34%, rgba(255, 255, 255, 0.26));
+		backdrop-filter: blur(14px);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--color-accent-strong);
+		box-shadow: 0 12px 22px rgba(138, 116, 50, 0.14);
 		z-index: 3;
 	}
 

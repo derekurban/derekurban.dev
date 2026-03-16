@@ -1,10 +1,10 @@
 ---
-order: 4
 title: Pixel Party Arcade Collection
 slug: pixel-party-arcade
 desc: A local four-player Java desktop arcade bundle combining Frogger, Pac-Man, and Pong inside one session-based application with shared scoring, one-button controls, and sprite recoloring.
 origin: University
 status: Complete
+pinned: false
 tags: [university]
 tech: [Java, Swing, AWT]
 cardTheme: rose

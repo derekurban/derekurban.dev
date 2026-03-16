@@ -1,10 +1,10 @@
 ---
-order: 7
 title: WAV Signal Processing Toolkit
 slug: wav-signal-processing
 desc: A C++ toolkit for reading WAV audio files, applying time-domain and FFT-based convolution, and validating processed output against reference recordings.
 origin: University
 status: Complete
+pinned: false
 tags: [university]
 tech: [C++, WAV/PCM, CLI]
 cardTheme: slate

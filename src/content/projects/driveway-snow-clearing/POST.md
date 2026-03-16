@@ -1,10 +1,10 @@
 ---
-order: 11
 title: Driveway Snow-Clearing Prototype
 slug: driveway-snow-clearing
 desc: A JavaFX tile-based game prototype centered on moving through a snowy driveway and pushing accumulated snow across a grid-based map with sprite animation and a custom render loop.
 origin: University
 status: Complete
+pinned: false
 tags: [university]
 tech: [Java, JavaFX, Canvas Rendering, MIDI Audio]
 cardTheme: sky

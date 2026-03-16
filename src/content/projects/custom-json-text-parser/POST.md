@@ -1,10 +1,10 @@
 ---
-order: 8
 title: Custom JSON Text Parser
 slug: custom-json-text-parser
 desc: A compact TypeScript parsing utility that reconstructs JavaScript values directly from raw JSON-like text without calling JSON.parse, using recursive descent and a mutable string cursor.
 origin: University
 status: Complete
+pinned: false
 tags: [university]
 tech: [TypeScript]  
 cardTheme: teal

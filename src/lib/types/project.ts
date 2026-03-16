@@ -5,12 +5,12 @@ export type ProjectStatus = 'Complete' | 'In Progress' | 'Archived';
 export type ProjectCardForegroundStyle = 'title' | 'icon';
 
 export interface ProjectFrontmatter {
-	order: number;
 	title: string;
 	slug: string;
 	desc: string;
 	origin: ProjectOrigin;
 	status: ProjectStatus;
+	pinned: boolean;
 	tags: string[];
 	tech: string[];
 	sourceUrl?: string;
@@ -29,13 +29,13 @@ export interface ProjectFrontmatter {
 }
 
 export interface Project {
-	order: number;
 	slug: string;
 	title: string;
 	desc: string;
 	origin: ProjectOrigin;
 	tags: string[];
 	status: ProjectStatus;
+	pinned: boolean;
 	tech: string[];
 	sourceUrl?: string;
 	cardTheme: ProjectThemeName;
