@@ -18,7 +18,7 @@ capabilities:
     OpenAI Integration,
     Streaming Interfaces,
     Structured Output Handling,
-    JSON Assembly,
+    JSON Processing,
     Library Design,
     Test Coverage,
   ]

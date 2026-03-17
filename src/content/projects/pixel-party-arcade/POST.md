@@ -13,7 +13,7 @@ cardForeground: ./assets/card-icon.svg
 cardIconSize: 71
 projectSize: Medium
 skillLevel: Medium
-capabilities: [Game Development, Local Multiplayer, UI Flow, State Coordination, Threaded Runtime, Input Design]
+capabilities: [Game Development, Local Multiplayer, UI Flow, State Management, Threaded Runtime, Input Handling]
 startDate: 2020-02-03
 endDate: 2020-04-19
 duration: 77 Days

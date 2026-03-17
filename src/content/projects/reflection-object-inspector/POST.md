@@ -13,7 +13,7 @@ cardForeground: ./assets/card-icon.svg
 cardIconSize: 78
 projectSize: Small
 skillLevel: High
-capabilities: [Reflection, Recursive Traversal, Runtime Introspection, Deterministic Output Design, Test Engineering, Algorithms]
+capabilities: [Reflection, Recursive Traversal, Deterministic Output Design, Test Coverage, Algorithms]
 startDate: 2023-10-14
 endDate: 2023-10-15
 duration: 2 Days

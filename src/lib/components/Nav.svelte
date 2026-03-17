@@ -49,9 +49,8 @@
 		applyTheme('system');
 	});
 
-	let isProjectsRoute = $derived(
-		page.url.pathname === '/' || page.url.pathname.startsWith('/projects/')
-	);
+	let isProjectsRoute = $derived(page.url.pathname.startsWith('/projects'));
+	let isStatsRoute = $derived(page.url.pathname === '/stats');
 	let themeLabel = $derived(
 		themeMode === 'system'
 			? 'System'
@@ -62,10 +61,14 @@
 </script>
 
 <nav class="site-nav">
-	<a class="site-brand" href="/">Derek Urban</a>
+	<a class="site-brand" href="/">
+		<span class="site-brand-mark" aria-hidden="true"></span>
+		<span class="site-brand-text">Derek Urban</span>
+	</a>
 
 	<div class="site-nav-actions">
-		<a class:nav-link-active={isProjectsRoute} class="nav-link" href="/">Projects</a>
+		<a class:nav-link-active={isProjectsRoute} class="nav-link" href="/projects">Projects</a>
+		<a class:nav-link-active={isStatsRoute} class="nav-link" href="/stats">Stats</a>
 
 		<div class="nav-divider" aria-hidden="true"></div>
 
@@ -128,12 +131,33 @@
 	}
 
 	.site-brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.72rem;
+		padding: 0.2rem 0;
 		font-family: var(--font-display);
 		font-size: 1.3rem;
 		font-weight: 500;
 		letter-spacing: -0.03em;
 		color: var(--color-charcoal);
 		text-decoration: none;
+	}
+
+	.site-brand-text {
+		line-height: 1;
+	}
+
+	.site-brand-mark {
+		flex: 0 0 auto;
+		width: 2.15rem;
+		height: 2.15rem;
+		border-radius: 999px;
+		background: url('/favicon.png') center / cover no-repeat;
+		border: 1px solid var(--color-line);
+		box-shadow:
+			0 10px 22px color-mix(in srgb, var(--color-charcoal) 10%, transparent),
+			inset 0 1px 0 color-mix(in srgb, var(--color-warm-white) 58%, transparent);
+		pointer-events: none;
 	}
 
 	.site-nav-actions {
@@ -233,6 +257,12 @@
 
 		.site-brand {
 			font-size: 1.08rem;
+			gap: 0.56rem;
+		}
+
+		.site-brand-mark {
+			width: 1.82rem;
+			height: 1.82rem;
 		}
 
 		.site-nav-actions {

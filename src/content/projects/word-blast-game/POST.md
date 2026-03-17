@@ -7,7 +7,7 @@ status: Complete
 pinned: false
 archived: true
 tags: [university, game]
-tech: [HTML, CSS, JavaScript, OpenAI API, WordsAPI]
+tech: [HTML, CSS, JavaScript, OpenAI, WordsAPI]
 cardTheme: clay
 cardForeground: ./assets/card-icon.svg
 cardIconSize: 84 
@@ -15,12 +15,12 @@ projectSize: Small
 skillLevel: High
 capabilities:
   [
-    Game Design,
+    Game Development,
     Interface Design,
-    DOM State Management,
-    Streaming,
+    State Management,
+    Streaming Interfaces,
     API Integration,
-    JSON Parsing,
+    JSON Processing,
   ]
 startDate: 2023-11-07
 endDate: 2023-11-09

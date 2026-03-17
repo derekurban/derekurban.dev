@@ -10,8 +10,5 @@
 		<a href="https://www.linkedin.com/in/derekurban/" class="font-mono text-[0.64rem] uppercase tracking-[0.16em] text-muted transition-colors duration-200 hover:text-charcoal">
 			LinkedIn
 		</a>
-		<a href="/resume" class="font-mono text-[0.64rem] uppercase tracking-[0.16em] text-muted transition-colors duration-200 hover:text-charcoal">
-			Resume
-		</a>
 	</div>
 </footer>

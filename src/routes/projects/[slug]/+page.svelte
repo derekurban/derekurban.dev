@@ -115,7 +115,7 @@
 	</section>
 
 	<div class="project-content">
-		<a href="/" class="back-link">
+		<a href="/projects" class="back-link">
 			<ArrowLeft class="back-arrow" size={14} strokeWidth={1.9} />
 			All Projects
 		</a>

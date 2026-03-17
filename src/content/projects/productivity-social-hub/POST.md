@@ -13,7 +13,7 @@ cardForeground: ./assets/card-icon.svg
 cardIconSize: 64
 projectSize: Medium
 skillLevel: Medium
-capabilities: [Full-Stack Development, Software Architecture, CRUD APIs, Database Design, Authentication, State Management]
+capabilities: [Full-Stack Development, Software Architecture, CRUD Development, Data Modeling, Authentication, State Management]
 startDate: 2022-03-16
 endDate: 2022-04-15
 duration: 31 Days

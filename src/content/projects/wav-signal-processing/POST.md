@@ -7,7 +7,7 @@ status: Complete
 pinned: false
 archived: true
 tags: [university, developer-tool, systems]
-tech: [C++, WAV/PCM, CLI]
+tech: [C++, WAV/PCM]
 cardTheme: slate
 cardForeground: ./assets/card-icon.svg
 cardIconSize: 88

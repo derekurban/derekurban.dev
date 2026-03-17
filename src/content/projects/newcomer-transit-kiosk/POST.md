@@ -13,7 +13,7 @@ cardForeground: ./assets/card-icon.svg
 cardIconSize: 78
 projectSize: Medium
 skillLevel: Medium
-capabilities: [Interface Design, Kiosk UX, State-Based Navigation, API Integration, Localization, Frontend Prototyping]
+capabilities: [Interface Design, Kiosk UX, State-Based Navigation, API Integration, Localization, Frontend Development]
 startDate: 2024-02-29
 endDate: 2024-04-08
 duration: 40 Days

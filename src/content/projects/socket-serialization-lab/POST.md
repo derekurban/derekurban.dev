@@ -16,7 +16,6 @@ skillLevel: High
 capabilities:
   [
     Serialization,
-    Deserialization,
     Client-Server Systems,
     Object Graph Handling,
     Reflection,

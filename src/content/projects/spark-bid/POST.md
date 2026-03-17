@@ -7,7 +7,7 @@ status: Complete
 pinned: false
 archived: true
 tags: [university, application]
-tech: [React, Express, Supabase, TypeScript, HTML, CSS]
+tech: [React, Express, Supabase, TypeScript]
 cardTheme: amber
 cardForeground: ./assets/card-icon.svg
 cardIconSize: 76
@@ -17,7 +17,7 @@ capabilities:
   [
     Full-Stack Development,
     Realtime Data,
-    CRUD Workflows,
+    CRUD Development,
     Marketplace Design,
     Authentication,
     File Uploads,

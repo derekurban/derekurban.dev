@@ -7,7 +7,7 @@ status: Complete
 pinned: true
 archived: false
 tags: [professional, application, platform]
-tech: [Vue.js, C#, .NET, JSON]
+tech: [Vue.js, C#, .NET]
 cardTheme: coral
 cardForeground: ./assets/card-icon.svg
 cardIconSize: 80
@@ -19,8 +19,8 @@ capabilities:
     UX Design,
     Form Modeling,
     Rule Systems,
-    Frontend Engineering,
-    Internal Platform Design,
+    Frontend Development,
+    Internal Tooling,
   ]
 startDate: 2023-07-06
 endDate: 2023-12-09

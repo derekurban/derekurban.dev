@@ -13,7 +13,7 @@ cardForeground: ./assets/card-icon.svg
 cardIconSize: 70
 projectSize: Small
 skillLevel: Medium
-capabilities: [Parsing, Recursive Descent, Text Processing, Data Structures, Utility Design, Test Coverage]
+capabilities: [Parsing, Recursive Descent, Text Processing, Data Structures, Library Design, Test Coverage]
 startDate: 2023-10-06
 endDate: 2023-10-06
 duration: 1 Days
