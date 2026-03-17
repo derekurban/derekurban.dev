@@ -8,7 +8,7 @@ pinned: true
 archived: false
 tags: [professional, platform, systems]
 tech: [C#, .NET, Entity Framework, ASP.NET MVC, Vue.js]
-cardTheme: emerald
+cardTheme: cocoa
 cardForeground: ./assets/card-icon.svg
 cardIconSize: 76
 projectSize: Large

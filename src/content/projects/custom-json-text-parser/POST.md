@@ -8,7 +8,7 @@ pinned: false
 archived: true
 tags: [university, developer-tool]
 tech: [TypeScript]  
-cardTheme: teal
+cardTheme: plum
 cardForeground: ./assets/card-icon.svg
 cardIconSize: 70
 projectSize: Small

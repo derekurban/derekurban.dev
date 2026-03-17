@@ -8,7 +8,7 @@ pinned: true
 archived: false
 tags: [professional, service, systems]
 tech: [JavaScript, TypeScript, Node.js, Express, GS1]
-cardTheme: rose
+cardTheme: ochre
 cardForeground: ./assets/card-icon.svg
 cardIconSize: 86
 projectSize: Large

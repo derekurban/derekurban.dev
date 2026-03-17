@@ -8,7 +8,7 @@ pinned: false
 archived: true
 tags: [personal, application, ai]
 tech: [SvelteKit, TypeScript, Supabase, OpenAI]
-cardTheme: amber
+cardTheme: plum
 cardForeground: ./assets/card-icon.svg
 cardIconSize: 88
 projectSize: Medium

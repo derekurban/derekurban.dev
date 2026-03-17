@@ -8,7 +8,7 @@ pinned: true
 archived: false
 tags: [professional, application, platform]
 tech: [Vue.js, C#, .NET, JSON]
-cardTheme: amber
+cardTheme: coral
 cardForeground: ./assets/card-icon.svg
 cardIconSize: 80
 projectSize: Large

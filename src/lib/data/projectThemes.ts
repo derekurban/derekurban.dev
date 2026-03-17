@@ -3,13 +3,20 @@ export const projectThemeNames = [
 	'sky',
 	'seafoam',
 	'rose',
+	'blue',
+	'emerald',
 	'indigo',
 	'sage',
 	'violet',
 	'sand',
 	'amber',
 	'slate',
-	'clay'
+	'clay',
+	'coral',
+	'glacier',
+	'plum',
+	'ochre',
+	'cocoa'
 ] as const;
 
 export type ProjectThemeName = (typeof projectThemeNames)[number];
@@ -54,6 +61,22 @@ export const projectThemes: Record<ProjectThemeName, ProjectTheme> = {
 		glow: 'rgba(250, 243, 246, 0.32)',
 		accent: '#7b5762',
 		plate: 'rgba(250, 244, 246, 0.28)',
+		plateBorder: 'rgba(255, 255, 255, 0.15)'
+	},
+	blue: {
+		surface: '#7796bb',
+		surfaceSoft: '#9db6d6',
+		glow: 'rgba(243, 247, 252, 0.34)',
+		accent: '#4f6c90',
+		plate: 'rgba(245, 248, 252, 0.3)',
+		plateBorder: 'rgba(255, 255, 255, 0.16)'
+	},
+	emerald: {
+		surface: '#759b86',
+		surfaceSoft: '#9ec0af',
+		glow: 'rgba(243, 249, 246, 0.33)',
+		accent: '#4f715f',
+		plate: 'rgba(244, 250, 247, 0.29)',
 		plateBorder: 'rgba(255, 255, 255, 0.15)'
 	},
 	indigo: {
@@ -109,6 +132,46 @@ export const projectThemes: Record<ProjectThemeName, ProjectTheme> = {
 		surfaceSoft: '#c8b0a4',
 		glow: 'rgba(250, 245, 242, 0.3)',
 		accent: '#7c6458',
+		plate: 'rgba(250, 246, 243, 0.28)',
+		plateBorder: 'rgba(255, 255, 255, 0.14)'
+	},
+	coral: {
+		surface: '#bf8777',
+		surfaceSoft: '#d9a99b',
+		glow: 'rgba(251, 244, 241, 0.3)',
+		accent: '#8a5d50',
+		plate: 'rgba(251, 246, 243, 0.28)',
+		plateBorder: 'rgba(255, 255, 255, 0.14)'
+	},
+	glacier: {
+		surface: '#7fa5b1',
+		surfaceSoft: '#a7c5cf',
+		glow: 'rgba(243, 248, 250, 0.33)',
+		accent: '#587784',
+		plate: 'rgba(245, 249, 251, 0.29)',
+		plateBorder: 'rgba(255, 255, 255, 0.15)'
+	},
+	plum: {
+		surface: '#8d7899',
+		surfaceSoft: '#b09dbc',
+		glow: 'rgba(248, 244, 250, 0.31)',
+		accent: '#65586e',
+		plate: 'rgba(248, 245, 250, 0.29)',
+		plateBorder: 'rgba(255, 255, 255, 0.15)'
+	},
+	ochre: {
+		surface: '#b2905d',
+		surfaceSoft: '#cfb083',
+		glow: 'rgba(251, 247, 240, 0.28)',
+		accent: '#80663a',
+		plate: 'rgba(251, 247, 241, 0.27)',
+		plateBorder: 'rgba(255, 255, 255, 0.13)'
+	},
+	cocoa: {
+		surface: '#9b8377',
+		surfaceSoft: '#bda59a',
+		glow: 'rgba(249, 245, 242, 0.29)',
+		accent: '#6f5a50',
 		plate: 'rgba(250, 246, 243, 0.28)',
 		plateBorder: 'rgba(255, 255, 255, 0.14)'
 	}
