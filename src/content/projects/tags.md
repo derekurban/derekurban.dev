@@ -14,6 +14,9 @@ This file tracks the approved tag set for project entries.
 - `developer-tool`: Tools, utilities, libraries, or infrastructure meant to support developers or technical workflows.
 - `game`: Play-focused interactive projects, prototypes, or game collections.
 - `simulation`: Systems that model real-world processes, workflows, or hardware behavior.
+- `platform`: Platform-level work focused on shared foundations, composability, or extensible product infrastructure.
+- `service`: Backend or processing work exposed as a focused operational capability.
+- `migration`: Incremental modernization or system-transition work where rollout strategy is a core part of the project.
 - `systems`: Lower-level systems work, protocols, runtimes, serialization, networking, signal processing, or infrastructure-heavy engineering.
 - `ai`: Projects where AI is a central part of the product or technical implementation.
 

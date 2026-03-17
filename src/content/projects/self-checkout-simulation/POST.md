@@ -24,7 +24,7 @@ sourceUrl: 'https://github.com/derekurban/university-projects'
 
 This project is a Java desktop simulation of a retail self-checkout station built on top of a provided hardware model. It combines customer-facing checkout flows, attendant controls, hardware event listeners, payment handling, bagging validation, and Swing-based UI screens inside one local application.
 
-The active software lives in the main implementation tree, while the repository also keeps the supplied hardware simulator, a deprecated software branch, and planning diagrams from the original project work. The core of the project is the software layer that sits on top of the simulated station and turns individual hardware devices into a full checkout workflow.
+The active software lives in the main implementation tree, while the repository also keeps the supplied hardware simulator, a deprecated software branch, and planning diagrams from the original project work. The core is the software layer that sits on top of the simulated station and turns individual hardware devices into a full checkout workflow.
 
 ## Overview
 
@@ -32,9 +32,9 @@ The application models the experience of using a self-checkout station from both
 
 On the customer side, the flow starts at a welcome screen, moves into item scanning, supports membership entry and produce lookup, enforces bagging checks, and then transitions into payment. The payment process supports cash, card, and gift-card flows, followed by receipt printing and change return when needed.
 
-On the attendant side, the software includes a separate control surface for login, station power, block and unblock actions, discrepancy approval, printer maintenance, and dispenser refill actions. That makes the project more than a single checkout screen. It models both the station interaction and the operational support layer around it.
+On the attendant side, the software includes a separate control surface for login, station power, block and unblock actions, discrepancy approval, printer maintenance, and dispenser refill actions. So it's more than a single checkout screen — it models both the station interaction and the operational support layer around it.
 
-The result is a simulation that behaves like a product surface rather than a collection of disconnected device handlers.
+The simulation ends up behaving like a real product surface, not just a collection of disconnected device handlers.
 
 ## Software Structure
 
@@ -52,9 +52,9 @@ The attendant side is centered around `ControlConsole`, which wraps a full stati
 
 ## Checkout Workflow
 
-The checkout flow is built as an explicit state-driven system. The software distinguishes between phases such as being ready for a customer, scanning, waiting for bagging confirmation, produce lookup, bag selection, payment, and change dispensing.
+The checkout flow is built as an explicit state-driven system. The software distinguishes between phases like being ready for a customer, scanning, waiting for bagging confirmation, produce lookup, bag selection, payment, and change dispensing.
 
-That state model shapes the UI and the device behavior at the same time. A scan does not just add an item to a list. It changes the expected weight, updates the transaction, disables scanning until the bagging step is resolved, and pushes the system into the next required state.
+The state model shapes both the UI and the device behavior at the same time. A scan doesn't just add an item to a list. It changes the expected weight, updates the transaction, disables scanning until the bagging step is resolved, and pushes the system into the next required state.
 
 The scanning interface keeps a running cart and total while also supporting several side paths:
 
@@ -70,7 +70,7 @@ The payment interface continues that same structured flow. Before final payment,
 
 ## Event-Driven Device Logic
 
-One of the defining characteristics of the project is the way it treats hardware actions as meaningful software events.
+The project treats hardware actions as meaningful software events.
 
 Barcode scanning is event-driven. A successful scan updates quantity and price, records the expected bagging weight, and changes what the customer is allowed to do next.
 
@@ -78,7 +78,7 @@ Bagging validation is tied to the electronic scale. The software compares expect
 
 Produce lookup uses the scale as part of the pricing logic. Instead of behaving like a standard barcode item, produce can enter a PLU flow where the software reads live weight, calculates price by weight, and then returns to the bagging process.
 
-Cash handling is also split into separate stages. Validator listeners determine denomination and validity, while acceptor listeners reflect whether the money was actually stored. That separation mirrors the physical behavior of the station rather than collapsing everything into one generic payment step.
+Cash handling is also split into separate stages. Validator listeners determine denomination and validity, while acceptor listeners reflect whether the money was actually stored — mirroring the physical behavior of the station rather than collapsing everything into one generic payment step.
 
 ![Device event model](./assets/diagrams/device-event-model.png)
 
@@ -109,15 +109,15 @@ The customer-facing side includes:
 
 The attendant-facing side includes a dedicated console that handles supervision and maintenance rather than only acting as a hidden debug tool.
 
-The UI controller runs a timer-driven refresh loop that watches state changes, updates prompts, refreshes the scanned item list, and drives modal notifications. That means the interface is not just a static wrapper around the logic layer. It actively reacts to changes in the simulated hardware and checkout state.
+The UI controller runs a timer-driven refresh loop that watches state changes, updates prompts, refreshes the scanned item list, and drives modal notifications. The interface actively reacts to changes in the simulated hardware and checkout state — it's not just a static wrapper around the logic layer.
 
 ## Data and Test Coverage
 
-The project is self-contained. Product information, produce weights, membership data, and gift-card balances are stored in in-memory structures and seeded with sample data. That gives the simulation a repeatable set of scenarios without requiring an external database or service layer.
+The project is self-contained. Product information, produce weights, membership data, and gift-card balances are stored in in-memory structures and seeded with sample data — a repeatable set of scenarios without requiring an external database or service layer.
 
-The seeded data is substantial enough to make the system usable as a demo environment rather than a minimal stub. The project includes dozens of barcoded items, produce entries, member records, and gift cards to support realistic checkout scenarios.
+The seeded data is substantial enough to work as a real demo environment, not just a minimal stub. The project includes dozens of barcoded items, produce entries, member records, and gift cards to support realistic checkout scenarios.
 
-The repository also includes meaningful automated tests across both logic and UI behavior. The tests cover checkout flows, attendant actions, item scanning and bagging, gift-card and printer behavior, return-change logic, and UI-specific behavior.
+The repository also includes meaningful automated tests across both logic and UI behavior, covering checkout flows, attendant actions, item scanning and bagging, gift-card and printer behavior, return-change logic, and UI-specific behavior.
 
 ## Signing Off
 

@@ -32,9 +32,9 @@ sourceUrl: "https://github.com/derekurban/university-projects"
 
 ## Overview
 
-This project is a Java client/server prototype that builds runtime object graphs on the client, serializes them to XML, sends that XML across a raw socket connection, and reconstructs the same object graph on the server. The application is intentionally small, but it covers a full end-to-end path: object creation, serialization, network transfer, deserialization, and post-transfer inspection.
+This project is a Java client/server prototype that builds runtime object graphs on the client, serializes them to XML, sends that XML across a raw socket connection, and reconstructs the same object graph on the server. It's intentionally small, but it covers the full end-to-end path: object creation, serialization, network transfer, deserialization, and post-transfer inspection.
 
-The implementation is centered on a plain TCP connection rather than a higher-level messaging framework. The client connects to `localhost:8080`, sends a single serialized payload, and closes the socket. The server listens on the same port, reads until the client disconnects, treats the full input as one XML message, and then deserializes it. That makes the communication model straightforward and easy to follow from the code.
+The implementation uses a plain TCP connection rather than a higher-level messaging framework. The client connects to `localhost:8080`, sends a single serialized payload, and closes the socket. The server listens on the same port, reads until the client disconnects, treats the full input as one XML message, and deserializes it. Straightforward to follow from the code.
 
 ## Client and Server Flow
 
@@ -42,13 +42,13 @@ The client starts as an interactive terminal application. It does not use a GUI 
 
 The server runs as a long-lived listener on port `8080`. For each accepted connection, it reads the incoming bytes until EOF, prints the raw XML it received, converts that XML string into a JDOM document, deserializes the object graph, and then prints a recursive visualization of the reconstructed object. The server handles one client connection at a time in a loop, so the runtime shape is simple and sequential rather than concurrent.
 
-One of the most characteristic parts of the socket protocol is its minimalism. There is no response message, no explicit message length header, and no framing beyond the connection itself. The end of the message is defined entirely by the client closing the socket after transmission.
+The socket protocol is intentionally minimal. There's no response message, no explicit message length header, and no framing beyond the connection itself. The end of the message is defined entirely by the client closing the socket after transmission.
 
 ![End-to-End Object Transfer](./assets/diagrams/end-to-end-object-transfer.png)
 
 ## Interactive Object Creation
 
-The client-side object creation flow is implemented in `ObjectCreator.java`. This is more than a hard-coded demo chooser. The object creator uses reflection to inspect constructors and public fields, select the constructor with the fewest parameters, prompt the user for primitive and string inputs, and recursively build nested object values where needed.
+The client-side object creation flow is implemented in `ObjectCreator.java`. It's more than a hard-coded demo chooser — the object creator uses reflection to inspect constructors and public fields, select the constructor with the fewest parameters, prompt the user for primitive and string inputs, and recursively build nested object values where needed.
 
 The object creator supports a fixed set of demo object types that were chosen to exercise different serialization cases:
 
@@ -59,7 +59,7 @@ The object creator supports a fixed set of demo object types that were chosen to
 - an object containing a collection of references
 - an object containing circular references
 
-The most distinctive part of this creation layer is that it caches objects already created during the session. When the user is assigning object-valued fields, they can reuse a previously created instance instead of always constructing a new one. That is what makes shared references and circular links possible in the client-side graph before serialization even begins.
+The interesting part of this creation layer is that it caches objects already created during the session. When the user is assigning object-valued fields, they can reuse a previously created instance instead of always constructing a new one. This is what makes shared references and circular links possible in the client-side graph before serialization even begins.
 
 ## XML Serialization Model
 
@@ -70,9 +70,9 @@ Serialization is handled by `Serializer.java` and built around reflection plus J
 
 Arrays and collections are represented slightly differently from standard object fields. Their child values and references are written directly under the `<object>` node rather than being nested inside `<field>` tags.
 
-The serializer uses an `IdentityHashMap` to track objects by reference identity, not by value equality. That matters because it preserves repeated references and prevents the same in-memory object from being serialized multiple times as if it were separate instances. Instead, the first occurrence gets a unique object ID and later occurrences point back to that ID through `<reference>` elements.
+The serializer uses an `IdentityHashMap` to track objects by reference identity, not by value equality. This preserves repeated references and prevents the same in-memory object from being serialized multiple times as if it were separate instances. The first occurrence gets a unique object ID and later occurrences point back to that ID through `<reference>` elements.
 
-That identity-based mapping is what lets the serializer preserve object graphs that include:
+This identity-based mapping is what lets the serializer preserve object graphs that include:
 
 - repeated references to the same object
 - arrays of shared objects
@@ -89,13 +89,13 @@ In the first pass, the deserializer walks the XML and instantiates every object 
 
 In the second pass, the deserializer walks the same XML again and fills in field values, array contents, and collection contents. Because all referenced objects already exist by the time values are assigned, the deserializer can resolve back-references safely.
 
-This preallocation-first approach is the key mechanism that makes circular object graphs possible. Without it, a reference could point to an object that had not been created yet. With it, the graph can be stitched together after all nodes already exist.
+This preallocation-first approach is what makes circular object graphs possible. Without it, a reference could point to an object that hasn't been created yet. With it, the graph can be stitched together after all nodes already exist.
 
 The deserializer also converts primitive text back into concrete Java primitive values, recreates arrays with `Array.newInstance`, and uses reflective field lookup based on the `name` and `declaringclass` attributes stored in the XML.
 
 ## Object Visualization
 
-The project includes a separate `ObjectVisualizer` that inspects the runtime object graph after creation on the client and again after reconstruction on the server. This visualizer is distinct from the serializer and deserializer. Its job is to make the in-memory structure readable in the terminal.
+The project includes a separate `ObjectVisualizer` that inspects the runtime object graph after creation on the client and again after reconstruction on the server. Its job is to make the in-memory structure readable in the terminal.
 
 It can inspect:
 
@@ -103,9 +103,7 @@ It can inspect:
 - arrays
 - collections
 
-It also tracks visited instances so that recursive inspection does not loop forever when it encounters circular references. That makes it a useful verification layer for this project, because it shows the shape of the graph without requiring the XML itself to be read directly.
-
-In effect, the visualizer acts as the human-facing confirmation step: the client can inspect what it built before sending it, and the server can inspect what it reconstructed after receiving it.
+It also tracks visited instances so recursive inspection doesn't loop forever when it encounters circular references. The client can inspect what it built before sending it, and the server can inspect what it reconstructed after receiving it — a useful verification layer that shows the shape of the graph without requiring the XML itself to be read directly.
 
 ## Testing Surface
 
@@ -120,7 +118,7 @@ The test cases cover the main supported object patterns:
 - collections of references
 - circular reference structures
 
-That gives the project a clear correctness surface: it is not only a socket demo, and it is not only an XML formatter. The serialization format and the reconstruction logic are both exercised directly.
+So the project has a real correctness surface — it's not just a socket demo and not just an XML formatter. The serialization format and the reconstruction logic are both exercised directly.
 
 ## Signing Off
 

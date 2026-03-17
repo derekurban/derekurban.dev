@@ -46,10 +46,6 @@ function assertProjectFrontmatter(
 			throw new Error(`Missing "${field}" in project frontmatter: ${contentPath}`);
 		}
 	}
-
-	if (frontmatter.origin === 'University' && !frontmatter.sourceUrl) {
-		throw new Error(`Missing "sourceUrl" in university project frontmatter: ${contentPath}`);
-	}
 }
 
 function toProject(frontmatter: ProjectFrontmatter): Project {
@@ -69,6 +65,11 @@ function toProject(frontmatter: ProjectFrontmatter): Project {
 		cardForegroundStyle: frontmatter.cardForegroundStyle,
 		cardIconSize: frontmatter.cardIconSize
 	};
+}
+
+function toSortableDate(value: string): number {
+	const parsed = Date.parse(value);
+	return Number.isNaN(parsed) ? Number.NEGATIVE_INFINITY : parsed;
 }
 
 export const projectEntries: ProjectEntry[] = Object.entries(contentModules)
@@ -92,8 +93,8 @@ export const projectEntries: ProjectEntry[] = Object.entries(contentModules)
 			return pinnedOrder;
 		}
 
-		const aEnd = Date.parse(a.frontmatter.endDate);
-		const bEnd = Date.parse(b.frontmatter.endDate);
+		const aEnd = toSortableDate(a.frontmatter.endDate);
+		const bEnd = toSortableDate(b.frontmatter.endDate);
 		return bEnd - aEnd || a.project.title.localeCompare(b.project.title);
 	});
 

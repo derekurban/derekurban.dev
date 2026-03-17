@@ -22,15 +22,15 @@ contribution: '100%'
 sourceUrl: 'https://github.com/derekurban/university-projects'
 ---
 
-This project is a small TypeScript parsing utility that reconstructs JavaScript values directly from raw JSON-like text without calling `JSON.parse`. It is built around one exported class, `JsonAssembler`, which accepts an input string and incrementally assembles the corresponding value.
+This project is a small TypeScript parsing utility that reconstructs JavaScript values directly from raw JSON-like text without calling `JSON.parse`. It's built around one exported class, `JsonAssembler`, which accepts an input string and incrementally assembles the corresponding value.
 
-At the top level, the parser handles the full set of value shapes the project is designed for: objects, arrays, quoted strings, and primitive values. The implementation is compact, but it includes the core mechanics needed to recursively rebuild nested structures from plain text.
+At the top level, the parser handles objects, arrays, quoted strings, and primitive values. The implementation is compact, but it includes the core mechanics needed to recursively rebuild nested structures from plain text.
 
 ## Overview
 
-The parser works by reading the input one character at a time and deciding what kind of value should be built next. Instead of delegating the work to the platform's built-in JSON parser, it manually interprets the text stream and reconstructs the in-memory result through its own parsing methods.
+The parser works by reading the input one character at a time and deciding what kind of value should be built next. Instead of delegating to the platform's built-in JSON parser, it manually interprets the text stream and reconstructs the in-memory result through its own parsing methods.
 
-That gives the project a clear, library-style shape. The input is a string, the output is the assembled JavaScript value, and the parser itself is responsible for consuming the text, tracking its place in the stream, and dispatching to the correct parsing path.
+The input is a string, the output is the assembled JavaScript value, and the parser itself handles consuming the text, tracking its place in the stream, and dispatching to the correct parsing path.
 
 The public entry point is intentionally small. `assemble()` begins the process, and the rest of the parser is organized as a set of internal builder methods that each handle one kind of value.
 
@@ -45,9 +45,7 @@ The central dispatcher is `buildValue()`. It skips whitespace, reads the next me
 - An array
 - A primitive
 
-This gives the parser a recursive-descent structure. When the parser encounters a nested object or array, it calls back into the same value-building path and continues assembling from the current point in the input.
-
-That recursive model is the core of the project. It allows the parser to handle nested combinations of arrays and objects without needing a separate parsing stage for each level.
+This gives the parser a recursive-descent structure. When it encounters a nested object or array, it calls back into the same value-building path and continues assembling from the current point in the input. It can handle nested combinations of arrays and objects without needing a separate parsing stage for each level.
 
 ![Parser dispatch flow](./assets/diagrams/parser-dispatch-flow.png)
 
@@ -63,11 +61,11 @@ Primitive values are handled by reading forward until a delimiter is reached, th
 
 ## Distinctive Implementation Detail
 
-The most characteristic part of the project is the internal text-management approach. Instead of keeping a numeric cursor index and advancing through the input with pointer arithmetic, the parser uses a helper class that stores the remaining unconsumed text and slices characters off the front as they are processed.
+Instead of keeping a numeric cursor index and advancing through the input with pointer arithmetic, the parser uses a helper class that stores the remaining unconsumed text and slices characters off the front as they're processed.
 
-That helper also supports a simple one-character pushback mechanism. When the parser reads a character that belongs to the next parsing step, it can return that character to the front of the remaining input and let the next builder method consume it properly.
+The helper also supports a simple one-character pushback mechanism. When the parser reads a character that belongs to the next parsing step, it can return that character to the front of the remaining input and let the next builder method consume it properly.
 
-This makes the parser easy to follow. The control flow stays local to the parsing methods, and the parser can move between reading, peeking, and recursive descent without introducing a separate tokenizer or a larger parsing pipeline.
+This keeps the parser easy to follow. The control flow stays local to the parsing methods, and it can move between reading, peeking, and recursive descent without introducing a separate tokenizer or a larger parsing pipeline.
 
 ![Text cursor mechanism](./assets/diagrams/text-cursor-mechanism.png)
 
@@ -86,11 +84,9 @@ The included test suite exercises those cases across multiple combinations, whic
 
 ## Technical Character
 
-This is a deliberately lightweight parser rather than a full JSON validation engine. The implementation focuses on reconstructing values from expected input, not on enforcing every strict rule of the JSON specification.
+This is a deliberately lightweight parser, not a full JSON validation engine. It focuses on reconstructing values from expected input, not on enforcing every strict rule of the JSON specification.
 
-That is visible in a few places. The parser explicitly accepts `undefined`, which is not part of standard JSON. Primitive number parsing is also permissive because it uses `parseFloat` rather than a stricter token validation step. In practice, the project is best described as a manual JSON-like assembler built for recursive value reconstruction.
-
-That framing fits the code more accurately than calling it a standards-compliant parser.
+You can see that in a few places. The parser explicitly accepts `undefined`, which isn't part of standard JSON. Primitive number parsing is also permissive because it uses `parseFloat` rather than a stricter token validation step. It's more accurately described as a manual JSON-like assembler built for recursive value reconstruction than a standards-compliant parser.
 
 ## Project Structure
 
@@ -101,7 +97,7 @@ The repository is intentionally small:
 - `JsonTextManager` acts as the internal character-consumption helper
 - `tests/JsonAssembler.test.ts` exercises the parser against nested structures, escaped strings, and mixed values
 
-The small footprint is part of what makes the project readable. The full parsing flow can be traced through one source file, which makes the implementation choices easy to inspect.
+The small footprint keeps it readable — the full parsing flow can be traced through one source file.
 
 ## Signing Off
 

@@ -24,17 +24,17 @@ sourceUrl: 'https://github.com/derekurban/university-projects'
 
 ## Overview
 
-This project is a full-stack web application that combines several personal organization features into one account-based system. Instead of separating scheduling, notes, task tracking, profile management, and friend connections into unrelated tools, the application keeps them under one user record and one shared interface. The result is a locally run productivity platform with a small social layer built around the same data model.
+This project is a full-stack web application that combines several personal organization features into one account-based system. Instead of separating scheduling, notes, task tracking, profile management, and friend connections into unrelated tools, the application keeps them under one user record and one shared interface — a locally run productivity platform with a small social layer built around the same data model.
 
-At the repository level, the project is split into three main parts: a React frontend, an Express API, and a MySQL schema defined through SQL scripts. There is also an older `client` folder that appears to be an earlier or partial frontend branch, but the main application is the `Front_End` project paired with the `api` server. The core of the work lives in that frontend/backend split.
+At the repository level, the project is split into three main parts: a React frontend, an Express API, and a MySQL schema defined through SQL scripts. There's also an older `client` folder that appears to be an earlier or partial frontend branch, but the main application is the `Front_End` project paired with the `api` server.
 
 ## Frontend Application Structure
 
 The frontend is a React single-page application organized around route-based pages. Public entry points include the welcome screen, login, and signup. Once a user is considered logged in, the application routes into a protected set of pages for profile management, tasks, calendar, notes, settings, friends, and statistics. Access control is handled on the client side through a `ProtectedRoute` wrapper that checks for a stored user record in `localStorage` before allowing access to the main application pages.
 
-The layout is organized as a multi-page dashboard rather than a single feature view. Shared navigation is provided through a persistent navbar, while each route focuses on one part of the user's data. That gives the application the feel of a connected workspace rather than a collection of isolated forms.
+The layout is organized as a multi-page dashboard. Shared navigation is provided through a persistent navbar, while each route focuses on one part of the user's data — it feels like a connected workspace rather than a collection of isolated forms.
 
-The UI implementation also mixes several styling approaches. Some sections use plain CSS files, some use utility-class-driven layout in the calendar area, and some feature-specific screens are built with `styled-components`. That mix is especially visible in the task, notes, and settings pages, where the screen structure is composed from reusable styled wrappers and custom UI pieces.
+The UI implementation mixes several styling approaches. Some sections use plain CSS files, some use utility-class-driven layout in the calendar area, and some feature-specific screens are built with `styled-components`. The task, notes, and settings pages are where this mix is most visible, with screen structure composed from reusable styled wrappers and custom UI pieces.
 
 ![Full-stack architecture](./assets/diagrams/full-stack-architecture.png)
 
@@ -52,15 +52,15 @@ Settings and profile pages extend that same pattern of user-owned data managemen
 
 ## Social and Shared Features
 
-The social layer is lightweight but visible. The friends page allows the user to search the profile directory, add direct friend relationships, and remove them later. The relationship itself is modeled as a join table in the database, so the feature is not just a UI list. It stores actual user-to-user links.
+The social layer is lightweight but visible. The friends page allows the user to search the profile directory, add direct friend relationships, and remove them later. The relationship is modeled as a join table in the database — it stores actual user-to-user links, not just a UI list.
 
-The schema also includes a `Shared_Features` table with permissions for view or edit access across users. The visible frontend does not appear to expose that entire sharing model directly, but the structure is present in the database design. That makes the social side of the project larger than the immediate friend list UI alone. It shows that feature sharing between users was part of the broader system design, even if the full front-end surface for it is not built out in the same way as the core productivity pages.
+The schema also includes a `Shared_Features` table with permissions for view or edit access across users. The frontend doesn't appear to expose that entire sharing model directly, but the structure is present in the database design. Feature sharing between users was part of the broader system design, even if the full front-end surface for it isn't built out the same way as the core productivity pages.
 
-The statistics page is another cross-feature view. In the UI it is relatively simple, but it connects to the broader idea that activity in tasks, notes, and events can be counted over time. The backend includes a `Monthly_Stats` table, and the frontend task and event update paths call into that tracking flow when records change. That means statistics are not only a static display concept; they are tied back into the application's create/update behavior.
+The statistics page is another cross-feature view. In the UI it's relatively simple, but the backend includes a `Monthly_Stats` table, and the frontend task and event update paths call into that tracking flow when records change. Statistics are tied back into the application's create/update behavior, not just a static display.
 
 ## Backend and Data Model
 
-The backend is a Node.js Express server organized as a set of resource-specific routers and service modules. Rather than using a monolithic controller or a general-purpose ORM, the API is broken into endpoints for resources such as profile, settings, tasks, task, notes, note, schedule, event, friends, features, shared features, and monthly stats. Each resource has its own route file and its own service layer, which makes the API structure easy to follow from the repository layout.
+The backend is a Node.js Express server organized as a set of resource-specific routers and service modules. Rather than a monolithic controller or a general-purpose ORM, the API is broken into endpoints for resources like profile, settings, tasks, task, notes, note, schedule, event, friends, features, shared features, and monthly stats. Each resource has its own route file and service layer, making the API structure easy to follow from the repository layout.
 
 On the data side, the schema is centered on the `Profile` table. From that record, the rest of the application branches into related data:
 
@@ -72,13 +72,13 @@ On the data side, the schema is centered on the `Profile` table. From that recor
 - `Monthly_Stats` stores per-user monthly counts.
 - `Features` stores the active linked IDs for the user's main productivity records.
 
-The `Features` table is an especially characteristic part of the design. Instead of repeatedly resolving each root record independently, the application uses one linking row to keep track of which schedule, notes collection, task list, and settings record belong to the current user. That gives the frontend a central lookup path for the rest of the user's feature data.
+The `Features` table is an interesting part of the design. Instead of repeatedly resolving each root record independently, the application uses one linking row to keep track of which schedule, notes collection, task list, and settings record belong to the current user — a central lookup path for the rest of the user's feature data.
 
 ## Authentication and Session Handling
 
-Authentication in this project is lightweight and mostly client-managed. The frontend stores a user block in `localStorage`, uses that to gate protected routes, and performs profile-related requests directly against the API. Password hashing is handled with `bcryptjs`, but it is triggered from the frontend request layer during signup and profile updates. That is a notable implementation choice because it moves some credential handling logic into the client instead of concentrating it entirely on the server.
+Authentication is lightweight and mostly client-managed. The frontend stores a user block in `localStorage`, uses that to gate protected routes, and performs profile-related requests directly against the API. Password hashing is handled with `bcryptjs`, but it's triggered from the frontend request layer during signup and profile updates — some credential handling logic lives in the client rather than being concentrated entirely on the server.
 
-The signup flow also does more than create a profile record. It bootstraps the rest of the user's default workspace by creating or linking the initial settings, notes, task, schedule, and statistics records. That makes account creation part of the application's core data orchestration rather than only a single insert into the profile table.
+The signup flow also does more than create a profile record. It bootstraps the rest of the user's default workspace by creating or linking the initial settings, notes, task, schedule, and statistics records. Account creation is part of the application's core data orchestration, not just a single insert into the profile table.
 
 ![Account bootstrap flow](./assets/diagrams/account-bootstrap-flow.png)
 

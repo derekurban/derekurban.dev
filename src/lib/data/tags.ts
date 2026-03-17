@@ -6,6 +6,9 @@ export const tagMeta: Record<string, { label: string }> = {
 	'developer-tool': { label: 'Developer Tool' },
 	game: { label: 'Game' },
 	simulation: { label: 'Simulation' },
+	platform: { label: 'Platform' },
+	service: { label: 'Service' },
+	migration: { label: 'Migration' },
 	systems: { label: 'Systems' },
 	ai: { label: 'AI' }
 };
@@ -18,6 +21,9 @@ const preferredTagOrder = [
 	'developer-tool',
 	'game',
 	'simulation',
+	'platform',
+	'service',
+	'migration',
 	'systems',
 	'ai'
 ];

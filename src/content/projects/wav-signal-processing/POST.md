@@ -32,7 +32,7 @@ sourceUrl: "https://github.com/derekurban/university-projects"
 
 ## Overview
 
-This project is a small C++ toolkit for reading WAV audio files, applying convolution-based processing, and validating generated output against a reference recording. Instead of being structured as one monolithic audio application, it is split into a set of focused command-line utilities that share the same WAV parsing and file-writing layer.
+This project is a small C++ toolkit for reading WAV audio files, applying convolution-based processing, and validating generated output against a reference recording. Instead of one monolithic audio application, it's split into a set of focused command-line utilities that share the same WAV parsing and file-writing layer.
 
 The repository contains four main pieces:
 
@@ -41,7 +41,7 @@ The repository contains four main pieces:
 - `convolve_fft.cpp` for FFT-based convolution in the frequency domain
 - `regression.cpp` for comparing two WAV files at both header and signal-data levels
 
-Taken together, the project reads as a compact audio-processing lab: one shared file-format layer, two different convolution strategies, and one validation utility for checking output correctness.
+Together it's a compact audio-processing lab: one shared file-format layer, two different convolution strategies, and one validation utility for checking output correctness.
 
 ## WAV File Handling
 
@@ -54,7 +54,7 @@ From there, the code converts the raw PCM bytes into normalized floating-point s
 
 The parser also computes a `signalLength`, tracks whether the source is stereo, and stores the key WAV header fields so the rest of the programs can work from one consistent in-memory representation.
 
-The same file also provides the write path. It includes helpers for writing little-endian integers and shorts, writing the WAV header, and writing PCM sample data back to disk. That means the toolkit is not only reading WAV files; it fully owns the conversion from file bytes to sample vectors and then back from processed sample data to a valid output file.
+The same file provides the write path — helpers for writing little-endian integers and shorts, writing the WAV header, and writing PCM sample data back to disk. The toolkit fully owns the conversion from file bytes to sample vectors and back from processed sample data to a valid output file.
 
 ![WAV Processing Pipeline](./assets/diagrams/wav-processing-pipeline.png)
 
@@ -68,7 +68,7 @@ The same file also provides the write path. It includes helpers for writing litt
 
 This version is the more straightforward implementation. It is easy to follow mathematically and maps directly to the textbook discrete convolution process.
 
-After convolution, the program scales the output signal so the processed result stays within a usable amplitude range relative to the original input. It then converts the floating-point output back to 16-bit sample values, writes the result as a WAV file, and reports the total runtime. That makes this utility both a processing tool and a timing baseline for comparison with the FFT version.
+After convolution, the program scales the output signal so the processed result stays within a usable amplitude range relative to the original input. It then converts the floating-point output back to 16-bit sample values, writes the result as a WAV file, and reports the total runtime — which also makes it a useful timing baseline for comparison with the FFT version.
 
 ## FFT-Based Convolution
 
@@ -89,11 +89,11 @@ The FFT implementation is written directly in C++, including the transform routi
 - complex multiplication for paired real/imaginary values
 - inverse transform execution by calling the same FFT routine with a negative sign
 
-That makes this utility more than a wrapper around a DSP library. It contains the transform and convolution mechanics in the source itself.
+So it's more than a wrapper around a DSP library — the transform and convolution mechanics are in the source itself.
 
 The code also handles stereo impulse responses by producing separate left and right processed outputs when needed. As in the time-domain version, the final signal is scaled and converted back into 16-bit PCM before being written to disk.
 
-This file is the most algorithmically dense part of the toolkit. It is where the project moves from basic file manipulation into a more explicit digital signal processing implementation.
+This file is the most algorithmically dense part of the toolkit — where it moves from basic file manipulation into real digital signal processing.
 
 ![Convolution Strategy Map](./assets/diagrams/convolution-strategy-map.png)
 
@@ -112,22 +112,22 @@ At the header level, it checks the key identifier fields and the main WAV metada
 
 The comparison logic handles both mono and stereo recordings. Stereo comparisons validate both channels together, while mono comparisons verify the left-channel data only. The program emits specific messages when a mismatch is found, which makes it useful as a quick regression checker for generated output.
 
-This gives the toolkit a built-in verification step. It is not just producing processed WAV files; it also includes a command-line utility for checking whether a generated file still matches an expected result.
+So the toolkit has a built-in verification step — not just producing processed WAV files, but also checking whether a generated file still matches an expected result.
 
 ![WAV Regression Check](./assets/diagrams/wav-regression-check.png)
 
 ## Shared Design Across the Utilities
 
-One of the stronger characteristics of the project is that the tools are separate, but they all rely on the same internal representation of audio data. The WAV parser produces normalized floating-point sample vectors, the processing utilities operate on those vectors, and the write helpers convert the processed samples back into standard PCM output.
+The tools are separate, but they all rely on the same internal representation of audio data. The WAV parser produces normalized floating-point sample vectors, the processing utilities operate on those vectors, and the write helpers convert the processed samples back into standard PCM output.
 
-That shared structure keeps the programs aligned:
+The shared structure keeps everything aligned:
 
 - parsing happens once in a common format
 - processing happens on vectors of samples
 - output happens through the same write helpers
 - validation reads the same structure back for comparison
 
-This makes the repository feel like a small toolkit rather than a set of unrelated experiments.
+It feels like a cohesive toolkit, not a set of unrelated experiments.
 
 ## Signing Off
 

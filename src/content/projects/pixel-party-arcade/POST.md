@@ -36,11 +36,11 @@ The three game modes do not use the same rules. Frogger and Pong run as free-for
 
 ## Session Design
 
-One of the defining characteristics of the project is its one-button control scheme. Each of the four players is assigned a single key (`Q`, `R`, `U`, `P`), and the application uses that limited input set across menus and gameplay. Those simple key mappings mirror the hand-made controller setup built for the project, so the same one-button-per-player model can be used with the physical controller or directly from the keyboard. The same button is used for ready checks before rounds and for in-game actions once a round starts.
+One of the defining characteristics of the project is its one-button control scheme. Each of the four players is assigned a single key (`Q`, `R`, `U`, `P`), and the application uses that limited input set across menus and gameplay. Those simple key mappings mirror the hand-made controller setup built for the project, so the same one-button-per-player model works with the physical controller or directly from the keyboard. The same button handles ready checks before rounds and in-game actions once a round starts.
 
-That constraint gives the project a very specific design shape. Instead of building separate, complex control mappings for each mini-game, the code organizes each mode around simple, readable input behavior that can be reused across the full session.
+The constraint shapes the whole design. Instead of building separate, complex control mappings for each mini-game, each mode is organized around simple, readable input behavior that can be reused across the full session.
 
-The pre-game screen also includes a "How To Play" view tied to the upcoming round. That keeps the transition between setup and gameplay inside the same flow rather than pushing players into separate instruction screens for each mode.
+The pre-game screen also includes a "How To Play" view tied to the upcoming round, keeping the transition between setup and gameplay inside the same flow.
 
 ![Round lifecycle](./assets/diagrams/round-lifecycle.png)
 
